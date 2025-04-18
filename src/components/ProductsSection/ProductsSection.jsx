@@ -140,11 +140,11 @@ const ProductsSection = () => {
               key={product.id}
               className={styles.productCard}
               variants={itemVariants}
-              whileHover={{ 
-                y: -10, 
-                boxShadow: '0 25px 25px rgba(0, 0, 0, 0.15)',
-                transition: { duration: 0.3 }
-              }}
+              // whileHover={{ 
+              //   y: -10, 
+              //   boxShadow: '0 25px 25px rgba(0, 0, 0, 0.15)',
+              //   transition: { duration: 0.3 }
+              // }}
             >
               <div className={styles.productImageContainer}>
                 <img 
