@@ -1,0 +1,287 @@
+.pensCartridgesSection {
+    position: relative;
+    min-height: 100vh;
+    padding: 100px 0;
+    overflow: hidden;
+    background-color: #0f0f0f;
+  }
+  
+  .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  
+  .smokeEffect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200%;
+    background: url('../../assets/smoke-texture.png');
+    opacity: 0.07;
+    animation: moveSmoke 120s linear infinite;
+  }
+  
+  .contentWrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .textContainer {
+    flex: 0 0 50%;
+    padding-right: 40px;
+  }
+  
+  .titleContainer {
+    margin-bottom: 30px;
+  }
+  
+  .title {
+    font-size: 2.6rem;
+    color: #e63e3e;
+    margin-bottom: 5px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  
+  .subtitle {
+    font-size: 2rem;
+    color: #ffffff;
+    font-weight: 600;
+  }
+  
+  .description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #e0e0e0;
+    margin-bottom: 20px;
+  }
+  
+  .featuresList {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 40px;
+  }
+  
+  .featureItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .featureItem:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+  }
+  
+  .featureIcon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e63e3e;
+    color: white;
+    border-radius: 50%;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .learnMoreButton {
+    margin-top: 20px;
+    padding: 15px 30px;
+    background: linear-gradient(45deg, #e63e3e, #c51e1e);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(230, 62, 62, 0.3);
+  }
+  
+  .learnMoreButton:hover {
+    box-shadow: 0 8px 20px rgba(230, 62, 62, 0.5);
+    transform: translateY(-2px);
+  }
+  
+  .imageContainer {
+    flex: 0 0 45%;
+    position: relative;
+  }
+  
+  .imageWrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  }
+  
+  .image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    transition: transform 0.5s ease;
+  }
+  
+  .imageWrapper:hover .image {
+    transform: scale(1.05);
+  }
+  
+  .imageBadge {
+    position: absolute;
+    top: 20px;
+    right: -40px;
+    background: #e63e3e;
+    color: white;
+    padding: 8px 40px;
+    transform: rotate(45deg);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+  }
+  
+  .imageOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .specItem {
+    color: white;
+    text-align: center;
+  }
+  
+  .specLabel {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin-bottom: 5px;
+  }
+  
+  .specValue {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  
+  .decorElements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  .decorLine1, .decorLine2 {
+    position: absolute;
+    width: 1px;
+    background: linear-gradient(to bottom, rgba(76, 175, 80, 0.3), transparent);
+  }
+  
+  .decorLine1 {
+    height: 40%;
+    top: 10%;
+    left: 15%;
+  }
+  
+  .decorLine2 {
+    height: 30%;
+    bottom: 10%;
+    right: 10%;
+  }
+  
+  .decorDot1, .decorDot2 {
+    position: absolute;
+    border-radius: 50%;
+    background: #e63e3e;
+  }
+  
+  .decorDot1 {
+    width: 8px;
+    height: 8px;
+    top: 15%;
+    left: 15%;
+    box-shadow: 0 0 20px rgba(230, 62, 62, 0.5);
+    animation: pulseDot 4s infinite alternate;
+  }
+  
+  .decorDot2 {
+    width: 12px;
+    height: 12px;
+    bottom: 20%;
+    right: 10%;
+    box-shadow: 0 0 30px rgba(230, 62, 62, 0.5);
+    animation: pulseDot 6s infinite alternate;
+  }
+  
+  @keyframes pulseDot {
+    0% {
+      transform: scale(1);
+      opacity: 0.7;
+    }
+    100% {
+      transform: scale(1.5);
+      opacity: 0.3;
+    }
+  }
+  
+  @keyframes moveSmoke {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 1000px 1000px;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .contentWrapper {
+      flex-direction: column-reverse;
+    }
+    
+    .textContainer, .imageContainer {
+      flex: 0 0 100%;
+      width: 100%;
+      padding: 0;
+      margin-bottom: 60px;
+    }
+    
+    .title {
+      font-size: 2.2rem;
+    }
+    
+    .subtitle {
+      font-size: 1.8rem;
+    }
+    
+    .featuresList {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+  }
+  

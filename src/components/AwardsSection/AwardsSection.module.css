@@ -1,0 +1,405 @@
+.awardsSection {
+    position: relative;
+    min-height: 100vh;
+    padding: 100px 0;
+    background-color: #000000;
+    overflow: hidden;
+    cursor: none;
+  }
+  
+  .mouseCursor {
+    position: fixed;
+    pointer-events: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(230, 62, 62, 0.5) 0%, rgba(230, 62, 62, 0) 70%);
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    mix-blend-mode: screen;
+    filter: blur(5px);
+    transition: opacity 0.3s ease;
+  }
+  
+  .backgroundElements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .gradientOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(30, 30, 30, 0.5) 0%, rgba(0, 0, 0, 1) 80%);
+    z-index: 1;
+  }
+  
+  .particlesContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+  }
+  
+  .particle {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: floatUp linear infinite;
+  }
+  
+  @keyframes floatUp {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-1000px) rotate(720deg);
+      opacity: 0;
+    }
+  }
+  
+  .contentWrapper {
+    position: relative;
+    z-index: 10;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .headerContainer {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  
+  .logoContainer {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  
+  .awardIcon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.6));
+  }
+  
+  .awardTitle {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    color: white;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  }
+  
+  .emphasizedText {
+    font-size: 3.5rem;
+    color: #e63e3e;
+    font-weight: 800;
+    letter-spacing: 3px;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .emphasizedText::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #e63e3e, transparent);
+  }
+  
+  .timelineContainer {
+    position: relative;
+    margin-bottom: 60px;
+  }
+  
+  .yearsNavigation {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    position: relative;
+  }
+  
+  .yearButton {
+    background: none;
+    border: none;
+    padding: 10px 30px;
+    margin: 0 15px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  
+  .yearButton:hover {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .yearButtonActive {
+    color: #e63e3e;
+  }
+  
+  .yearText {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .yearActiveIndicator {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 3px;
+    background: #e63e3e;
+    border-radius: 3px;
+  }
+  
+  .awardsList {
+    position: relative;
+    min-height: 400px;
+  }
+  
+  .yearAwards {
+    position: relative;
+  }
+  
+  .yearIndicator {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .year {
+    font-size: 1.5rem;
+    color: #e63e3e;
+    font-weight: 700;
+    margin-right: 20px;
+  }
+  
+  .yearLine {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, #e63e3e, transparent);
+  }
+  
+  .awardCard {
+    display: flex;
+    background: rgba(20, 20, 20, 0.8);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    border-left: 3px solid #e63e3e;
+    transition: all 0.3s ease;
+  }
+  
+  .awardCard:hover {
+    background: rgba(30, 30, 30, 0.8);
+  }
+  
+  .awardPlace {
+    flex: 0 0 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .placeBadge {
+    background: #1a1a1a;
+    color: #FFD700;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.1);
+  }
+  
+  .awardCard:nth-child(even) .placeBadge {
+    color: #C0C0C0;
+    border-color: rgba(192, 192, 192, 0.3);
+    box-shadow: 0 0 10px rgba(192, 192, 192, 0.1);
+  }
+  
+  .awardDetails {
+    flex: 1;
+    padding: 0 20px;
+  }
+  
+  .awardCategory {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 8px;
+  }
+  
+  .awardEvent {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .awardDecoration {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100px;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  
+  .goldDecoration {
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0) 70%);
+    border-radius: 50%;
+  }
+  
+  .silverDecoration {
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(192, 192, 192, 0.15) 0%, rgba(192, 192, 192, 0) 70%);
+    border-radius: 50%;
+  }
+  
+  .ctaContainer {
+    text-align: center;
+    margin-top: 60px;
+  }
+  
+  .ctaButton {
+    background: linear-gradient(45deg, #e63e3e, #c51e1e);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    box-shadow: 0 10px 20px rgba(230, 62, 62, 0.3);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .ctaButton::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(45deg, #e63e3e, #c51e1e);
+    z-index: -1;
+    filter: blur(20px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .ctaButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(230, 62, 62, 0.4);
+  }
+  
+  .ctaButton:hover::before {
+    opacity: 0.7;
+  }
+  
+  .ctaButton:active {
+    transform: translateY(0);
+  }
+  
+  /* Адаптивность */
+  @media (max-width: 768px) {
+    .awardTitle {
+      font-size: 2rem;
+    }
+    
+    .emphasizedText {
+      font-size: 2.8rem;
+    }
+    
+    .awardCard {
+      flex-direction: column;
+    }
+    
+    .awardPlace {
+      margin-bottom: 15px;
+    }
+    
+    .awardDetails {
+      padding: 0;
+    }
+    
+    .yearsNavigation {
+      flex-wrap: wrap;
+    }
+    
+    .yearButton {
+      margin: 0 10px;
+      padding: 8px 15px;
+      font-size: 1.2rem;
+    }
+  }
+  
+  /* Анимации и эффекты */
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  /* Эффект свечения для текста */
+  .emphasizedText {
+    animation: textGlow 4s infinite alternate;
+  }
+  
+  @keyframes textGlow {
+    0% {
+      text-shadow: 0 0 5px rgba(230, 62, 62, 0.5);
+    }
+    100% {
+      text-shadow: 0 0 20px rgba(230, 62, 62, 0.8);
+    }
+  }
+  

@@ -1,0 +1,161 @@
+.certificationSection {
+    position: relative;
+    padding: 80px 0;
+    background-color: #fff;
+    z-index: 1;
+  }
+  
+  .brushTop, .brushBottom {
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    z-index: 2;
+  }
+  
+  /* .brushTop {
+    top: -1px;
+    background-image: url('./assets/brush-stroke-top.png');
+    transform: rotateX(180deg);
+  }
+  
+  .brushBottom {
+    bottom: -1px;
+    background-image: url('./assets/brush-stroke-bottom.png');
+  } */
+  
+  .contentContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 3;
+  }
+  
+  .certificationContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+  }
+  
+  .logoContainer {
+    flex: 0 0 auto;
+  }
+  
+  .nonGmoLogo {
+    max-width: 200px;
+    height: auto;
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+    transition: transform 0.3s ease;
+  }
+  
+  .nonGmoLogo:hover {
+    transform: scale(1.05);
+  }
+  
+  .textContainer {
+    flex: 1 1 auto;
+    max-width: 600px;
+  }
+  
+  .title {
+    font-size: 2.2rem;
+    color: #3070B9;
+    margin: 0 0 5px;
+    font-weight: 700;
+  }
+  
+  .subtitle {
+    font-size: 2.5rem;
+    color: #4CAF50;
+    margin: 0 0 30px;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .subtitle::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #4CAF50, transparent);
+  }
+  
+  .benefitsList {
+    margin: 30px 0;
+  }
+  
+  .benefitItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+  }
+  
+  .benefitItem:hover {
+    transform: translateX(5px);
+  }
+  
+  .checkIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 50%;
+    margin-right: 15px;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  
+  .benefitItem p {
+    font-size: 1.1rem;
+    color: #333;
+    margin: 0;
+  }
+  
+  .learnMoreButton {
+    margin-top: 20px;
+    padding: 12px 25px;
+    background: linear-gradient(45deg, #4CAF50, #2E7D32);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+  }
+  
+  .learnMoreButton:hover {
+    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.5);
+    transform: translateY(-2px);
+  }
+  
+  @media (max-width: 768px) {
+    .certificationContent {
+      flex-direction: column;
+      text-align: center;
+      gap: 30px;
+    }
+    
+    .subtitle::after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .benefitItem {
+      justify-content: center;
+      text-align: left;
+    }
+  }
+  
