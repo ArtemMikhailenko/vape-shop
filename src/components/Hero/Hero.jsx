@@ -40,9 +40,6 @@ const Hero = () => {
 
   return (
     <section className={styles.heroSection}>
-      {/* Background Image */}
-      <div className={styles.backgroundImage}></div>
-      
       {/* Video Background */}
       <video 
         ref={videoRef}
@@ -56,9 +53,12 @@ const Hero = () => {
       </video>
 
       {/* Smoke effect */}
-      {/* <div ref={smokeRef} className={styles.smokeEffect}></div> */}
+      <div className={styles.smokeEffect}></div>
       
-      {/* Parallax content */}
+      {/* Overlay */}
+      <div className={styles.overlayGradient}></div>
+      
+      {/* Content */}
       <motion.div 
         className={styles.heroContent}
         style={{ 
@@ -68,6 +68,10 @@ const Hero = () => {
         }}
       >
         <div className={styles.contentWrapper}>
+          <div className={styles.badgeContainer}>
+            <div className={styles.productBadge}>Premium Quality</div>
+          </div>
+          
           <motion.h1 
             className={styles.heroTitle}
             initial={{ opacity: 0, y: 30 }}
@@ -132,6 +136,19 @@ const Hero = () => {
               <span className={styles.buttonIcon}>+</span>
             </motion.button>
           </motion.div>
+        </div>
+      </motion.div>
+      
+      {/* Scroll down indicator */}
+      <motion.div 
+        className={styles.scrollIndicator}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 1 }}
+      >
+        <div className={styles.scrollText}>Прокрутите вниз</div>
+        <div className={styles.scrollLine}>
+          <div className={styles.scrollDot}></div>
         </div>
       </motion.div>
     </section>
