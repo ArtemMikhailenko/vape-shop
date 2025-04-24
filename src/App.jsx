@@ -14,6 +14,7 @@ import ContactsPage from './pages/ContactPages/ContactPages';
 import FAQPage from './pages/FAQPage/FAQPage';
 import PurchasePage from './pages/PurchasePage/PurchasePage';
 import ProductionPage from './pages/Production/Production';
+import ShopPage from './pages/Shop/ShopPage';
 function App() {
   return (
     <Router>
@@ -35,6 +36,7 @@ function App() {
           <Route path="/faq" element={<FAQPage/>} />
           <Route path="/purchase" element={<PurchasePage/>} />
           <Route path="/production" element={<ProductionPage/>} />
+          <Route path="/shop" element={<ShopPage/>} />
         </Routes>
         <Footer />
       </div>

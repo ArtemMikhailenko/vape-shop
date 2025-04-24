@@ -1,853 +1,867 @@
 .purchasePage {
-    position: relative;
-    min-height: 100vh;
-    padding: 100px 0;
-    background-color: #080808;
-    overflow: hidden;
+  position: relative;
+  min-height: 100vh;
+  padding: 100px 0 0;
+  background-color: #f9f9f9;
+  overflow: hidden;
+}
+
+.backgroundElements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.gradientOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(240, 250, 245, 0.8) 0%, rgba(248, 251, 250, 1) 80%);
+}
+
+.leafPattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%234CAF50' fill-opacity='0.05' d='M50 0C36.8 0 26.1 13.4 25.6 30.2c0 .4 0 .8-.2 1.2s-.5.6-.9.7c-.2 0-.4 0-.6-.1C15.4 29 6.5 36.2 6.5 46.2c0 6.6 3.5 12.3 8.7 15.3.4.2.6.6.6 1s-.1.8-.5 1c-7.3 5.4-7.3 18.2 1.6 23.2 6.3 3.5 14.2 1.6 19-4.1.3-.3.6-.5 1-.5s.7.1 1 .4c4.3 5.8 11.2 9.5 19 9.5 13.3 0 24-12.3 24-27.5 0-5.7-1.5-11.1-4.2-15.5-.2-.4-.2-.9 0-1.3s.5-.7.9-.8c11.3-2.8 19.4-14.3 19.4-27.6C97 8.4 75.8 0 50 0z'/%3E%3C/svg%3E");
+  opacity: 0.1;
+}
+
+.leafParticle {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%234CAF50' fill-opacity='0.3' d='M50 0C36.8 0 26.1 13.4 25.6 30.2c0 .4 0 .8-.2 1.2s-.5.6-.9.7c-.2 0-.4 0-.6-.1C15.4 29 6.5 36.2 6.5 46.2c0 6.6 3.5 12.3 8.7 15.3.4.2.6.6.6 1s-.1.8-.5 1c-7.3 5.4-7.3 18.2 1.6 23.2 6.3 3.5 14.2 1.6 19-4.1.3-.3.6-.5 1-.5s.7.1 1 .4c4.3 5.8 11.2 9.5 19 9.5 13.3 0 24-12.3 24-27.5 0-5.7-1.5-11.1-4.2-15.5-.2-.4-.2-.9 0-1.3s.5-.7.9-.8c11.3-2.8 19.4-14.3 19.4-27.6C97 8.4 75.8 0 50 0z'/%3E%3C/svg%3E");
+  background-size: contain;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.3;
+  animation: floatLeaf 25s linear forwards;
+}
+
+@keyframes floatLeaf {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(0.8);
+    opacity: 0;
   }
-  
-  .backgroundElements {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-    background: radial-gradient(circle at 70% 30%, rgba(50, 50, 50, 0.2) 0%, rgba(8, 8, 8, 0.5) 70%);
+  10% {
+    opacity: 0.3;
   }
-  
-  .animatedLine {
-    position: absolute;
-    top: 0;
-    width: 1px;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(230, 62, 62, 0), rgba(230, 62, 62, 0.3), rgba(230, 62, 62, 0));
-    z-index: 1;
-    animation: moveLine linear infinite;
+  90% {
+    opacity: 0.2;
   }
-  
-  @keyframes moveLine {
-    0% {
-      transform: translateX(0);
-      opacity: 0;
-    }
-    20% {
-      opacity: 1;
-    }
-    80% {
-      opacity: 1;
-    }
-    100% {
-      transform: translateX(100px);
-      opacity: 0;
-    }
+  100% {
+    transform: translateY(-100vh) rotate(720deg) scale(1.5);
+    opacity: 0;
   }
-  
-  .contentContainer {
-    position: relative;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 20px;
-    z-index: 2;
-  }
-  
-  .pageHeader {
-    text-align: center;
-    margin-bottom: 60px;
+}
+
+.contentContainer {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+  z-index: 2;
+}
+
+.pageHeader {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.pageBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(76, 175, 80, 0.1);
+  color: #4CAF50;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.badgeIcon {
+  font-size: 0.9rem;
+}
+
+.pageTitle {
+  font-size: 3.2rem;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: 600;
+  position: relative;
+}
+
+.pageTitle::after {
+  content: '';
+  position: absolute;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #4CAF50, rgba(76, 175, 80, 0.3));
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 3px;
+}
+
+.pageSubtitle {
+  font-size: 1.2rem;
+  color: #666;
+  max-width: 700px;
+  margin: 20px auto 30px;
+  line-height: 1.6;
+}
+
+.purchaseStatsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.purchaseStatCard {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.purchaseStatCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.statIcon {
+  width: 50px;
+  height: 50px;
+  background: rgba(76, 175, 80, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4CAF50;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.statInfo {
+  flex: 1;
+}
+
+.statInfo h4 {
+  margin: 0 0 5px;
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.statInfo p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.processTimeline {
+  margin-bottom: 60px;
+}
+
+.timelineStep {
+  background: white;
+  border-radius: this;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.timelineStep:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.timelineStep.activeStep {
+  border-color: rgba(76, 175, 80, 0.3);
+  box-shadow: 0 10px 25px rgba(76, 175, 80, 0.1);
+}
+
+.timelineHeader {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.timelineHeader:hover {
+  background: rgba(76, 175, 80, 0.03);
+}
+
+.activeStep .timelineHeader {
+  background: rgba(76, 175, 80, 0.05);
+  border-bottom: 1px solid rgba(76, 175, 80, 0.1);
+}
+
+.stepNumber {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(76, 175, 80, 0.1);
+  color: #4CAF50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.stepIcon {
+  position: absolute;
+  font-size: 1.3rem;
+  transition: all 0.3s ease;
+  color: #4CAF50;
+}
+
+.number {
+  position: absolute;
+  opacity: 0;
+  transform: scale(0.5);
+  font-weight: 600;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  color: #4CAF50;
+}
+
+.timelineHeader:hover .stepIcon {
+  transform: scale(0.5);
+  opacity: 0;
+}
+
+.timelineHeader:hover .number {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.activeStep .stepNumber {
+  background: rgba(76, 175, 80, 0.2);
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(76, 175, 80, 0.2);
+}
+
+.stepTitle {
+  flex: 1;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.stepToggle {
+  width: 24px;
+  height: 24px;
+  color: #aaa;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.activeStep .stepToggle {
+  color: #4CAF50;
+}
+
+.stepContent {
+  overflow: hidden;
+  background: rgba(248, 250, 248, 0.5);
+}
+
+.contentInner {
+  padding: 20px 20px 20px 90px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.contentInner p {
+  margin-top: 0;
+  font-size: 1rem;
+}
+
+.timelineConnector {
+  position: absolute;
+  left: 45px;
+  top: 70px;
+  bottom: -20px;
+  width: 1px;
+  z-index: 5;
+}
+
+.connectorLine {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, #4CAF50 0%, rgba(76, 175, 80, 0.2) 100%);
+}
+
+.activeStep + .timelineStep .connectorLine {
+  background: linear-gradient(to bottom, #4CAF50 0%, #4CAF50 100%);
+}
+
+/* Стили для содержимого шагов */
+.deliveryOptions {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.deliveryOption {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+}
+
+.deliveryOption:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  border-color: rgba(76, 175, 80, 0.2);
+}
+
+.optionIcon {
+  font-size: 2rem;
+  color: #4CAF50;
+  margin-bottom: 15px;
+}
+
+.deliveryOption h4 {
+  font-size: 1.1rem;
+  margin: 0 0 10px;
+  color: #333;
+}
+
+.deliveryOption p {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0;
+}
+
+.deliveryNote, .timeNote {
+  display: flex;
+  align-items: center;
+  background: rgba(76, 175, 80, 0.05);
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 20px;
+  border-left: 3px solid rgba(76, 175, 80, 0.3);
+}
+
+.noteIcon {
+  font-size: 1.5rem;
+  color: #4CAF50;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.deliveryNote p, .timeNote p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.actionButtons {
+  margin-top: 20px;
+}
+
+.actionButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: rgba(76, 175, 80, 0.1);
+  border-radius: 8px;
+  color: #4CAF50;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  border: 1px solid rgba(76, 175, 80, 0.1);
+}
+
+.actionButton:hover {
+  background: rgba(76, 175, 80, 0.15);
+  transform: translateX(5px);
+  border-color: rgba(76, 175, 80, 0.2);
+}
+
+.buttonIcon {
+  transition: transform 0.3s ease;
+}
+
+.actionButton:hover .buttonIcon {
+  transform: translateX(3px);
+}
+
+.addressExample {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+}
+
+.exampleTitle {
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #333;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.exampleTitle::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: #4CAF50;
+  border-radius: 2px;
+}
+
+.exampleContent {
+  color: #555;
+  font-size: 0.95rem;
+  background: rgba(76, 175, 80, 0.03);
+  padding: 15px;
+  border-radius: 6px;
+  border-left: 2px solid rgba(76, 175, 80, 0.2);
+}
+
+.exampleContent p {
+  margin: 8px 0;
+}
+
+.paymentOptions {
+  margin: 20px 0;
+}
+
+.paymentOption {
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.paymentOption:hover {
+  transform: translateX(5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+  border-color: rgba(76, 175, 80, 0.2);
+}
+
+.paymentIcon {
+  width: 40px;
+  height: 40px;
+  background: rgba(76, 175, 80, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4CAF50;
+  font-size: 1.2rem;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.paymentInfo h4 {
+  margin: 0 0 5px;
+  font-size: 1rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.paymentInfo p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.orderRequirements {
+  margin: 20px 0;
+}
+
+.requirement {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  padding: 12px 15px;
+  background: white;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.requirement:hover {
+  transform: translateX(5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.reqIcon {
+  color: #4CAF50;
+  font-size: 1.1rem;
+  margin-right: 15px;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.reqText {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.deliveryTypeList {
+  margin: 20px 0;
+  background: rgba(76, 175, 80, 0.03);
+  border-radius: 10px;
+  padding: 15px 15px 5px;
+  border: 1px solid rgba(76, 175, 80, 0.1);
+}
+
+.deliveryTypeItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(76, 175, 80, 0.05);
+}
+
+.deliveryTypeItem:last-child {
+  border-bottom: none;
+}
+
+.listBullet {
+  margin-right: 12px;
+  color: #4CAF50;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.anonymityContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.anonymityInfo {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+}
+
+.anonymityInfo:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  border-color: rgba(76, 175, 80, 0.1);
+}
+
+.anonymityInfo h4 {
+  margin: 0 0 12px;
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 600;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.anonymityInfo h4::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background: #4CAF50;
+  border-radius: 2px;
+}
+
+.anonymityInfo p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.anonymitySeparator {
+  text-align: center;
+  font-weight: 500;
+  color: #999;
+  position: relative;
+}
+
+.anonymitySeparator::before,
+.anonymitySeparator::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 100px;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.anonymitySeparator::before {
+  left: calc(50% - 120px);
+}
+
+.anonymitySeparator::after {
+  right: calc(50% - 120px);
+}
+
+.finalCta {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.orderButton {
+  display: inline-block;
+  padding: 15px 30px;
+  background: #4CAF50;
+  border-radius: 8px;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(76, 175, 80, 0.2);
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.orderButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.7s ease;
+}
+
+.orderButton:hover {
+  box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+  transform: translateY(-3px);
+  background: #3d9140;
+}
+
+.orderButton:hover::before {
+  left: 100%;
+}
+
+.contactBox {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  margin-bottom: 50px;
+  border: 1px solid rgba(76, 175, 80, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.contactBox::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #4CAF50, #8BC34A);
+}
+
+.contactBoxIcon {
+  width: 70px;
+  height: 70px;
+  flex-shrink: 0;
+  background: rgba(76, 175, 80, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4CAF50;
+  font-size: 1.8rem;
+}
+
+.contactBoxContent {
+  flex: 1;
+}
+
+.contactBoxContent h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 0 0 15px;
+  font-weight: 600;
+}
+
+.contactBoxContent p {
+  color: #666;
+  margin: 0 0 20px;
+  line-height: 1.6;
+}
+
+.contactBoxButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 25px;
+  background: #4CAF50;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(76, 175, 80, 0.2);
+}
+
+.contactBoxButton:hover {
+  background: #3d9140;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+}
+
+.contactBoxButton:hover .buttonIcon {
+  transform: translateX(3px);
+}
+
+.certificateStrip {
+  background: white;
+  padding: 20px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.03);
+}
+
+.stripContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.stripItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stripIcon {
+  font-size: 1.3rem;
+  color: #4CAF50;
+}
+
+.stripText {
+  font-size: 0.95rem;
+  color: #444;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .purchasePage {
+    padding: 80px 0 0;
   }
   
   .pageTitle {
-    font-size: 3rem;
-    color: #fff;
-    margin-bottom: 15px;
-    font-weight: 700;
-    background: linear-gradient(135deg, #e63e3e, #f5f5f5);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 2px 10px rgba(230, 62, 62, 0.3);
-    position: relative;
-    display: inline-block;
-  }
-  
-  .pageTitle::after {
-    content: '';
-    position: absolute;
-    width: 100px;
-    height: 3px;
-    background: linear-gradient(90deg, #e63e3e, transparent);
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
+    font-size: 2.2rem;
   }
   
   .pageSubtitle {
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.7);
-    max-width: 700px;
-    margin: 0 auto;
-  }
-  
-  .processTimeline {
-    margin-bottom: 60px;
-  }
-  
-  .timelineStep {
-    background: rgba(20, 20, 20, 0.7);
-    border-radius: 10px;
-    margin-bottom: 20px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    position: relative;
-  }
-  
-  .timelineStep.activeStep {
-    border-color: rgba(230, 62, 62, 0.3);
-    box-shadow: 0 5px 20px rgba(230, 62, 62, 0.1);
-  }
-  
-  .timelineHeader {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  .timelineHeader:hover {
-    background: rgba(30, 30, 30, 0.7);
-  }
-  
-  .activeStep .timelineHeader {
-    background: rgba(230, 62, 62, 0.1);
-    border-bottom: 1px solid rgba(230, 62, 62, 0.1);
-  }
-  
-  .stepNumber {
-    position: relative;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: rgba(230, 62, 62, 0.1);
-    color: #e63e3e;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 20px;
-    transition: all 0.3s ease;
-  }
-  
-  .stepIcon {
-    position: absolute;
-    font-size: 1.3rem;
-    transition: all 0.3s ease;
-  }
-  
-  .number {
-    position: absolute;
-    opacity: 0;
-    transform: scale(0.5);
-    font-weight: 600;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-  }
-  
-  .timelineHeader:hover .stepIcon {
-    transform: scale(0.5);
-    opacity: 0;
-  }
-  
-  .timelineHeader:hover .number {
-    transform: scale(1);
-    opacity: 1;
-  }
-  
-  .activeStep .stepNumber {
-    background: rgba(230, 62, 62, 0.2);
-    transform: scale(1.1);
-  }
-  
-  .stepTitle {
-    flex: 1;
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: white;
-    margin: 0;
-  }
-  
-  .stepToggle {
-    width: 24px;
-    height: 24px;
-    color: rgba(255, 255, 255, 0.7);
     font-size: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
   
-  .stepContent {
-    overflow: hidden;
-    background: rgba(15, 15, 15, 0.5);
+  .purchaseStatsContainer {
+    grid-template-columns: 1fr;
   }
   
   .contentInner {
-    padding: 20px 20px 20px 90px;
-    color: rgba(255, 255, 255, 0.9);
-    line-height: 1.6;
-  }
-  
-  .contentInner p {
-    margin-top: 0;
-  }
-  
-  .timelineConnector {
-    position: absolute;
-    left: 45px;
-    top: 70px;
-    bottom: -20px;
-    width: 1px;
-    z-index: 5;
-  }
-  
-  .connectorLine {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, #e63e3e 0%, rgba(230, 62, 62, 0.2) 100%);
-  }
-  
-  .activeStep + .timelineStep .connectorLine {
-    background: linear-gradient(to bottom, #e63e3e 0%, #e63e3e 100%);
-  }
-  
-  /* Стили для содержимого шагов */
-  .deliveryOptions {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 15px;
-    margin: 20px 0;
-  }
-  
-  .deliveryOption {
-    background: rgba(30, 30, 30, 0.7);
-    border-radius: 8px;
     padding: 20px;
-    transition: all 0.3s ease;
   }
   
-  .deliveryOption:hover {
-    background: rgba(40, 40, 40, 0.7);
-    transform: translateY(-5px);
+  .deliveryOptions {
+    grid-template-columns: 1fr;
   }
   
-  .optionIcon {
-    font-size: 2rem;
-    color: #e63e3e;
-    margin-bottom: 15px;
-  }
-  
-  .deliveryOption h4 {
-    font-size: 1.1rem;
-    margin: 0 0 10px;
-    color: white;
-  }
-  
-  .deliveryOption p {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
-    margin: 0;
-  }
-  
-  .deliveryNote, .timeNote {
-    display: flex;
-    align-items: center;
-    background: rgba(230, 62, 62, 0.05);
+  .timelineHeader {
     padding: 15px;
-    border-radius: 8px;
-    margin-top: 20px;
-    border-left: 3px solid rgba(230, 62, 62, 0.3);
   }
   
-  .noteIcon {
-    font-size: 1.5rem;
-    color: #e63e3e;
-    margin-right: 15px;
-    flex-shrink: 0;
-  }
-  
-  .deliveryNote p, .timeNote p {
-    margin: 0;
-    font-size: 0.95rem;
-  }
-  
-  .actionButtons {
-    margin-top: 20px;
-  }
-  
-  .actionButton {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 20px;
-    background: rgba(230, 62, 62, 0.1);
-    border-radius: 30px;
-    color: #e63e3e;
-    text-decoration: none;
-    transition: all 0.3s ease;
-  }
-  
-  .actionButton:hover {
-    background: rgba(230, 62, 62, 0.2);
-    transform: translateX(5px);
-  }
-  
-  .addressExample {
-    background: rgba(30, 30, 30, 0.7);
-    border-radius: 8px;
-    padding: 15px;
-    margin-top: 20px;
-  }
-  
-  .exampleTitle {
-    font-weight: 500;
-    margin-bottom: 10px;
-    color: white;
-  }
-  
-  .exampleContent {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.95rem;
-  }
-  
-  .exampleContent p {
-    margin: 5px 0;
-  }
-  
-  .paymentOptions {
-    margin: 20px 0;
-  }
-  
-  .paymentOption {
-    display: flex;
-    align-items: center;
-    background: rgba(30, 30, 30, 0.7);
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    transition: all 0.3s ease;
-  }
-  
-  .paymentOption:hover {
-    background: rgba(40, 40, 40, 0.7);
-    transform: translateX(5px);
-  }
-  
-  .paymentIcon {
+  .stepNumber {
     width: 40px;
     height: 40px;
-    background: rgba(230, 62, 62, 0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #e63e3e;
-    font-size: 1.2rem;
     margin-right: 15px;
-  }
-  
-  .paymentInfo h4 {
-    margin: 0 0 5px;
-    font-size: 1rem;
-    color: white;
-  }
-  
-  .paymentInfo p {
-    margin: 0;
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
-  }
-  
-  .orderRequirements {
-    margin: 20px 0;
-  }
-  
-  .requirement {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 15px;
-  }
-  
-  .reqIcon {
-    color: #4CAF50;
-    font-size: 1.1rem;
-    margin-right: 15px;
-    margin-top: 3px;
-    flex-shrink: 0;
-  }
-  
-  .reqText {
-    font-size: 1rem;
-  }
-  
-  .deliveryTypeList {
-    margin: 20px 0;
-    padding-left: 30px;
-  }
-  
-  .deliveryTypeItem {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .listBullet {
-    margin-right: 10px;
-    color: #e63e3e;
-    font-weight: bold;
-  }
-  
-  .anonymityContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    margin: 20px 0;
-  }
-  
-  .anonymityInfo {
-    background: rgba(30, 30, 30, 0.7);
-    border-radius: 8px;
-    padding: 20px;
-  }
-  
-  .anonymityInfo h4 {
-    margin: 0 0 10px;
-    font-size: 1.1rem;
-    color: white;
-  }
-  
-  .anonymityInfo p {
-    margin: 0;
-    font-size: 0.95rem;
-  }
-  
-  .anonymitySeparator {
-    text-align: center;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.6);
-  }
-  
-  .finalCta {
-    margin-top: 30px;
-    text-align: center;
-  }
-  
-  .orderButton {
-    display: inline-block;
-    padding: 15px 30px;
-    background: linear-gradient(45deg, #e63e3e, #c51e1e);
-    border-radius: 30px;
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(230, 62, 62, 0.3);
-  }
-  
-  .orderButton:hover {
-    box-shadow: 0 8px 20px rgba(230, 62, 62, 0.5);
-    transform: translateY(-3px);
-  }
-  
-  .contactSection {
-    text-align: center;
-    background: rgba(20, 20, 20, 0.7);
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-  }
-  
-  .contactSection h2 {
-    font-size: 1.8rem;
-    color: white;
-    margin-bottom: 15px;
-  }
-  
-  .contactSection p {
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 25px;
-  }
-  
-  .contactButton {
-    display: inline-block;
-    padding: 12px 30px;
-    background: linear-gradient(45deg, #e63e3e, #c51e1e);
-    color: white;
-    text-decoration: none;
-    border-radius: 30px;
-    font-size: 1rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(230, 62, 62, 0.3);
-  }
-  
-  .contactButton:hover {
-    box-shadow: 0 8px 20px rgba(230, 62, 62, 0.5);
-    transform: translateY(-2px);
-  }
-  
-  @media (max-width: 768px) {
-    .purchasePage {
-      padding: 70px 0;
-    }
-    
-    .pageTitle {
-      font-size: 2rem;
-    }
-    
-    .pageSubtitle {
-      font-size: 1rem;
-    }
-    
-    .contentInner {
-      padding: 20px;
-    }
-    
-    .deliveryOptions {
-      grid-template-columns: 1fr;
-    }
-    
-    .timelineHeader {
-      padding: 15px;
-    }
-    
-    .stepNumber {
-      width: 40px;
-      height: 40px;
-      margin-right: 15px;
-    }
-    
-    .stepIcon {
-      font-size: 1.1rem;
-    }
-    
-    .stepTitle {
-      font-size: 1rem;
-    }
-    
-    .anonymityContainer {
-      flex-direction: column;
-    }
-    
-    .contactSection {
-      padding: 30px 20px;
-    }
-    
-    .contactSection h2 {
-      font-size: 1.5rem;
-    }
-    
-    .timelineConnector {
-      left: 35px;
-    }
-  }
-  
-  @media (min-width: 769px) and (max-width: 992px) {
-    .deliveryOptions {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  
-  /* Анимации и эффекты */
-  @keyframes pulse {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.05);
-    }
-    100% {
-      transform: scale(1);
-    }
   }
   
   .stepIcon {
-    animation: pulse 2s infinite ease-in-out;
+    font-size: 1.1rem;
   }
   
-  .activeStep .stepIcon {
-    animation: none;
+  .stepTitle {
+    font-size: 1rem;
   }
   
-  .orderButton, .contactButton {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .orderButton::after, .contactButton::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 70%);
-    transform: rotate(45deg);
-    z-index: 1;
-    transition: all 0.8s ease;
-    animation: shineEffect 3s infinite;
-  }
-  
-  @keyframes shineEffect {
-    0% {
-      left: -50%;
-      top: -50%;
-    }
-    100% {
-      left: 100%;
-      top: 100%;
-    }
-  }
-  
-  /* Дополнительные элементы страницы */
-  .infoSection {
-    margin-top: 60px;
-    padding: 30px;
-    background: rgba(20, 20, 20, 0.7);
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-  }
-  
-  .infoSection h2 {
-    font-size: 1.5rem;
-    color: white;
-    margin-bottom: 20px;
+  .contactBox {
+    flex-direction: column;
+    padding: 25px;
     text-align: center;
-  }
-  
-  .infoGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
   }
   
-  .infoCard {
-    background: rgba(30, 30, 30, 0.7);
-    border-radius: 8px;
-    padding: 20px;
-    transition: all 0.3s ease;
+  .contactBoxIcon {
+    margin: 0 auto;
   }
   
-  .infoCard:hover {
-    background: rgba(40, 40, 40, 0.7);
-    transform: translateY(-5px);
+  .timelineConnector {
+    left: 35px;
   }
   
-  .infoIcon {
-    font-size: 2rem;
-    color: #e63e3e;
-    margin-bottom: 15px;
+  .stripContainer {
+    flex-direction: column;
+    gap: 15px;
   }
-  
-  .infoCard h3 {
-    font-size: 1.2rem;
-    margin: 0 0 10px;
-    color: white;
-  }
-  
-  .infoCard p {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
-    margin: 0;
-  }
-  
-  /* Для добавления виджета отзывов клиентов */
-  .reviewsWidget {
-    margin-top: 60px;
-    text-align: center;
-  }
-  
-  .reviewsWidget h2 {
-    font-size: 1.5rem;
-    color: white;
-    margin-bottom: 30px;
-    position: relative;
-    display: inline-block;
-  }
-  
-  .reviewsWidget h2::after {
-    content: '';
-    position: absolute;
-    width: 60px;
-    height: 2px;
-    background: linear-gradient(90deg, #e63e3e, transparent);
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .reviewsContainer {
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    padding-bottom: 20px;
-    scrollbar-width: thin;
-    scrollbar-color: #e63e3e rgba(255, 255, 255, 0.1);
-  }
-  
-  .reviewsContainer::-webkit-scrollbar {
-    height: 6px;
-  }
-  
-  .reviewsContainer::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-  }
-  
-  .reviewsContainer::-webkit-scrollbar-thumb {
-    background-color: #e63e3e;
-    border-radius: 10px;
-  }
-  
-  .reviewCard {
-    min-width: 250px;
-    background: rgba(30, 30, 30, 0.7);
-    border-radius: 8px;
-    padding: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-  }
-  
-  .reviewHeader {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-  }
-  
-  .reviewAvatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: rgba(230, 62, 62, 0.1);
-    color: #e63e3e;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    margin-right: 15px;
-  }
-  
-  .reviewInfo h4 {
-    margin: 0 0 5px;
-    font-size: 1rem;
-    color: white;
-  }
-  
-  .reviewInfo p {
-    margin: 0;
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.6);
-  }
-  
-  .reviewStars {
-    display: flex;
-    gap: 2px;
-    margin-bottom: 10px;
-    color: #FFD700;
-    font-size: 0.9rem;
-  }
-  
-  .reviewText {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.8);
-    line-height: 1.5;
-  }
-  
-  /* FAQ блок для быстрых вопросов */
-  .faqBlock {
-    margin-top: 60px;
-  }
-  
-  .faqBlock h2 {
-    font-size: 1.5rem;
-    color: white;
-    margin-bottom: 30px;
-    text-align: center;
-  }
-  
-  .faqItem {
-    background: rgba(30, 30, 30, 0.7);
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-  }
-  
-  .faqQuestion {
-    padding: 15px 20px;
-    font-size: 1rem;
-    color: white;
-    background: rgba(40, 40, 40, 0.7);
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: background 0.3s ease;
-  }
-  
-  .faqQuestion:hover {
-    background: rgba(50, 50, 50, 0.7);
-  }
-  
-  .faqAnswer {
-    padding: 15px 20px;
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.8);
-    line-height: 1.6;
-    overflow: hidden;
-  }
-  
-  /* Пульсирующая кнопка для срочной связи */
-  .urgentContactButton {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: linear-gradient(45deg, #e63e3e, #c51e1e);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    box-shadow: 0 5px 15px rgba(230, 62, 62, 0.3);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    z-index: 100;
-  }
-  
-  .urgentContactButton::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: rgba(230, 62, 62, 0.5);
-    animation: pulseRing 2s infinite;
-  }
-  
-  @keyframes pulseRing {
-    0% {
-      transform: scale(0.8);
-      opacity: 0.8;
-    }
-    100% {
-      transform: scale(1.5);
-      opacity: 0;
-    }
-  }
-  
-  .urgentContactButton:hover {
-    transform: scale(1.1);
-    box-shadow: 0 8px 20px rgba(230, 62, 62, 0.5);
-  }
+}

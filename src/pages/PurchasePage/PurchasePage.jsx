@@ -11,7 +11,11 @@ import {
   FaBoxOpen,
   FaUser,
   FaCheckCircle,
-  FaAngleRight
+  FaAngleRight,
+  FaArrowRight,
+  FaHeadset,
+  FaShieldAlt,
+  FaLeaf
 } from 'react-icons/fa';
 import { BiPackage } from 'react-icons/bi';
 import { BsBoxSeam } from 'react-icons/bs';
@@ -31,41 +35,43 @@ const PurchasePage = () => {
   const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
   
-  // Эффект анимированных линий
+  // Эффект анимированных листьев
   useEffect(() => {
     if (!containerRef.current) return;
     
-    const createLine = () => {
+    const createLeaf = () => {
       if (!containerRef.current) return;
       
-      const line = document.createElement('div');
-      line.className = styles.animatedLine;
+      const leaf = document.createElement('div');
+      leaf.className = styles.leafParticle;
       
       // Рандомное позиционирование
       const startX = Math.random() * 100;
       
-      line.style.left = `${startX}%`;
-      line.style.animationDuration = `${Math.random() * 3 + 8}s`;
-      line.style.opacity = Math.random() * 0.15 + 0.05;
+      leaf.style.left = `${startX}%`;
+      leaf.style.top = `${Math.random() * 100}%`;
+      leaf.style.animationDuration = `${Math.random() * 10 + 15}s`;
+      leaf.style.opacity = Math.random() * 0.3 + 0.1;
+      leaf.style.transform = `rotate(${Math.random() * 360}deg)`;
       
-      containerRef.current.appendChild(line);
+      containerRef.current.appendChild(leaf);
       
-      // Удаление линии
+      // Удаление листа
       setTimeout(() => {
-        if (line && line.parentNode) {
-          line.remove();
+        if (leaf && leaf.parentNode) {
+          leaf.remove();
         }
-      }, 11000);
+      }, 25000);
     };
     
-    // Добавление линий с интервалом
-    const lineInterval = setInterval(createLine, 1000);
-    // Начальное создание некоторого количества линий
-    for (let i = 0; i < 10; i++) {
-      createLine();
+    // Добавление листьев с интервалом
+    const leafInterval = setInterval(createLeaf, 3000);
+    // Начальное создание некоторого количества листьев
+    for (let i = 0; i < 8; i++) {
+      createLeaf();
     }
     
-    return () => clearInterval(lineInterval);
+    return () => clearInterval(leafInterval);
   }, []);
   
   // Шаги процесса покупки
@@ -80,7 +86,7 @@ const PurchasePage = () => {
           <div className={styles.actionButtons}>
             <a href="/shop" className={styles.actionButton}>
               <span>Перейти в каталог</span>
-              <FaAngleRight />
+              <FaArrowRight className={styles.buttonIcon} />
             </a>
           </div>
         </>
@@ -199,15 +205,15 @@ const PurchasePage = () => {
           </div>
           <div className={styles.deliveryTypeList}>
             <div className={styles.deliveryTypeItem}>
-              <span className={styles.listBullet}>*</span>
+              <span className={styles.listBullet}><FaCheckCircle /></span>
               <span>СДЭК, PickPoint, Почта России</span>
             </div>
             <div className={styles.deliveryTypeItem}>
-              <span className={styles.listBullet}>*</span>
+              <span className={styles.listBullet}><FaCheckCircle /></span>
               <span>Любой удобный почтомат</span>
             </div>
             <div className={styles.deliveryTypeItem}>
-              <span className={styles.listBullet}>*</span>
+              <span className={styles.listBullet}><FaCheckCircle /></span>
               <span>Делаем клад (город уточнять у менеджера)</span>
             </div>
           </div>
@@ -249,7 +255,10 @@ const PurchasePage = () => {
   
   return (
     <div className={styles.purchasePage} ref={containerRef}>
-      <div className={styles.backgroundElements}></div>
+      <div className={styles.backgroundElements}>
+        <div className={styles.gradientOverlay}></div>
+        <div className={styles.leafPattern}></div>
+      </div>
       
       <motion.div 
         className={styles.contentContainer}
@@ -261,11 +270,45 @@ const PurchasePage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
+          <div className={styles.pageBadge}>
+            <FaLeaf className={styles.badgeIcon} />
+            Заказ и доставка
+          </div>
           <h1 className={styles.pageTitle}>Осуществление покупки</h1>
           <p className={styles.pageSubtitle}>
             Простой и удобный процесс заказа с доставкой в любой город
           </p>
         </motion.div>
+
+        <div className={styles.purchaseStatsContainer}>
+          <div className={styles.purchaseStatCard}>
+            <div className={styles.statIcon}>
+              <FaShieldAlt />
+            </div>
+            <div className={styles.statInfo}>
+              <h4>Анонимность</h4>
+              <p>Гарантируем полную конфиденциальность</p>
+            </div>
+          </div>
+          <div className={styles.purchaseStatCard}>
+            <div className={styles.statIcon}>
+              <FaTruck />
+            </div>
+            <div className={styles.statInfo}>
+              <h4>Быстрая доставка</h4>
+              <p>По всей России</p>
+            </div>
+          </div>
+          <div className={styles.purchaseStatCard}>
+            <div className={styles.statIcon}>
+              <FaLeaf />
+            </div>
+            <div className={styles.statInfo}>
+              <h4>Качество продукта</h4>
+              <p>100% оригинальный товар из США</p>
+            </div>
+          </div>
+        </div>
         
         <motion.div 
           className={styles.processTimeline}
@@ -324,17 +367,39 @@ const PurchasePage = () => {
         </motion.div>
         
         <motion.div 
-          className={styles.contactSection}
+          className={styles.contactBox}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          <h2>Нужна помощь с заказом?</h2>
-          <p>Наш менеджер готов ответить на все ваши вопросы и помочь с оформлением заказа</p>
-          <a href="https://t.me/Vapehub_operator" target="_blank" rel="noopener noreferrer" className={styles.contactButton}>
-            Связаться с менеджером
-          </a>
+          <div className={styles.contactBoxIcon}>
+            <FaHeadset />
+          </div>
+          <div className={styles.contactBoxContent}>
+            <h3>Нужна помощь с заказом?</h3>
+            <p>Наш менеджер готов ответить на все ваши вопросы и помочь с оформлением заказа в любое время. Просто напишите нам в Telegram.</p>
+            <a href="https://t.me/Vapehub_operator" target="_blank" rel="noopener noreferrer" className={styles.contactBoxButton}>
+              Связаться с менеджером <FaArrowRight className={styles.buttonIcon} />
+            </a>
+          </div>
         </motion.div>
+
+        <div className={styles.certificateStrip}>
+          <div className={styles.stripContainer}>
+            <div className={styles.stripItem}>
+              <FaLeaf className={styles.stripIcon} />
+              <span className={styles.stripText}>100% Натуральный</span>
+            </div>
+            <div className={styles.stripItem}>
+              <FaShieldAlt className={styles.stripIcon} />
+              <span className={styles.stripText}>Гарантированная анонимность</span>
+            </div>
+            <div className={styles.stripItem}>
+              <FaTruck className={styles.stripIcon} />
+              <span className={styles.stripText}>Доставка по России</span>
+            </div>
+          </div>
+        </div>
       </motion.div>
     </div>
   );

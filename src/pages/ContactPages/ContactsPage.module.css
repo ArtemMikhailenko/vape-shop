@@ -1,524 +1,900 @@
 .contactsPage {
-    position: relative;
-    min-height: 100vh;
-    padding: 100px 0;
-    background-color: #000;
-    overflow: hidden;
+  position: relative;
+  min-height: 100vh;
+  padding: 100px 0 0;
+  background-color: #f9f9f9;
+  overflow: hidden;
+}
+
+.backgroundElements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.leafPattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%234CAF50' fill-opacity='0.05' d='M50 0C36.8 0 26.1 13.4 25.6 30.2c0 .4 0 .8-.2 1.2s-.5.6-.9.7c-.2 0-.4 0-.6-.1C15.4 29 6.5 36.2 6.5 46.2c0 6.6 3.5 12.3 8.7 15.3.4.2.6.6.6 1s-.1.8-.5 1c-7.3 5.4-7.3 18.2 1.6 23.2 6.3 3.5 14.2 1.6 19-4.1.3-.3.6-.5 1-.5s.7.1 1 .4c4.3 5.8 11.2 9.5 19 9.5 13.3 0 24-12.3 24-27.5 0-5.7-1.5-11.1-4.2-15.5-.2-.4-.2-.9 0-1.3s.5-.7.9-.8c11.3-2.8 19.4-14.3 19.4-27.6C97 8.4 75.8 0 50 0z'/%3E%3C/svg%3E");
+  opacity: 0.2;
+}
+
+.leafParticle {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%234CAF50' fill-opacity='0.2' d='M50 0C36.8 0 26.1 13.4 25.6 30.2c0 .4 0 .8-.2 1.2s-.5.6-.9.7c-.2 0-.4 0-.6-.1C15.4 29 6.5 36.2 6.5 46.2c0 6.6 3.5 12.3 8.7 15.3.4.2.6.6.6 1s-.1.8-.5 1c-7.3 5.4-7.3 18.2 1.6 23.2 6.3 3.5 14.2 1.6 19-4.1.3-.3.6-.5 1-.5s.7.1 1 .4c4.3 5.8 11.2 9.5 19 9.5 13.3 0 24-12.3 24-27.5 0-5.7-1.5-11.1-4.2-15.5-.2-.4-.2-.9 0-1.3s.5-.7.9-.8c11.3-2.8 19.4-14.3 19.4-27.6C97 8.4 75.8 0 50 0z'/%3E%3C/svg%3E");
+  background-size: contain;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.5;
+  animation: floatLeaf 15s linear forwards;
+}
+
+@keyframes floatLeaf {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(0.8);
+    opacity: 0;
   }
-  
-  .smokeEffect {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background: url('../../assets/smoke-texture.png');
-    opacity: 0.03;
-    z-index: 1;
-    transition: transform 0.5s ease;
+  10% {
+    opacity: 0.5;
   }
-  
-  .smokeParticle {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    filter: blur(15px);
-    pointer-events: none;
-    z-index: 1;
-    animation: floatSmoke linear infinite;
+  90% {
+    opacity: 0.3;
   }
-  
-  @keyframes floatSmoke {
-    0% {
-      transform: translateY(0) scale(1);
-      opacity: 0;
-    }
-    20% {
-      opacity: 0.2;
-    }
-    80% {
-      opacity: 0.1;
-    }
-    100% {
-      transform: translateY(-300px) scale(3);
-      opacity: 0;
-    }
+  100% {
+    transform: translateY(-100vh) rotate(360deg) scale(1.5);
+    opacity: 0;
   }
-  
-  .contentContainer {
-    position: relative;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 20px;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .contactsHeader {
-    text-align: center;
-    margin-bottom: 40px;
+}
+
+.contentContainer {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contactsHeader {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.pageBadge {
+  display: inline-block;
+  background: rgba(76, 175, 80, 0.1);
+  color: #4CAF50;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.pageTitle {
+  font-size: 3.5rem;
+  color: #333;
+  margin-bottom: 15px;
+  font-weight: 600;
+  position: relative;
+}
+
+.pageTitle::after {
+  content: '';
+  position: absolute;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #4CAF50, rgba(76, 175, 80, 0.3));
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 3px;
+}
+
+.pageSubtitle {
+  font-size: 1.2rem;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contactsCard {
+  width: 100%;
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  margin-bottom: 50px;
+}
+
+.tabsNavigation {
+  display: flex;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background: #f5f5f5;
+}
+
+.tabButton {
+  flex: 1;
+  padding: 20px;
+  border: none;
+  background: transparent;
+  color: #666;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.tabIcon {
+  font-size: 1.2rem;
+}
+
+.tabButton:hover {
+  color: #333;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.activeTab {
+  color: #4CAF50;
+  font-weight: 600;
+  background: white;
+}
+
+.activeIndicator {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: #4CAF50;
+}
+
+.tabContent {
+  padding: 40px;
+  min-height: 400px;
+}
+
+/* Стили для вкладки "Информация" */
+.infoTitle {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 30px;
+  position: relative;
+  display: inline-block;
+}
+
+.infoTitle::after {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 2px;
+  background: linear-gradient(90deg, #4CAF50, transparent);
+  bottom: -10px;
+  left: 0;
+  border-radius: 2px;
+}
+
+.assortmentTitle {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.productCategories {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.productCategory {
+  background: #f9f9f9;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.productCategory:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.productHeader {
+  padding: 15px;
+  background: white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.strainIndicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.productName {
+  flex: 1;
+  font-weight: 600;
+  color: #333;
+}
+
+.strainType {
+  font-size: 0.8rem;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.strainList {
+  padding: 15px;
+}
+
+.strainItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  padding: 8px 12px;
+  background: white;
+  border-radius: 6px;
+}
+
+.strainIcon {
+  font-size: 0.8rem;
+}
+
+.infoBox {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: rgba(76, 175, 80, 0.05);
+  border-radius: 10px;
+  margin: 30px 0;
+  border-left: 3px solid #4CAF50;
+}
+
+.infoBoxIcon {
+  font-size: 1.5rem;
+  color: #4CAF50;
+  flex-shrink: 0;
+}
+
+.stockInfo {
+  margin: 0;
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.shopButton, .priceButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 25px;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.shopButton {
+  background: #4CAF50;
+  color: white;
+  box-shadow: 0 5px 15px rgba(76, 175, 80, 0.2);
+}
+
+.shopButton:hover {
+  background: #3d9140;
+  box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+  transform: translateY(-2px);
+}
+
+.priceButton {
+  background: transparent;
+  color: #333;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.priceButton:hover {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.buttonIcon {
+  transition: transform 0.3s ease;
+}
+
+.shopButton:hover .buttonIcon, .priceButton:hover .buttonIcon {
+  transform: translateX(3px);
+}
+
+.cannabisInfo {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.infoItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.infoItemIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.infoContent {
+  flex: 1;
+}
+
+.infoContent h4 {
+  margin: 0 0 5px;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.infoContent p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* Стили для вкладки "Менеджер" */
+.managerTitle {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 30px;
+  position: relative;
+  display: inline-block;
+}
+
+.managerTitle::after {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 2px;
+  background: linear-gradient(90deg, #4CAF50, transparent);
+  bottom: -10px;
+  left: 0;
+  border-radius: 2px;
+}
+
+.contactCard {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.contactHeader {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background: rgba(76, 175, 80, 0.05);
+  border-bottom: 1px solid rgba(76, 175, 80, 0.1);
+}
+
+.contactAvatar {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(45deg, #4CAF50, #2E7D32);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  box-shadow: 0 5px 15px rgba(76, 175, 80, 0.2);
+}
+
+.avatarIcon {
+  font-size: 1.8rem;
+  color: white;
+}
+
+.contactDetails {
+  flex: 1;
+}
+
+.contactName {
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.contactPosition {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.contactBody {
+  padding: 20px;
+}
+
+.contactMethod {
+  margin-bottom: 20px;
+}
+
+.methodLabel {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 8px;
+}
+
+.methodValue {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.valueText {
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.copyButton {
+  background: rgba(0, 0, 0, 0.05);
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #666;
+  transition: all 0.3s ease;
+}
+
+.copyButton:hover {
+  background: rgba(76, 175, 80, 0.1);
+  color: #4CAF50;
+}
+
+.contactLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.contactLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  background: rgba(76, 175, 80, 0.05);
+  border-radius: 8px;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.contactLink:hover {
+  background: rgba(76, 175, 80, 0.1);
+  transform: translateX(5px);
+}
+
+.linkIcon {
+  font-size: 1.2rem;
+  color: #4CAF50;
+}
+
+.workingHours {
+  margin: 30px 0;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+}
+
+.workingHoursHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.hourIcon {
+  font-size: 1.2rem;
+  color: #4CAF50;
+}
+
+.workingHoursHeader h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.hoursGrid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+}
+
+.hourDay {
+  font-weight: 500;
+  color: #555;
+}
+
+.hourTime {
+  color: #333;
+}
+
+.additionalInfo {
+  margin-top: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  padding-top: 20px;
+}
+
+.infoRow {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.infoLabel {
+  flex: 0 0 40%;
+  font-weight: 500;
+  color: #555;
+}
+
+.infoValue {
+  flex: 0 0 60%;
+  color: #333;
+}
+
+.copiedNotification {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(76, 175, 80, 0.9);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+/* Стили для вкладки "FAQ" */
+.faqTitle {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 30px;
+  position: relative;
+  display: inline-block;
+}
+
+.faqTitle::after {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 2px;
+  background: linear-gradient(90deg, #4CAF50, transparent);
+  bottom: -10px;
+  left: 0;
+  border-radius: 2px;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.faqItem {
+  display: flex;
+  gap: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  border: 1px solid;
+}
+
+.faqItem:hover {
+  background: white;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.faqIcon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.faqContent {
+  flex: 1;
+}
+
+.faqQuestion {
+  font-size: 1.2rem;
+  margin: 0 0 10px;
+  font-weight: 600;
+}
+
+.faqAnswer {
+  color: #555;
+  line-height: 1.6;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.contactBox {
+  background: rgba(76, 175, 80, 0.05);
+  border-radius: 10px;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border: 1px dashed rgba(76, 175, 80, 0.3);
+}
+
+.contactBoxIcon {
+  font-size: 2.5rem;
+  color: #4CAF50;
+  flex-shrink: 0;
+}
+
+.contactBoxContent {
+  flex: 1;
+}
+
+.contactBoxContent h3 {
+  margin: 0 0 10px;
+  font-size: 1.3rem;
+  color: #333;
+}
+
+.contactBoxContent p {
+  margin: 0 0 20px;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.contactBoxButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  background: #4CAF50;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.contactBoxButton:hover {
+  background: #3d9140;
+  transform: translateY(-2px);
+}
+
+.socialLinksContainer {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.socialHeader {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.socialLinks {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.socialLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  color: #333;
+}
+
+.socialIcon {
+  width: 50px;
+  height: 50px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  color: #4CAF50;
+  transition: all 0.3s ease;
+}
+
+.socialName {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.socialLink:hover .socialIcon {
+  background: #4CAF50;
+  color: white;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(76, 175, 80, 0.2);
+}
+
+.certificateStrip {
+  background: white;
+  padding: 20px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  margin-top: 60px;
+}
+
+.stripContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.stripItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stripIcon {
+  font-size: 1.5rem;
+}
+
+.stripText {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .contactsPage {
+    padding: 60px 0 0;
   }
   
   .pageTitle {
-    font-size: 3.5rem;
-    color: #fff;
-    margin-bottom: 15px;
-    font-weight: 600;
-    background: linear-gradient(90deg, #ffffff, #e63e3e);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: titleShine 3s infinite linear;
-    background-size: 200% 100%;
-  }
-  
-  @keyframes titleShine {
-    0% {
-      background-position: 0% 50%;
-    }
-    100% {
-      background-position: 200% 50%;
-    }
-  }
-  
-  .pageSubtitle {
-    font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.7);
+    font-size: 2.5rem;
   }
   
   .contactsCard {
-    width: 100%;
-    background: rgba(25, 25, 25, 0.7);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  .tabsNavigation {
-    display: flex;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
   }
   
   .tabButton {
-    flex: 1;
-    padding: 20px;
-    border: none;
-    background: transparent;
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 1.1rem;
-    font-weight: 500;
-    cursor: pointer;
-    position: relative;
-    transition: all 0.3s ease;
+    padding: 15px 10px;
+    font-size: 0.9rem;
   }
   
-  .tabButton:hover {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.05);
-  }
-  
-  .activeTab {
-    color: #fff;
-    font-weight: 600;
-  }
-  
-  .activeIndicator {
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background-color: #e63e3e;
+  .tabIcon {
+    font-size: 1rem;
   }
   
   .tabContent {
-    padding: 40px;
-    min-height: 400px;
-  }
-  
-  /* Стили для вкладки "Информация" */
-  .infoTitle {
-    font-size: 1.8rem;
-    color: #77D4F5;
-    margin-bottom: 30px;
-    position: relative;
-    display: inline-block;
-  }
-  
-  .infoTitle::after {
-    content: '';
-    position: absolute;
-    width: 50px;
-    height: 2px;
-    background: linear-gradient(90deg, #77D4F5, transparent);
-    bottom: -10px;
-    left: 0;
-  }
-  
-  .assortmentTitle {
-    font-size: 1.5rem;
-    color: #fff;
-    margin-bottom: 20px;
+    padding: 20px;
   }
   
   .productCategories {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 15px;
-    margin-bottom: 30px;
-  }
-  
-  .productCategory {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 15px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    transition: all 0.3s ease;
-  }
-  
-  .productCategory:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-3px);
-  }
-  
-  .categoryIcon {
-    color: #e63e3e;
-    font-size: 1.2rem;
-  }
-  
-  .stockInfo {
-    margin-bottom: 20px;
-    color: rgba(255, 255, 255, 0.7);
-    font-style: italic;
-  }
-  
-  .shopButton {
-    display: inline-block;
-    padding: 12px 25px;
-    background: linear-gradient(45deg, #e63e3e, #c51e1e);
-    color: white;
-    text-decoration: none;
-    border-radius: 30px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(230, 62, 62, 0.3);
-  }
-  
-  .shopButton:hover {
-    box-shadow: 0 8px 20px rgba(230, 62, 62, 0.5);
-    transform: translateY(-2px);
-  }
-  
-  /* Стили для вкладки "Менеджер" */
-  .managerTitle {
-    font-size: 1.8rem;
-    color: #77D4F5;
-    margin-bottom: 30px;
-    position: relative;
-    display: inline-block;
-  }
-  
-  .managerTitle::after {
-    content: '';
-    position: absolute;
-    width: 50px;
-    height: 2px;
-    background: linear-gradient(90deg, #77D4F5, transparent);
-    bottom: -10px;
-    left: 0;
-  }
-  
-  .contactCard {
-    background: rgba(30, 30, 30, 0.8);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    grid-template-columns: 1fr;
   }
   
   .contactHeader {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    background: rgba(230, 62, 62, 0.1);
-    border-bottom: 1px solid rgba(230, 62, 62, 0.2);
+    flex-direction: column;
+    text-align: center;
   }
   
   .contactAvatar {
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(45deg, #e63e3e, #c51e1e);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 20px;
-    box-shadow: 0 5px 15px rgba(230, 62, 62, 0.3);
-  }
-  
-  .avatarIcon {
-    font-size: 1.8rem;
-    color: white;
-  }
-  
-  .contactDetails {
-    flex: 1;
-  }
-  
-  .contactName {
-    font-size: 1.3rem;
-    color: white;
-    margin-bottom: 5px;
-  }
-  
-  .contactPosition {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
-  }
-  
-  .contactBody {
-    padding: 20px;
-  }
-  
-  .contactMethod {
-    margin-bottom: 20px;
-  }
-  
-  .methodLabel {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.6);
-    margin-bottom: 8px;
-  }
-  
-  .methodValue {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .valueText {
-    font-size: 1.1rem;
-    color: #fff;
-    font-weight: 500;
-  }
-  
-  .copyButton {
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: rgba(255, 255, 255, 0.7);
-    transition: all 0.3s ease;
-  }
-  
-  .copyButton:hover {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-  }
-  
-  .contactLinks {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 20px;
-  }
-  
-  .contactLink {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 20px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 30px;
-    color: white;
-    text-decoration: none;
-    transition: all 0.3s ease;
-  }
-  
-  .contactLink:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateX(5px);
-  }
-  
-  .linkIcon {
-    font-size: 1.2rem;
-    color: #e63e3e;
-  }
-  
-  .additionalInfo {
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  .additionalInfo p {
-    margin-bottom: 10px;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.95rem;
-  }
-  
-  .copiedNotification {
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(76, 175, 80, 0.9);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 30px;
-    font-size: 0.9rem;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    z-index: 100;
-  }
-  
-  /* Стили для вкладки "FAQ" */
-  .faqTitle {
-    font-size: 1.8rem;
-    color: #77D4F5;
-    margin-bottom: 30px;
-    position: relative;
-    display: inline-block;
-  }
-  
-  .faqTitle::after {
-    content: '';
-    position: absolute;
-    width: 50px;
-    height: 2px;
-    background: linear-gradient(90deg, #77D4F5, transparent);
-    bottom: -10px;
-    left: 0;
-  }
-  
-  .faqList {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .faqItem {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-    padding: 20px;
-    transition: all 0.3s ease;
-  }
-  
-  .faqItem:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-3px);
-  }
-  
-  .faqQuestion {
-    font-size: 1.2rem;
-    color: white;
+    margin-right: 0;
     margin-bottom: 15px;
-    position: relative;
-    padding-left: 20px;
   }
   
-  .faqQuestion::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 8px;
-    height: 8px;
-    background-color: #e63e3e;
-    border-radius: 50%;
-  }
-  
-  .faqAnswer {
-    color: rgba(255, 255, 255, 0.8);
-    line-height: 1.6;
-  }
-  
-  .socialLinks {
-    display: flex;
-    gap: 20px;
-    margin-top: 40px;
-  }
-  
-  .socialLink {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 50%;
-    color: white;
-    transition: all 0.3s ease;
-    text-decoration: none;
-  }
-  
-  .socialLink:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  }
-  
-  .socialIcon {
+  .infoTitle, .managerTitle, .faqTitle {
     font-size: 1.5rem;
   }
   
-  @media (max-width: 768px) {
-    .contactsPage {
-      padding: 60px 0;
-    }
-    
-    .pageTitle {
-      font-size: 2.5rem;
-    }
-    
-    .contactsCard {
-      border-radius: 10px;
-    }
-    
-    .tabButton {
-      padding: 15px 10px;
-      font-size: 0.9rem;
-    }
-    
-    .tabContent {
-      padding: 20px;
-    }
-    
-    .productCategories {
-      grid-template-columns: 1fr;
-    }
-    
-    .contactHeader {
-      flex-direction: column;
-      text-align: center;
-    }
-    
-    .contactAvatar {
-      margin-right: 0;
-      margin-bottom: 15px;
-    }
-    
-    .infoTitle, .managerTitle, .faqTitle {
-      font-size: 1.5rem;
-    }
-    
-    .assortmentTitle {
-      font-size: 1.3rem;
-    }
-    
-    .faqQuestion {
-      font-size: 1.1rem;
-    }
+  .assortmentTitle {
+    font-size: 1.3rem;
   }
+  
+  .faqQuestion {
+    font-size: 1.1rem;
+  }
+  
+  .faqItem {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .faqIcon {
+    margin-bottom: 10px;
+  }
+  
+  .contactBox {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: center;
+  }
+  
+  .contactBoxIcon {
+    margin-bottom: 10px;
+  }
+  
+  .stripContainer {
+    flex-direction: column;
+  }
+  
+  .buttonGroup {
+    flex-direction: column;
+  }
+  
+  .shopButton, .priceButton {
+    width: 100%;
+    justify-content: center;
+  }
+}

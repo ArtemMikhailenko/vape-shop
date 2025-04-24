@@ -10,17 +10,19 @@ import qualityControlImage from '../../assets/lab-image.jpg';
 import logoImage from '../../assets/loudpack-farms-logo.jpg';
 import labTechnicianImage from '../../assets/lab-technician.jpg';
 
+// Импорт иконок
+import { FaLeaf, FaFlask, FaVial, FaCheck, FaMedal, FaSeedling } from 'react-icons/fa';
+
 const ProductionPage = () => {
   const containerRef = useRef(null);
-  const canvasRef = useRef(null);
   const [activeTab, setActiveTab] = useState('process');
   
   // Tabs for the different sections
   const tabs = [
-    { id: 'process', label: 'ПРОЦЕСС' },
-    { id: 'stages', label: 'ЭТАПЫ' },
-    { id: 'technology', label: 'ТЕХНОЛОГИИ' },
-    { id: 'equipment', label: 'ОБОРУДОВАНИЕ' }
+    { id: 'process', label: 'ПРОЦЕСС', icon: <FaSeedling /> },
+    { id: 'stages', label: 'ЭТАПЫ', icon: <FaFlask /> },
+    { id: 'technology', label: 'ТЕХНОЛОГИИ', icon: <FaVial /> },
+    { id: 'equipment', label: 'ОБОРУДОВАНИЕ', icon: <FaMedal /> }
   ];
 
   const { scrollYProgress } = useScroll({
@@ -31,63 +33,43 @@ const ProductionPage = () => {
   const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
-  // Animated background effect
+  // Эффект анимированных листьев
   useEffect(() => {
-    if (!canvasRef.current) return;
-
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
+    if (!containerRef.current) return;
     
-    // Set canvas dimensions
-    const setCanvasDimensions = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+    const createLeaf = () => {
+      if (!containerRef.current) return;
+      
+      const leaf = document.createElement('div');
+      leaf.className = styles.leafParticle;
+      
+      // Рандомное позиционирование
+      const startX = Math.random() * 100;
+      
+      leaf.style.left = `${startX}%`;
+      leaf.style.top = `${Math.random() * 100}%`;
+      leaf.style.animationDuration = `${Math.random() * 10 + 15}s`;
+      leaf.style.opacity = Math.random() * 0.3 + 0.1;
+      leaf.style.transform = `rotate(${Math.random() * 360}deg)`;
+      
+      containerRef.current.appendChild(leaf);
+      
+      // Удаление листа
+      setTimeout(() => {
+        if (leaf && leaf.parentNode) {
+          leaf.remove();
+        }
+      }, 25000);
     };
     
-    setCanvasDimensions();
-    window.addEventListener('resize', setCanvasDimensions);
-    
-    // Create particles
-    const particles = [];
-    const particleCount = 80;
-    
-    for (let i = 0; i < particleCount; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        radius: Math.random() * 2 + 1,
-        color: `rgba(230, 62, 62, ${Math.random() * 0.2})`,
-        speedX: Math.random() * 0.5 - 0.25,
-        speedY: Math.random() * 0.5 - 0.25
-      });
+    // Добавление листьев с интервалом
+    const leafInterval = setInterval(createLeaf, 3000);
+    // Начальное создание некоторого количества листьев
+    for (let i = 0; i < 8; i++) {
+      createLeaf();
     }
     
-    // Animation loop
-    const animate = () => {
-      requestAnimationFrame(animate);
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      particles.forEach(particle => {
-        ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-        ctx.fillStyle = particle.color;
-        ctx.fill();
-        
-        // Move particles
-        particle.x += particle.speedX;
-        particle.y += particle.speedY;
-        
-        // Loop back if outside canvas
-        if (particle.x < 0 || particle.x > canvas.width) particle.speedX *= -1;
-        if (particle.y < 0 || particle.y > canvas.height) particle.speedY *= -1;
-      });
-    };
-    
-    animate();
-    
-    return () => {
-      window.removeEventListener('resize', setCanvasDimensions);
-    };
+    return () => clearInterval(leafInterval);
   }, []);
 
   // Production stages data
@@ -176,12 +158,24 @@ const ProductionPage = () => {
 
   return (
     <div className={styles.productionPage} ref={containerRef}>
-      <canvas ref={canvasRef} className={styles.backgroundCanvas}></canvas>
-      
-      <div className={styles.backgroundOverlay}>
-        <div className={styles.glowEffect1}></div>
-        <div className={styles.glowEffect2}></div>
+      <div className={styles.backgroundElements}>
+        <div className={styles.gradientOverlay}></div>
+        <div className={styles.leafPattern}></div>
       </div>
+      
+      {/* Генерация плавающих листков */}
+      {Array.from({ length: 8 }).map((_, index) => (
+        <div 
+          key={index}
+          className={styles.leafParticle}
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            animationDuration: `${15 + Math.random() * 10}s`,
+            animationDelay: `${Math.random() * 5}s`
+          }}
+        ></div>
+      ))}
       
       <motion.div 
         className={styles.contentContainer}
@@ -193,22 +187,56 @@ const ProductionPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
+          <div className={styles.pageBadge}>
+            <FaLeaf className={styles.badgeIcon} />
+            Наш производственный процесс
+          </div>
           <h1 className={styles.pageTitle}>ПРОИЗВОДСТВО</h1>
           <p className={styles.pageSubtitle}>
             ИСКУССТВО СОЗДАНИЯ ПРЕМИАЛЬНЫХ ПРОДУКТОВ
           </p>
-          <div className={styles.titleSeparator}></div>
         </motion.div>
         
         <div className={styles.logoSection}>
-          <motion.img 
-            src={logoImage} 
-            alt="Loudpack Farms" 
-            className={styles.brandLogo}
+          <motion.div 
+            className={styles.logoContainer}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-          />
+          >
+            <img src={logoImage} alt="Loudpack Farms" className={styles.brandLogo} />
+          </motion.div>
+        </div>
+        
+        {/* Production Stats Summary */}
+        <div className={styles.productionStatsContainer}>
+          <div className={styles.productionStatCard}>
+            <div className={styles.statIcon}>
+              <FaLeaf />
+            </div>
+            <div className={styles.statInfo}>
+              <h4>Органическое сырье</h4>
+              <p>100% натуральные компоненты</p>
+            </div>
+          </div>
+          <div className={styles.productionStatCard}>
+            <div className={styles.statIcon}>
+              <FaFlask />
+            </div>
+            <div className={styles.statInfo}>
+              <h4>5-кратная перегонка</h4>
+              <p>Максимальная чистота продукта</p>
+            </div>
+          </div>
+          <div className={styles.productionStatCard}>
+            <div className={styles.statIcon}>
+              <FaCheck />
+            </div>
+            <div className={styles.statInfo}>
+              <h4>Контроль качества</h4>
+              <p>Лабораторные тесты каждой партии</p>
+            </div>
+          </div>
         </div>
         
         {/* Section Navigation Tabs */}
@@ -219,7 +247,8 @@ const ProductionPage = () => {
               className={`${styles.sectionTab} ${activeTab === tab.id ? styles.activeTab : ''}`}
               onClick={() => setActiveTab(tab.id)}
             >
-              {tab.label}
+              <span className={styles.tabIcon}>{tab.icon}</span>
+              <span className={styles.tabLabel}>{tab.label}</span>
               {activeTab === tab.id && <div className={styles.activeTabIndicator}></div>}
             </button>
           ))}
@@ -455,7 +484,7 @@ const ProductionPage = () => {
                           transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
                           whileHover={{ 
                             y: -10,
-                            boxShadow: "0 15px 30px rgba(230, 62, 62, 0.2)",
+                            boxShadow: "0 15px 30px rgba(76, 175, 80, 0.15)",
                             transition: { duration: 0.3 }
                           }}
                         >
@@ -483,10 +512,7 @@ const ProductionPage = () => {
                     <div className={styles.qualityPoints}>
                       <div className={styles.qualityPoint}>
                         <div className={styles.qualityIcon}>
-                          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.icon}>
-                            <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" 
-                              stroke="#e63e3e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                          </svg>
+                          <FaCheck className={styles.icon} />
                         </div>
                         <div className={styles.qualityTextContent}>
                           <h3>Лабораторные Тесты</h3>
@@ -496,10 +522,7 @@ const ProductionPage = () => {
                       
                       <div className={styles.qualityPoint}>
                         <div className={styles.qualityIcon}>
-                          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.icon}>
-                            <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" 
-                              stroke="#e63e3e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                          </svg>
+                          <FaCheck className={styles.icon} />
                         </div>
                         <div className={styles.qualityTextContent}>
                           <h3>Контроль Производства</h3>
@@ -509,10 +532,7 @@ const ProductionPage = () => {
                       
                       <div className={styles.qualityPoint}>
                         <div className={styles.qualityIcon}>
-                          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.icon}>
-                            <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" 
-                              stroke="#e63e3e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                          </svg>
+                          <FaCheck className={styles.icon} />
                         </div>
                         <div className={styles.qualityTextContent}>
                           <h3>Сертификация</h3>
@@ -615,7 +635,7 @@ const ProductionPage = () => {
                             <div className={styles.statNumber}>0%</div>
                             <div className={styles.statLabel}>ПРИМЕСЕЙ</div>
                           </motion.div>
-                          </div>
+                        </div>
                       </div>
                       
                       <div className={styles.equipmentImageContainer}>
@@ -646,7 +666,7 @@ const ProductionPage = () => {
                             transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
                             whileHover={{ 
                               scale: 1.05,
-                              boxShadow: "0 10px 25px rgba(230, 62, 62, 0.3)",
+                              boxShadow: "0 10px 25px rgba(76, 175, 80, 0.2)",
                               transition: { duration: 0.3 }
                             }}
                           >
@@ -735,13 +755,30 @@ const ProductionPage = () => {
             className={styles.ctaButton}
             whileHover={{ 
               scale: 1.05,
-              boxShadow: "0 15px 30px rgba(230, 62, 62, 0.5)"
+              boxShadow: "0 15px 30px rgba(76, 175, 80, 0.3)"
             }}
             whileTap={{ scale: 0.95 }}
           >
             ПЕРЕЙТИ В КАТАЛОГ
           </motion.a>
         </motion.div>
+
+        <div className={styles.certificateStrip}>
+          <div className={styles.stripContainer}>
+            <div className={styles.stripItem}>
+              <FaLeaf className={styles.stripIcon} />
+              <span className={styles.stripText}>100% Натуральный</span>
+            </div>
+            <div className={styles.stripItem}>
+              <FaFlask className={styles.stripIcon} />
+              <span className={styles.stripText}>Лабораторно проверено</span>
+            </div>
+            <div className={styles.stripItem}>
+              <FaSeedling className={styles.stripIcon} />
+              <span className={styles.stripText}>Экологически чисто</span>
+            </div>
+          </div>
+        </div>
       </motion.div>
     </div>
   );
