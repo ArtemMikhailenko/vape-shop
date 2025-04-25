@@ -125,7 +125,7 @@ const ContactPages = () => {
       <div className={styles.infoContent}>
         <motion.h2 
           className={styles.infoTitle}
-          initial={{ opacity: 0, y: 20 }}
+          initial={{  y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
@@ -134,7 +134,7 @@ const ContactPages = () => {
         
         <motion.div 
           className={styles.assortmentInfo}
-          initial={{ opacity: 0, y: 20 }}
+          initial={{  y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
@@ -218,7 +218,7 @@ const ContactPages = () => {
       <div className={styles.managerContent}>
         <motion.h2 
           className={styles.managerTitle}
-          initial={{ opacity: 0, y: 20 }}
+          initial={{  y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
@@ -227,7 +227,7 @@ const ContactPages = () => {
         
         <motion.div 
           className={styles.contactCard}
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{  scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
@@ -298,9 +298,9 @@ const ContactPages = () => {
           {copied && (
             <motion.div 
               className={styles.copiedNotification}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{  y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
+              exit={{  y: -20 }}
               transition={{ duration: 0.3 }}
             >
               Контакт скопирован!
@@ -408,7 +408,7 @@ const ContactPages = () => {
       >
         <motion.div 
           className={styles.contactsHeader}
-          initial={{ opacity: 0, y: -20 }}
+          initial={{   y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
@@ -419,7 +419,7 @@ const ContactPages = () => {
         
         <motion.div 
           className={styles.contactsCard}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{  y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
@@ -462,9 +462,9 @@ const ContactPages = () => {
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeTab}
-                initial={{ opacity: 0, x: 20 }}
+                initial={{  x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
+                exit={{  x: -20 }}
                 transition={{ duration: 0.3 }}
               >
                 {tabsContent[activeTab]}
@@ -477,7 +477,7 @@ const ContactPages = () => {
           <div className={styles.socialHeader}>Мы в социальных сетях</div>
           <motion.div 
             className={styles.socialLinks}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{  y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >

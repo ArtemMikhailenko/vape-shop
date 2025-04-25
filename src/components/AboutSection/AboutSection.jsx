@@ -77,7 +77,7 @@ const AboutSection = () => {
             
             <motion.div 
               className={styles.badgeQuality}
-              initial={{ x: 100, opacity: 0 }}
+              initial={{ x: 100}}
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3, type: "spring" }}
@@ -96,7 +96,7 @@ const AboutSection = () => {
             
             <motion.div 
               className={styles.productSpecs}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{  y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.5 }}
@@ -131,7 +131,7 @@ const AboutSection = () => {
           
           <motion.div 
             className={styles.textContainer}
-            style={{ opacity, y }}
+            style={{ y }}
           >
             <div className={styles.sectionTag}>О нашем продукте</div>
             <h2 className={styles.title}>ЧТО ТАКОЕ BADVAPE</h2>
@@ -150,7 +150,7 @@ const AboutSection = () => {
             
             <motion.div 
               className={styles.qualityMarkers}
-              initial={{ opacity: 0 }}
+              initial={{  }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ staggerChildren: 0.1, delayChildren: 0.3 }}
@@ -158,7 +158,7 @@ const AboutSection = () => {
               <motion.div 
                 className={styles.qualityItem}
                 variants={{
-                  hidden: { opacity: 0, x: -20 },
+                  hidden: {  x: -20 },
                   visible: { opacity: 1, x: 0 }
                 }}
               >
@@ -174,7 +174,7 @@ const AboutSection = () => {
               <motion.div 
                 className={styles.qualityItem}
                 variants={{
-                  hidden: { opacity: 0, x: -20 },
+                  hidden: {  x: -20 },
                   visible: { opacity: 1, x: 0 }
                 }}
               >
@@ -190,7 +190,7 @@ const AboutSection = () => {
               <motion.div 
                 className={styles.qualityItem}
                 variants={{
-                  hidden: { opacity: 0, x: -20 },
+                  hidden: {  x: -20 },
                   visible: { opacity: 1, x: 0 }
                 }}
               >

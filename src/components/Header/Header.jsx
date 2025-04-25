@@ -96,7 +96,7 @@ const Header = () => {
   };
 
   const itemVariants = {
-    closed: { opacity: 0, y: -10 },
+    closed: {  y: -10 },
     open: { opacity: 1, y: 0 }
   };
 

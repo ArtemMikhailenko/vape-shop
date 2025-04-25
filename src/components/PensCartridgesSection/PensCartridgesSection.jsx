@@ -130,7 +130,7 @@ const PensCartridgesSection = () => {
                 
                 <motion.div 
                   className={styles.featuresList}
-                  initial={{ opacity: 0 }}
+                
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                 >
@@ -138,7 +138,7 @@ const PensCartridgesSection = () => {
                     <motion.div 
                       key={feature.id}
                       className={styles.featureItem}
-                      initial={{ opacity: 0, x: -20 }}
+                      initial={{ x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: index * 0.1 }}
@@ -165,7 +165,7 @@ const PensCartridgesSection = () => {
                 
                 <motion.div 
                   className={styles.productBadge}
-                  initial={{ scale: 0, opacity: 0 }}
+                  initial={{ scale: 0}}
                   whileInView={{ scale: 1, opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.5, type: "spring" }}
@@ -178,9 +178,9 @@ const PensCartridgesSection = () => {
                 <motion.div 
                   key={selectedVariant}
                   className={styles.productInfo}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{   y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
+                  exit={{  y: -20 }}
                   transition={{ duration: 0.3 }}
                 >
                   <div className={styles.productInfoHeader}>

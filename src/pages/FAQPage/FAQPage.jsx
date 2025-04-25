@@ -208,7 +208,7 @@ const FAQPage = () => {
       >
         <motion.div 
           className={styles.faqHeader}
-          initial={{ opacity: 0, y: -20 }}
+          initial={{  y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
@@ -255,7 +255,7 @@ const FAQPage = () => {
         
         <motion.div 
           className={styles.faqList}
-          initial={{ opacity: 0 }}
+          
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
@@ -275,7 +275,7 @@ const FAQPage = () => {
               <motion.div
                 key={item.id}
                 className={styles.faqItem}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{  y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: item.id * 0.05 }}
               >
@@ -309,9 +309,9 @@ const FAQPage = () => {
                   {activeAccordion === item.id && (
                     <motion.div
                       className={styles.faqAnswer}
-                      initial={{ height: 0, opacity: 0 }}
+                      initial={{ height: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
+                      exit={{ height: 0}}
                       transition={{ duration: 0.3 }}
                     >
                       <div className={styles.answerContent}>
@@ -327,7 +327,7 @@ const FAQPage = () => {
         
         <motion.div 
           className={styles.contactSection}
-          initial={{ opacity: 0, y: 20 }}
+          initial={{  y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >

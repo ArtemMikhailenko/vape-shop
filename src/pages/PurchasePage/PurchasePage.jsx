@@ -266,7 +266,7 @@ const PurchasePage = () => {
       >
         <motion.div 
           className={styles.pageHeader}
-          initial={{ opacity: 0, y: -20 }}
+          initial={{  y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
@@ -312,7 +312,7 @@ const PurchasePage = () => {
         
         <motion.div 
           className={styles.processTimeline}
-          initial={{ opacity: 0 }}
+       
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
@@ -320,7 +320,7 @@ const PurchasePage = () => {
             <motion.div
               key={step.id}
               className={`${styles.timelineStep} ${activeStep === step.id ? styles.activeStep : ''}`}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
@@ -344,9 +344,9 @@ const PurchasePage = () => {
                 {activeStep === step.id && (
                   <motion.div
                     className={styles.stepContent}
-                    initial={{ height: 0, opacity: 0 }}
+                    initial={{ height: 0}}
                     animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
+                    exit={{ height: 0}}
                     transition={{ duration: 0.3 }}
                   >
                     <div className={styles.contentInner}>
@@ -368,7 +368,7 @@ const PurchasePage = () => {
         
         <motion.div 
           className={styles.contactBox}
-          initial={{ opacity: 0, y: 20 }}
+          initial={{  y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >

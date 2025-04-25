@@ -183,7 +183,7 @@ const ProductionPage = () => {
       >
         <motion.div 
           className={styles.pageHeader}
-          initial={{ opacity: 0, y: -20 }}
+          initial={{  y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
@@ -200,7 +200,7 @@ const ProductionPage = () => {
         <div className={styles.logoSection}>
           <motion.div 
             className={styles.logoContainer}
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{  scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
@@ -259,9 +259,9 @@ const ProductionPage = () => {
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{  y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
+              exit={{  y: -20 }}
               transition={{ duration: 0.5 }}
               className={styles.tabContent}
             >
@@ -281,7 +281,7 @@ const ProductionPage = () => {
                     
                     <motion.div 
                       className={styles.processTextContainer}
-                      initial={{ opacity: 0, x: 50 }}
+                      initial={{  x: 50 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.8, delay: 0.5 }}
                     >
@@ -314,7 +314,7 @@ const ProductionPage = () => {
                   <div className={styles.processInfoCards}>
                     <motion.div 
                       className={styles.infoCard}
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={{  y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: 0.7 }}
                     >
@@ -325,7 +325,7 @@ const ProductionPage = () => {
                     
                     <motion.div 
                       className={styles.infoCard}
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={{  y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: 0.8 }}
                     >
@@ -336,7 +336,7 @@ const ProductionPage = () => {
                     
                     <motion.div 
                       className={styles.infoCard}
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={{  y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: 0.9 }}
                     >
@@ -366,7 +366,7 @@ const ProductionPage = () => {
                         <motion.div 
                           key={stage.id}
                           className={styles.productionStage}
-                          initial={{ opacity: 0, y: 50 }}
+                          initial={{ y: 50 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
                           transition={{ duration: 0.8, delay: index * 0.2 }}
@@ -425,7 +425,7 @@ const ProductionPage = () => {
                   <div className={styles.techIntro}>
                     <motion.h2 
                       className={styles.techIntroTitle}
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={{ y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.8 }}
                     >
@@ -433,7 +433,7 @@ const ProductionPage = () => {
                     </motion.h2>
                     <motion.p 
                       className={styles.techIntroText}
-                      initial={{ opacity: 0 }}
+                      
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.8, delay: 0.2 }}
                     >
@@ -445,7 +445,7 @@ const ProductionPage = () => {
                   
                   <motion.div 
                     className={styles.techSection}
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{  y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
                   >
@@ -479,8 +479,8 @@ const ProductionPage = () => {
                         <motion.div 
                           key={index}
                           className={styles.techCard}
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
+                          initial={{ y: 20 }}
+                          animate={{opacity: 1, y: 0 }}
                           transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
                           whileHover={{ 
                             y: -10,
@@ -503,7 +503,7 @@ const ProductionPage = () => {
                   
                   <motion.div 
                     className={styles.qualitySection}
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.7 }}
                   >
@@ -549,7 +549,7 @@ const ProductionPage = () => {
                 <div className={styles.equipmentTabContent}>
                   <motion.div 
                     className={styles.equipmentSection}
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{  y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                   >
@@ -571,7 +571,7 @@ const ProductionPage = () => {
                         <ul className={styles.equipmentList}>
                           <motion.li 
                             className={styles.equipmentItem}
-                            initial={{ opacity: 0, x: -20 }}
+                            initial={{  x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.5, delay: 0.3 }}
                           >
@@ -580,7 +580,7 @@ const ProductionPage = () => {
                           </motion.li>
                           <motion.li 
                             className={styles.equipmentItem}
-                            initial={{ opacity: 0, x: -20 }}
+                            initial={{  x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.5, delay: 0.4 }}
                           >
@@ -589,7 +589,7 @@ const ProductionPage = () => {
                           </motion.li>
                           <motion.li 
                             className={styles.equipmentItem}
-                            initial={{ opacity: 0, x: -20 }}
+                            initial={{  x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.5, delay: 0.5 }}
                           >
@@ -598,7 +598,7 @@ const ProductionPage = () => {
                           </motion.li>
                           <motion.li 
                             className={styles.equipmentItem}
-                            initial={{ opacity: 0, x: -20 }}
+                            initial={{  x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.5, delay: 0.6 }}
                           >
@@ -610,7 +610,7 @@ const ProductionPage = () => {
                         <div className={styles.equipmentStats}>
                           <motion.div 
                             className={styles.statItem}
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.7 }}
                           >
@@ -619,7 +619,7 @@ const ProductionPage = () => {
                           </motion.div>
                           <motion.div 
                             className={styles.statItem}
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{  y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.8 }}
                           >
@@ -628,7 +628,7 @@ const ProductionPage = () => {
                           </motion.div>
                           <motion.div 
                             className={styles.statItem}
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.9 }}
                           >
@@ -641,7 +641,7 @@ const ProductionPage = () => {
                       <div className={styles.equipmentImageContainer}>
                         <motion.div 
                           className={styles.imageContainer}
-                          initial={{ opacity: 0, rotateY: -25 }}
+                          initial={{  rotateY: -25 }}
                           animate={{ opacity: 1, rotateY: 0 }}
                           transition={{ duration: 0.8, delay: 0.5 }}
                         >
@@ -660,7 +660,7 @@ const ProductionPage = () => {
                           <motion.div 
                             key={index}
                             className={styles.galleryItem}
-                            initial={{ opacity: 0, scale: 0.9 }}
+                            initial={{  scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
                             whileHover={{ 
@@ -681,7 +681,7 @@ const ProductionPage = () => {
                   
                   <motion.div 
                     className={styles.labFacilities}
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{  y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.3 }}
                   >
@@ -717,7 +717,7 @@ const ProductionPage = () => {
                         <motion.div 
                           key={index}
                           className={styles.facilityCard}
-                          initial={{ opacity: 0, y: 20 }}
+                          initial={{  y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
                         >

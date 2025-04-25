@@ -138,7 +138,7 @@ const AboutUsPage = () => {
   };
   
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: {  y: 30 },
     visible: { 
       opacity: 1, 
       y: 0,
@@ -229,7 +229,7 @@ const AboutUsPage = () => {
           
           <motion.h1 
             className={styles.mainTitle}
-            initial={{ opacity: 0, y: -20 }}
+            initial={{  y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
@@ -291,7 +291,7 @@ const AboutUsPage = () => {
           
           <motion.div 
             className={styles.ctaSection}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.5 }}

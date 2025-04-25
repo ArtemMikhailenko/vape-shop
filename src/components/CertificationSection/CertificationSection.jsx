@@ -6,7 +6,7 @@ import nonGmoLogo from '../../assets/non-gmo-logo.png'; // Logo image
 const CertificationSection = () => {
   // Animation variants for staggered animations
   const containerVariants = {
-    hidden: { opacity: 0 },
+
     visible: {
       opacity: 1,
       transition: {
@@ -17,7 +17,7 @@ const CertificationSection = () => {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, x: -20 },
+    hidden: { x: -20 },
     visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
   };
 
@@ -28,7 +28,7 @@ const CertificationSection = () => {
       <div className={styles.contentContainer}>
         <motion.div 
           className={styles.certificationContent}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
@@ -95,7 +95,7 @@ const CertificationSection = () => {
         <div className={styles.certificationGrid}>
           <motion.div 
             className={styles.certCard}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{  y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -108,7 +108,7 @@ const CertificationSection = () => {
           
           <motion.div 
             className={styles.certCard}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{  y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -121,7 +121,7 @@ const CertificationSection = () => {
           
           <motion.div 
             className={styles.certCard}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{  y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}

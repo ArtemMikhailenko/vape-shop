@@ -108,7 +108,7 @@ const AwardsSection = () => {
   const years = Object.keys(awards).sort((a, b) => b - a); // Sort descending
   
   const fadeInUpVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: {   y: 20 },
     visible: (i) => ({
       opacity: 1,
       y: 0,
@@ -207,9 +207,9 @@ const AwardsSection = () => {
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeYear}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
+                exit={{ y: -20 }}
                 transition={{ duration: 0.5 }}
                 className={styles.yearAwards}
               >
