@@ -1,10 +1,11 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { useRef, useEffect, useState } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import styles from './PensCartridgesSection.module.css';
-import pensImage from '../../assets/Kingpen-Vape-Pens.jpg'; // Изображение линейки ручек
-
+import pensImage from '../../assets/Kingpen-Vape-Pens.jpg';
+import img from '../../assets/kanabis.svg'
 const PensCartridgesSection = () => {
   const sectionRef = useRef(null);
+  const [selectedVariant, setSelectedVariant] = useState('purple-kush');
   
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -12,10 +13,54 @@ const PensCartridgesSection = () => {
   });
   
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
-  const xText = useTransform(scrollYProgress, [0, 0.5], [-50, 0]);
-  const xImage = useTransform(scrollYProgress, [0, 0.5], [50, 0]);
+  const yTextContainer = useTransform(scrollYProgress, [0, 0.5], [100, 0]);
+  const yImageContainer = useTransform(scrollYProgress, [0, 0.5], [50, -50]);
   
-  // Характеристики для анимации
+  // Creating floating particles effect
+  useEffect(() => {
+    if (!sectionRef.current) return;
+    
+    const createParticle = () => {
+      const particle = document.createElement('div');
+      particle.className = styles.floatingParticle;
+      
+      // Random styles
+      const size = Math.random() * 15 + 5;
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      
+      // Random position
+      particle.style.left = `${Math.random() * 100}%`;
+      particle.style.top = `${Math.random() * 100}%`;
+      
+      // Random animation duration
+      particle.style.animationDuration = `${Math.random() * 20 + 10}s`;
+      particle.style.animationDelay = `${Math.random() * 5}s`;
+      
+      // Random opacity
+      particle.style.opacity = Math.random() * 0.3 + 0.1;
+      
+      sectionRef.current.appendChild(particle);
+      
+      setTimeout(() => {
+        if (particle && particle.parentNode) {
+          particle.remove();
+        }
+      }, 30000);
+    };
+    
+    // Create initial particles
+    for (let i = 0; i < 8; i++) {
+      createParticle();
+    }
+    
+    // Add more periodically
+    const particleInterval = setInterval(createParticle, 3000);
+    
+    return () => clearInterval(particleInterval);
+  }, []);
+  
+  // Features list
   const features = [
     { id: 1, text: "Низкий расход батареи", icon: "🔋" },
     { id: 2, text: "Бесперебойный поток воздуха", icon: "💨" },
@@ -24,168 +69,182 @@ const PensCartridgesSection = () => {
     { id: 5, text: "Стильный дизайн", icon: "✨" }
   ];
   
-  const strains = [
-    { name: 'Indica', color: '#8E44AD' },
-    { name: 'Sativa', color: '#F39C12' },
-    { name: 'Hybrid', color: '#27AE60' }
+  // Product variants
+  const variants = [
+    { id: 'purple-kush', name: 'Purple Kush', color: '#8E44AD', type: 'Indica', effect: 'Расслабляющий' },
+    { id: 'tangie', name: 'Tangie', color: '#F39C12', type: 'Sativa', effect: 'Энергичный' },
+    { id: 'gelato', name: 'Gelato', color: '#27AE60', type: 'Hybrid', effect: 'Сбалансированный' },
+    { id: 'og-kush', name: 'OG Kush', color: '#E74C3C', type: 'Indica', effect: 'Успокаивающий' }
   ];
+  
+  // Get selected variant details
+  const currentVariant = variants.find(variant => variant.id === selectedVariant);
   
   return (
     <section ref={sectionRef} className={styles.pensSection}>
       <div className={styles.sectionBackground}>
-        <div className={styles.leafPattern}></div>
         <div className={styles.gradientOverlay}></div>
       </div>
       
-      <div className={styles.contentWrapper}>
-        <motion.div 
-          className={styles.textContainer}
-          style={{ opacity, x: xText }}
-        >
-          <div className={styles.categoryTag}>Наши продукты</div>
-          
-          <div className={styles.titleContainer}>
-            <h2 className={styles.title}>РУЧКИ И КАРТРИДЖИ</h2>
-            <h3 className={styles.subtitle}>BAD VAPE</h3>
-            
-            <div className={styles.strainsIcons}>
-              {strains.map(strain => (
-                <div 
-                  key={strain.name} 
-                  className={styles.strainBadge}
-                  style={{ backgroundColor: `${strain.color}20`, borderColor: strain.color }}
-                >
-                  <div 
-                    className={styles.strainDot} 
-                    style={{ backgroundColor: strain.color }}
-                  ></div>
-                  <span>{strain.name}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          
-          <p className={styles.description}>
-            Наши ручки поддерживает одни из самых низких показателей расхода батареи на рынке,
-            а наши картриджи спроектированы для обеспечения бесперебойного и стабильного 
-            воздушного потока.
-          </p>
-          
-          <p className={styles.description}>
-            Кроме этого, наши ручки имеют несколько уровней мощности, так что вы можете 
-            контролировать свои настройки нагрева (низкий, средний и горячий) и использовать 
-            режим предварительного нагрева, который позволяет нагревать масло перед употреблением.
-          </p>
-          
+      <div className={styles.container}>
+        <div className={styles.contentWrapper}>
           <motion.div 
-            className={styles.featuresList}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            className={styles.textContainer}
+            style={{ opacity, y: yTextContainer }}
           >
-            {features.map((feature, index) => (
-              <motion.div 
-                key={feature.id}
-                className={styles.featureItem}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <div className={styles.featureIcon}>{feature.icon}</div>
-                <span>{feature.text}</span>
-              </motion.div>
-            ))}
-          </motion.div>
-          
-          <div className={styles.cannabisInfo}>
-            <div className={styles.cannabisIcon}>
-              <svg viewBox="0 0 100 100" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M50 0C36.8 0 26.1 13.4 25.6 30.2c0 .4 0 .8-.2 1.2s-.5.6-.9.7c-.2 0-.4 0-.6-.1C15.4 29 6.5 36.2 6.5 46.2c0 6.6 3.5 12.3 8.7 15.3.4.2.6.6.6 1s-.1.8-.5 1c-7.3 5.4-7.3 18.2 1.6 23.2 6.3 3.5 14.2 1.6 19-4.1.3-.3.6-.5 1-.5s.7.1 1 .4c4.3 5.8 11.2 9.5 19 9.5 13.3 0 24-12.3 24-27.5 0-5.7-1.5-11.1-4.2-15.5-.2-.4-.2-.9 0-1.3s.5-.7.9-.8c11.3-2.8 19.4-14.3 19.4-27.6C97 8.4 75.8 0 50 0z"
-                  fill="#4CAF50" />
-              </svg>
-            </div>
-            <div className={styles.cannabisContent}>
-              <p>Наши картриджи содержат высококачественное масло каннабиса с полным спектром натуральных терпенов и каннабиноидов.</p>
-            </div>
-          </div>
-          
-          <motion.button 
-            className={styles.learnMoreButton}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <span>УЗНАТЬ БОЛЬШЕ</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </motion.button>
-        </motion.div>
-        
-        <motion.div 
-          className={styles.imageContainer}
-          style={{ opacity, x: xImage }}
-        >
-          <div className={styles.imageWrapper}>
-            <img src={pensImage} alt="BADVAPE ручки" className={styles.image} />
-            
-            <motion.div 
-              className={styles.imageBadge}
-              initial={{ scale: 0, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5, type: "spring" }}
-            >
-              ПРЕМИУМ КАЧЕСТВО
-            </motion.div>
-            
-            <div className={styles.productsMenu}>
-              <div className={styles.menuTitle}>Доступные варианты</div>
-              <div className={styles.menuItems}>
-                <div className={styles.menuItem}>
-                  <div className={styles.menuItemDot} style={{backgroundColor: "#8E44AD"}}></div>
-                  <span>Purple Kush</span>
-                </div>
-                <div className={styles.menuItem}>
-                  <div className={styles.menuItemDot} style={{backgroundColor: "#F39C12"}}></div>
-                  <span>Tangie</span>
-                </div>
-                <div className={styles.menuItem}>
-                  <div className={styles.menuItemDot} style={{backgroundColor: "#27AE60"}}></div>
-                  <span>Gelato</span>
-                </div>
-                <div className={styles.menuItem}>
-                  <div className={styles.menuItemDot} style={{backgroundColor: "#E74C3C"}}></div>
-                  <span>OG Kush</span>
-                </div>
+            <div className={styles.sectionHeader}>
+              <div className={styles.categoryTag}>Наша продукция</div>
+              <h2 className={styles.title}>РУЧКИ И КАРТРИДЖИ</h2>
+              <div className={styles.subtitle}>
+                <span>BAD</span>
+                <span className={styles.accentText}>VAPE</span>
               </div>
             </div>
             
-            <div className={styles.imageOverlay}>
-              <div className={styles.specItem}>
-                <div className={styles.specLabel}>Срок работы</div>
-                <div className={styles.specValue}>до 300 затяжек</div>
+            <div className={styles.contentRow}>
+              <div className={styles.textColumn}>
+                <p className={styles.description}>
+                  Наши ручки поддерживают одни из самых низких показателей расхода батареи на рынке,
+                  а наши картриджи спроектированы для обеспечения бесперебойного и стабильного 
+                  воздушного потока.
+                </p>
+                
+                <p className={styles.description}>
+                  Кроме этого, наши ручки имеют несколько уровней мощности, так что вы можете 
+                  контролировать свои настройки нагрева (низкий, средний и горячий) и использовать 
+                  режим предварительного нагрева.
+                </p>
+                
+                <div className={styles.cannabisInfo}>
+                  <div className={styles.cannabisIcon}>
+                    <img src={img} alt="" />
+                  </div>
+                  <div className={styles.cannabisContent}>
+                    <p>Наши картриджи содержат высококачественное масло каннабиса с полным спектром натуральных терпенов и каннабиноидов.</p>
+                  </div>
+                </div>
               </div>
               
-              <div className={styles.specItem}>
-                <div className={styles.specLabel}>Ёмкость</div>
-                <div className={styles.specValue}>1000 мг</div>
+              <div className={styles.featuresColumn}>
+                <h3 className={styles.featureHeading}>Особенности</h3>
+                
+                <motion.div 
+                  className={styles.featuresList}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                >
+                  {features.map((feature, index) => (
+                    <motion.div 
+                      key={feature.id}
+                      className={styles.featureItem}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      <div className={styles.featureIcon}>{feature.icon}</div>
+                      <span>{feature.text}</span>
+                    </motion.div>
+                  ))}
+                </motion.div>
               </div>
             </div>
-          </div>
-          
-          <div className={styles.potencyIndicator}>
-            <div className={styles.potencyLabel}>THC</div>
-            <div className={styles.potencyScale}>
-              <div className={styles.potencyFill}></div>
+            
+            <div className={styles.buttonGroup}>
+              <motion.button 
+                className={styles.learnMoreButton}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span>УЗНАТЬ БОЛЬШЕ</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </motion.button>
+              
             </div>
-            <div className={styles.potencyValue}>85-90%</div>
-          </div>
-        </motion.div>
-      </div>
-      
-      <div className={styles.certificateStrip}>
-        <div className={styles.stripContainer}>
+          </motion.div>
+          
+          <motion.div 
+            className={styles.imageContainer}
+            style={{ opacity, y: yImageContainer }}
+          >
+         
+            
+            <div className={styles.productDisplay}>
+              <div className={styles.imageWrapper}>
+                <img src={pensImage} alt="BADVAPE ручки" className={styles.productImage} />
+                
+                <motion.div 
+                  className={styles.productBadge}
+                  initial={{ scale: 0, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5, type: "spring" }}
+                >
+                  ПРЕМИУМ КАЧЕСТВО
+                </motion.div>
+              </div>
+              
+              <AnimatePresence mode="wait">
+                <motion.div 
+                  key={selectedVariant}
+                  className={styles.productInfo}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className={styles.productInfoHeader}>
+                    <div className={styles.typeTag} style={{ backgroundColor: `${currentVariant.color}20`, color: currentVariant.color }}>
+                      {currentVariant.type}
+                    </div>
+                    <h3 className={styles.productName}>{currentVariant.name}</h3>
+                  </div>
+                  
+                  <div className={styles.productSpecs}>
+                    <div className={styles.specItem}>
+                      <div className={styles.specIcon}>⚡</div>
+                      <div className={styles.specContent}>
+                        <div className={styles.specLabel}>Эффект</div>
+                        <div className={styles.specValue}>{currentVariant.effect}</div>
+                      </div>
+                    </div>
+                    
+                    <div className={styles.specItem}>
+                      <div className={styles.specIcon}>⏱️</div>
+                      <div className={styles.specContent}>
+                        <div className={styles.specLabel}>Срок работы</div>
+                        <div className={styles.specValue}>300 затяжек</div>
+                      </div>
+                    </div>
+                    
+                    <div className={styles.specItem}>
+                      <div className={styles.specIcon}>⚖️</div>
+                      <div className={styles.specContent}>
+                        <div className={styles.specLabel}>Объем</div>
+                        <div className={styles.specValue}>1000 мг</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className={styles.thcContent}>
+                    <div className={styles.thcHeader}>
+                      <div className={styles.thcLabel}>THC Содержание</div>
+                      <div className={styles.thcValue}>85-90%</div>
+                    </div>
+                    <div className={styles.thcBar}>
+                      <div className={styles.thcFill} style={{ width: '90%' }}></div>
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </motion.div>
+        </div>
+        
+        <div className={styles.certificateStrip}>
           <div className={styles.stripItem}>
             <div className={styles.stripIcon}>🔍</div>
             <div className={styles.stripText}>Лабораторно проверено</div>
@@ -199,13 +258,6 @@ const PensCartridgesSection = () => {
             <div className={styles.stripText}>Сертифицировано</div>
           </div>
         </div>
-      </div>
-      
-      <div className={styles.decorElements}>
-        <div className={styles.decorLine1}></div>
-        <div className={styles.decorLine2}></div>
-        <div className={styles.decorDot1}></div>
-        <div className={styles.decorDot2}></div>
       </div>
     </section>
   );

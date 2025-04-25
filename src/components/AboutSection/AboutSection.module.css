@@ -1,30 +1,60 @@
 .aboutSection {
   position: relative;
   min-height: 100vh;
-  padding: 100px 0;
+  padding: 120px 0;
   overflow: hidden;
-  /* background-color: #f7f9f7; */
+  background-color: #fafafa;
 }
 
-.leafPattern {
+.container {
+  width: 100%;
+  max-width: 1400px;
+  padding: 0 30px;
+  box-sizing: border-box;
+}
+
+.floatingLeaf {
+  position: absolute;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M50 0C36.8 0 26.1 13.4 25.6 30.2c0 .4 0 .8-.2 1.2s-.5.6-.9.7c-.2 0-.4 0-.6-.1C15.4 29 6.5 36.2 6.5 46.2c0 6.6 3.5 12.3 8.7 15.3.4.2.6.6.6 1s-.1.8-.5 1c-7.3 5.4-7.3 18.2 1.6 23.2 6.3 3.5 14.2 1.6 19-4.1.3-.3.6-.5 1-.5s.7.1 1 .4c4.3 5.8 11.2 9.5 19 9.5 13.3 0 24-12.3 24-27.5 0-5.7-1.5-11.1-4.2-15.5-.2-.4-.2-.9 0-1.3s.5-.7.9-.8c11.3-2.8 19.4-14.3 19.4-27.6C97 8.4 75.8 0 50 0z' fill='%234CAF50' fill-opacity='0.2'/%3E%3C/svg%3E");
+  background-size: contain;
+  opacity: 0.3;
+  z-index: 1;
+  animation: floatLeaf linear infinite;
+  pointer-events: none;
+}
+
+@keyframes floatLeaf {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.3;
+  }
+  90% {
+    opacity: 0.2;
+  }
+  100% {
+    transform: translate(100px, -300px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.canvas {
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url("../../assets/kanabis.svg");
-  opacity: 0.2;
-  background-size: 210px;
+  width: 100%;
+  height: 100%;
   z-index: 1;
+  pointer-events: none;
 }
 
 .contentWrapper {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 50px;
   position: relative;
   z-index: 2;
 }
@@ -36,21 +66,22 @@
 
 .imageFrame {
   position: relative;
-  border-radius: 15px;
+  border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(76, 175, 80, 0.1);
 }
 
 .image {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 15px;
+  border-radius: 20px;
   transition: transform 0.5s ease;
 }
 
 .imageFrame:hover .image {
-  transform: scale(1.03);
+  transform: scale(1.05);
 }
 
 .glow {
@@ -77,9 +108,10 @@
   display: flex;
   align-items: center;
   padding: 10px 15px;
-  border-radius: 8px;
+  border-radius: 10px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   border-left: 3px solid #4CAF50;
+  z-index: 2;
 }
 
 .badgeIcon {
@@ -104,15 +136,6 @@
   font-size: 0.8rem;
 }
 
-.cannabisLeaf {
-  position: absolute;
-  width: 120px;
-  height: 120px;
-  bottom: 20px;
-  left: 20px;
-  z-index: 3;
-}
-
 .thcContent {
   position: absolute;
   bottom: 20px;
@@ -124,6 +147,7 @@
   flex-direction: column;
   align-items: center;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  z-index: 2;
 }
 
 .thcLabel {
@@ -138,6 +162,47 @@
   font-size: 1.1rem;
 }
 
+.productSpecs {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 2;
+}
+
+.specItem {
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 8px 15px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.specIcon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.specContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.specLabel {
+  color: #777;
+  font-size: 0.8rem;
+}
+
+.specValue {
+  color: #333;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
 .textContainer {
   flex: 0 0 50%;
   padding: 0 20px;
@@ -149,13 +214,13 @@
   color: #4CAF50;
   font-size: 0.9rem;
   font-weight: 600;
-  padding: 5px 12px;
+  padding: 8px 16px;
   border-radius: 30px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .title {
-  font-size: 2.8rem;
+  font-size: 3rem;
   color: #333;
   margin-bottom: 30px;
   font-weight: 700;
@@ -195,16 +260,18 @@
   color: #333;
   font-size: 1.1rem;
   font-weight: 500;
-  background: rgba(249, 250, 249, 0.764);
-  padding: 12px 20px;
-  border-radius: 10px;
+  background: white;
+  padding: 15px 20px;
+  border-radius: 12px;
   border-left: 3px solid #4CAF50;
   transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
 .qualityItem:hover {
-  background: rgba(76, 175, 80, 0.1);
+  background: rgba(76, 175, 80, 0.05);
   transform: translateX(5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 .qualityIcon {
@@ -224,9 +291,9 @@
   margin-top: 40px;
   display: flex;
   align-items: flex-start;
-  padding: 15px;
+  padding: 20px;
   background: rgba(76, 175, 80, 0.05);
-  border-radius: 10px;
+  border-radius: 12px;
   border: 1px dashed rgba(76, 175, 80, 0.3);
 }
 
@@ -254,13 +321,16 @@
   line-height: 1.5;
 }
 
-.learnMoreButton {
-  margin-top: 30px;
-  padding: 12px 25px;
-  background: #4CAF50;
-  color: white;
+.ctaButtonGroup {
+  margin-top: 40px;
+  display: flex;
+  gap: 15px;
+}
+
+.learnMoreButton, .shopButton {
+  padding: 14px 25px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -268,6 +338,11 @@
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.learnMoreButton {
+  background: #4CAF50;
+  color: white;
   box-shadow: 0 5px 15px rgba(76, 175, 80, 0.2);
 }
 
@@ -277,7 +352,19 @@
   transform: translateY(-2px);
 }
 
-.learnMoreButton svg {
+.shopButton {
+  background: white;
+  color: #333;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shopButton:hover {
+  background: rgba(0, 0, 0, 0.02);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+.learnMoreButton svg, .shopButton svg {
   width: 18px;
   height: 18px;
 }
@@ -294,33 +381,24 @@
 
 .circle1 {
   position: absolute;
-  width: 300px;
-  height: 300px;
+  width: 500px;
+  height: 500px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(76, 175, 80, 0.05) 0%, rgba(76, 175, 80, 0) 70%);
-  top: 20%;
-  left: 5%;
-  animation: pulse 10s infinite alternate;
+  top: 10%;
+  left: -10%;
+  animation: pulse 15s infinite alternate;
 }
 
 .circle2 {
   position: absolute;
-  width: 500px;
-  height: 500px;
+  width: 700px;
+  height: 700px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(76, 175, 80, 0.03) 0%, rgba(76, 175, 80, 0) 70%);
-  bottom: 10%;
-  right: 5%;
-  animation: pulse 15s infinite alternate;
-}
-
-.smokePath {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: url('../../assets/smoke-texture.png') repeat;
-  opacity: 0.03;
-  animation: moveSmoke 120s linear infinite;
+  bottom: -10%;
+  right: -10%;
+  animation: pulse 20s infinite alternate;
 }
 
 @keyframes pulse {
@@ -334,27 +412,198 @@
   }
 }
 
-@keyframes moveSmoke {
-  0% {
-    background-position: 0 0;
+/* Media Queries */
+@media (max-width: 1200px) {
+  .title {
+    font-size: 2.6rem;
   }
-  100% {
-    background-position: 1000px 1000px;
+  
+  .badgeQuality {
+    top: 15px;
+    right: 15px;
+    padding: 8px 12px;
+  }
+  
+  .thcContent {
+    padding: 6px 12px;
   }
 }
 
 @media (max-width: 992px) {
   .contentWrapper {
     flex-direction: column;
+    gap: 60px;
   }
-  
+  .container{
+    padding: 0 20px;
+  }
   .imageContainer, .textContainer {
     flex: 0 0 100%;
     width: 100%;
-    margin-bottom: 60px;
+  }
+  
+  .imageContainer {
+    max-width: 600px;
+    margin: 0 auto;
   }
   
   .title {
-    font-size: 2.5rem;
+    font-size: 2.4rem;
+  }
+  
+  .ctaButtonGroup {
+    justify-content: center;
+  }
+  
+  .circle1, .circle2 {
+    opacity: 0.5;
+  }
+}
+
+@media (max-width: 768px) {
+  .aboutSection {
+    padding: 80px 0;
+  }
+  
+  .container {
+    padding: 0 20px;
+  }
+  
+  .title {
+    font-size: 2.2rem;
+  }
+  
+  .description {
+    font-size: 1rem;
+  }
+  
+  .qualityItem {
+    padding: 12px 15px;
+    font-size: 1rem;
+  }
+  
+  .productSpecs {
+    flex-direction: row;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 15px;
+  }
+  
+  .ctaButtonGroup {
+    flex-direction: column;
+  }
+  
+  .learnMoreButton, .shopButton {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .aboutSection {
+    padding: 60px 0;
+    overflow-x: hidden; /* Prevent horizontal overflow */
+  }
+  
+  .container {
+    padding: 0 15px; /* Reduce horizontal padding */
+  }
+  
+  .title {
+    font-size: 1.8rem;
+    width: 100%; /* Ensure title doesn't overflow */
+    word-wrap: break-word; /* Allow words to break when needed */
+  }
+  
+  .sectionTag {
+    font-size: 0.8rem;
+  }
+  
+  .badgeQuality {
+    top: 10px;
+    right: 10px;
+    padding: 6px 10px;
+  }
+  
+  .badgeIcon {
+    font-size: 1rem;
+    margin-right: 8px;
+  }
+  
+  .badgeTitle {
+    font-size: 0.8rem;
+  }
+  
+  .badgeSubtitle {
+    font-size: 0.7rem;
+  }
+  
+  .thcContent {
+    right: 10px;
+    bottom: 80px;
+  }
+  
+  .productSpecs {
+    flex-direction: column;
+    left: 10px;
+    transform: none;
+    bottom: 80px;
+    max-width: 120px; /* Limit width to prevent overflow */
+  }
+  
+  .specItem {
+    width: 100%;
+    padding: 6px 10px; /* Reduce padding */
+  }
+  
+  .specLabel {
+    font-size: 0.7rem;
+  }
+  
+  .specValue {
+    font-size: 0.8rem;
+  }
+  
+  .labTested {
+    padding: 15px;
+  }
+  
+  .labIcon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+  
+  .labTestTitle {
+    font-size: 1rem;
+  }
+  
+  .labTestDesc {
+    font-size: 0.8rem;
+  }
+  
+  .qualityMarkers {
+    gap: 10px;
+  }
+  
+  .qualityItem {
+    font-size: 0.9rem;
+    padding: 10px 15px;
+  }
+  
+  .qualityIcon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  /* Fix button overflow */
+  .learnMoreButton, .shopButton {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
+  
+  .learnMoreButton svg, .shopButton svg {
+    width: 16px;
+    height: 16px;
   }
 }

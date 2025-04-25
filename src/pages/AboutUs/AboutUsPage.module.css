@@ -6,6 +6,262 @@
   overflow: hidden;
 }
 
+.shopButton:hover .buttonIcon {
+  transform: translateX(3px);
+}
+
+.certificateStrip {
+  background: white;
+  padding: 20px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  margin-top: 100px;
+  position: relative;
+  z-index: 3;
+}
+
+.stripContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.stripItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.3s ease;
+}
+
+.stripItem:hover {
+  transform: translateY(-3px);
+}
+
+.stripIcon {
+  font-size: 1.5rem;
+  color: #4CAF50;
+  display: flex;
+  align-items: center;
+}
+
+.stripText {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Better Responsiveness */
+@media (max-width: 1200px) {
+  .contentContainer {
+    gap: 40px;
+  }
+  
+  .logo {
+    max-width: 90%;
+  }
+  
+  .mainTitle {
+    font-size: 2.8rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .contentContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .logoSection {
+    position: relative;
+    top: 0 !important;
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 40px;
+  }
+  
+  .textSection {
+    flex: 0 0 auto;
+    
+  }
+  
+  .mainTitle {
+    font-size: 2.5rem;
+  }
+  
+  .ctaSection {
+    flex-direction: row;
+  }
+  
+  .cannabinoidInfo, .productBadges {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .aboutUsPage {
+    padding: 70px 0 0;
+  }
+  
+  .textSection {
+    padding: 25px;
+  }
+  
+  .mainTitle {
+    font-size: 2.2rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.3rem;
+  }
+  
+  .sectionText {
+    font-size: 0.95rem;
+  }
+  
+  .aboutItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .sectionIcon {
+    margin-bottom: 5px;
+  }
+  
+  .certificateStrip {
+    margin-top: 60px;
+  }
+  
+  .ctaSection {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .contactButton, .shopButton {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .aboutUsPage {
+    padding: 50px 0 0;
+  }
+  
+  .logo {
+    max-width: 260px;
+  }
+  
+  .logoSection {
+    margin-bottom: 30px;
+  }
+  
+  .cannabinoidInfo {
+    padding: 15px;
+  }
+  
+  .infoTitle {
+    font-size: 1rem;
+  }
+  
+  .statLabel, .statValue {
+    font-size: 0.85rem;
+  }
+  
+  .productBadge {
+    padding: 10px;
+  }
+  
+  .productBadge span {
+    font-size: 0.9rem;
+  }
+  
+  .mainTitle {
+    font-size: 1.8rem;
+  }
+  
+  .pageBadge {
+    font-size: 0.8rem;
+  }
+  
+  .aboutItem {
+    padding: 15px;
+  }
+  
+  .sectionTitle {
+    font-size: 1.2rem;
+  }
+  
+  .cannabisStrains {
+    padding: 15px;
+  }
+  
+  .strainsContainer {
+    gap: 10px;
+  }
+  
+  .strainBadge {
+    padding: 8px 12px;
+  }
+  
+  .strainName {
+    font-size: 0.85rem;
+  }
+  
+  .stripContainer {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+}
+
+/* Animations */
+@keyframes leafFloating {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-30px) rotate(10deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+.logoContainer::after {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(76, 175, 80, 0.05) 0%, rgba(76, 175, 80, 0) 60%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  border-radius: 50%;
+  animation: pulseSlow 8s infinite alternate;
+}
+
+@keyframes pulseSlow {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.3);
+    opacity: 0.1;
+  }
+}
+
 .backgroundElements {
   position: absolute;
   top: 0;
@@ -163,10 +419,24 @@
   padding: 12px 15px;
   border-radius: 8px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.productBadge:hover {
+  transform: translateX(5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 .badgeIcon {
   font-size: 1.2rem;
+  color: #4CAF50;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(76, 175, 80, 0.1);
+  border-radius: 50%;
 }
 
 .productBadge span {
@@ -240,7 +510,7 @@
 
 .sectionIcon {
   flex: 0 0 50px;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -299,6 +569,12 @@
   border-radius: 8px;
   border: 1px solid;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.strainBadge:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
 }
 
 .strainDot {
@@ -341,7 +617,7 @@
   background: transparent;
   color: #333;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  flex: 1;
+  /* flex: 1; */
 }
 
 .contactButton:hover {
@@ -357,167 +633,11 @@
   background: #4CAF50;
   color: white;
   box-shadow: 0 5px 15px rgba(76, 175, 80, 0.2);
-  flex: 1;
+  /* flex: 1; */
 }
 
 .shopButton:hover {
   background: #3d9140;
   box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
   transform: translateY(-2px);
-}
-
-.shopButton:hover .buttonIcon {
-  transform: translateX(3px);
-}
-
-.certificateStrip {
-  background: white;
-  padding: 20px 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
-  margin-top: 100px;
-}
-
-.stripContainer {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.stripItem {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.stripIcon {
-  font-size: 1.5rem;
-}
-
-.stripText {
-  font-size: 1rem;
-  font-weight: 500;
-  color: #333;
-}
-
-@media (max-width: 992px) {
-  .contentContainer {
-    flex-direction: column;
-  }
-  
-  .logoSection {
-    position: relative;
-    top: 0;
-    flex: 0 0 auto;
-    margin-bottom: 40px;
-    width: 100%;
-  }
-  
-  .logoContainer {
-    align-items: center;
-  }
-  
-  .logo {
-    max-width: 300px;
-  }
-  
-  .cannabinoidInfo, .productBadges {
-    max-width: 500px;
-  }
-  
-  .textSection {
-    flex: 0 0 auto;
-    width: 100%;
-  }
-  
-  .ctaSection {
-    flex-direction: column;
-  }
-  
-  .mainTitle {
-    font-size: 2.5rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .aboutUsPage {
-    padding: 60px 0 0;
-  }
-  
-  .textSection {
-    padding: 25px;
-  }
-  
-  .mainTitle {
-    font-size: 2rem;
-  }
-  
-  .sectionTitle {
-    font-size: 1.3rem;
-  }
-  
-  .sectionText {
-    font-size: 0.95rem;
-  }
-  
-  .aboutItem {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-  }
-  
-  .sectionIcon {
-    margin-bottom: 10px;
-  }
-  
-  .certificateStrip {
-    margin-top: 60px;
-  }
-  
-  .stripContainer {
-    flex-direction: column;
-    gap: 15px;
-  }
-}
-
-/* Анимации */
-@keyframes leafFloating {
-  0% {
-    transform: translateY(0) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-30px) rotate(10deg);
-  }
-  100% {
-    transform: translateY(0) rotate(0deg);
-  }
-}
-
-.logoContainer::after {
-  content: '';
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(76, 175, 80, 0.05) 0%, rgba(76, 175, 80, 0) 60%);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: -1;
-  border-radius: 50%;
-  animation: pulseSlow 8s infinite alternate;
-}
-
-@keyframes pulseSlow {
-  0% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 0.3;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1.3);
-    opacity: 0.1;
-  }
 }

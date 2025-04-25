@@ -88,7 +88,7 @@
 
 .searchInput {
   width: 100%;
-  padding: 15px 20px;
+  padding: 15px 0px;
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(42, 157, 143, 0.2);
   border-radius: 8px;

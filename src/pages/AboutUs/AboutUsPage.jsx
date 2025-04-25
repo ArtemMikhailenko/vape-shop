@@ -1,7 +1,10 @@
 import React, { useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import styles from './AboutUsPage.module.css';
-import logoImage from '../../assets/logo-snoop.jpg'; // Логотип с изображения 2
+import logoImage from '../../assets/logo-snoop.jpg'; // Logo image
+
+// Optional: Use react-icons for better, more consistent icons
+import { FaLeaf, FaFlask, FaUsers, FaCog, FaHandshake, FaTrophy, FaCheckCircle, FaSearch } from 'react-icons/fa';
 
 const AboutUsPage = () => {
   const containerRef = useRef(null);
@@ -21,7 +24,7 @@ const AboutUsPage = () => {
   const logoScale = useSpring(1, springConfig);
   const logoRotate = useSpring(0, springConfig);
   
-  // Эффект параллакса для карточки с текстом
+  // Parallax effect for text card
   useEffect(() => {
     const handleMouseMove = (e) => {
       if (!containerRef.current) return;
@@ -29,18 +32,18 @@ const AboutUsPage = () => {
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
       
-      // Нормализация значений от -1 до 1
+      // Normalize values from -1 to 1
       const normalizedX = (e.clientX - centerX) / (rect.width / 2);
       const normalizedY = (e.clientY - centerY) / (rect.height / 2);
       
-      mouseX.set(normalizedX * 10); // Контролируем силу эффекта
+      mouseX.set(normalizedX * 10); // Control effect strength
       mouseY.set(normalizedY * 10);
       
-      // Анимация логотипа при наведении
+      // Logo animation on hover
       logoScale.set(1.05);
-      logoRotate.set(normalizedX * 5); // Наклон до 5 градусов
+      logoRotate.set(normalizedX * 5); // Tilt up to 5 degrees
       
-      // Возвращаем логотип в исходное состояние при отсутствии курсора
+      // Return logo to initial state when cursor is removed
       setTimeout(() => {
         logoScale.set(1);
         logoRotate.set(0);
@@ -51,7 +54,7 @@ const AboutUsPage = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [mouseX, mouseY, logoScale, logoRotate]);
   
-  // Анимация "листьев каннабиса" для фона
+  // Animation of cannabis leaves for background
   useEffect(() => {
     if (!containerRef.current) return;
     
@@ -59,7 +62,7 @@ const AboutUsPage = () => {
       const leaf = document.createElement('div');
       leaf.className = styles.leafParticle;
       
-      // Рандомное позиционирование и анимация
+      // Random positioning and animation
       leaf.style.left = `${Math.random() * 100}%`;
       leaf.style.top = `${Math.random() * 30 + 30}%`; 
       leaf.style.animationDuration = `${Math.random() * 5 + 8}s`;
@@ -68,7 +71,7 @@ const AboutUsPage = () => {
       
       containerRef.current.appendChild(leaf);
       
-      // Удаляем частицу после анимации
+      // Remove particle after animation
       setTimeout(() => {
         if (leaf.parentNode) {
           leaf.remove();
@@ -76,9 +79,9 @@ const AboutUsPage = () => {
       }, 13000);
     };
     
-    // Создаем частицы с интервалом
+    // Create particles at intervals
     const particleInterval = setInterval(createLeafParticle, 2000);
-    // Сразу создаем несколько частиц
+    // Create several particles immediately
     for (let i = 0; i < 5; i++) {
       createLeafParticle();
     }
@@ -86,41 +89,41 @@ const AboutUsPage = () => {
     return () => clearInterval(particleInterval);
   }, []);
   
-  // Секции "о нас" с эффектными заголовками
+  // "About us" sections with striking headings
   const aboutSections = [
     {
       id: 'welcome',
       title: 'Добро пожаловать',
       text: 'Рады приветствовать Вас в нашем магазине Bad Vape',
-      icon: '👋',
+      icon: <FaLeaf />,
       color: '#4CAF50'
     },
     {
       id: 'import',
       title: 'Крупнейший импортер',
       text: 'Мы являемся самым большим импортером масла конопли из США в Россию. С помощью нас вы получите незабываемые ощущения от медицины 21 века. Мы постоянно расширяем ассортимент продукции для Вашего гастрономического удовольствия.',
-      icon: '🌿',
+      icon: <FaFlask />,
       color: '#8E44AD'
     },
     {
       id: 'clients',
       title: 'Наши клиенты',
       text: 'Наши клиенты это уважаемые люди в своей сфере взаимодействия, от политиков до инженеров, от врачей до спортсменов, от кочегаров до пилотов болидов, от космонавтов до юристов.',
-      icon: '👥',
+      icon: <FaUsers />,
       color: '#F39C12'
     },
     {
       id: 'innovation',
       title: 'Инженерное искусство',
       text: 'Наша продукция это настоящий шедевр инженерного искусства, который подарит новый способ употребления марихуаны без негативных моментов таких как – запах, сложности употреблять в общественных местах, проблем с дыхательными путями.',
-      icon: '🔬',
+      icon: <FaCog />,
       color: '#27AE60'
     },
     {
       id: 'partners',
       title: 'Партнерство',
       text: 'Приглашаем к сотрудничеству дистрибьютеров по всей России. Специальные цены для партнеров.',
-      icon: '🤝',
+      icon: <FaHandshake />,
       color: '#3498DB'
     }
   ];
@@ -143,7 +146,7 @@ const AboutUsPage = () => {
     }
   };
   
-  // Добавляем информацию о каннабиноидах
+  // Cannabinoid information
   const cannabinoids = [
     { name: 'THC', value: '85-90%', color: '#4CAF50' },
     { name: 'CBD', value: '1-5%', color: '#3498DB' },
@@ -193,15 +196,21 @@ const AboutUsPage = () => {
             
             <div className={styles.productBadges}>
               <div className={styles.productBadge}>
-                <div className={styles.badgeIcon}>🌿</div>
+                <div className={styles.badgeIcon}>
+                  <FaLeaf />
+                </div>
                 <span>Premium Quality</span>
               </div>
               <div className={styles.productBadge}>
-                <div className={styles.badgeIcon}>🔬</div>
+                <div className={styles.badgeIcon}>
+                  <FaSearch />
+                </div>
                 <span>Lab Tested</span>
               </div>
               <div className={styles.productBadge}>
-                <div className={styles.badgeIcon}>✓</div>
+                <div className={styles.badgeIcon}>
+                  <FaCheckCircle />
+                </div>
                 <span>100% Natural</span>
               </div>
             </div>
@@ -306,15 +315,21 @@ const AboutUsPage = () => {
       <div className={styles.certificateStrip}>
         <div className={styles.stripContainer}>
           <div className={styles.stripItem}>
-            <div className={styles.stripIcon}>🏆</div>
+            <div className={styles.stripIcon}>
+              <FaTrophy />
+            </div>
             <div className={styles.stripText}>15+ Cannabis Cup Awards</div>
           </div>
           <div className={styles.stripItem}>
-            <div className={styles.stripIcon}>🔍</div>
+            <div className={styles.stripIcon}>
+              <FaSearch />
+            </div>
             <div className={styles.stripText}>100% Lab Tested</div>
           </div>
           <div className={styles.stripItem}>
-            <div className={styles.stripIcon}>📦</div>
+            <div className={styles.stripIcon}>
+              <FaShippingFast />
+            </div>
             <div className={styles.stripText}>Доставка по всей России</div>
           </div>
         </div>
@@ -322,5 +337,11 @@ const AboutUsPage = () => {
     </div>
   );
 };
+
+const FaShippingFast = (props) => (
+  <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 640 512" height="1em" width="1em" {...props}>
+    <path d="M624 352h-16V243.9c0-12.7-5.1-24.9-14.1-33.9L494 110.1c-9-9-21.2-14.1-33.9-14.1H416V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48v320c0 26.5 21.5 48 48 48h16c0 53 43 96 96 96s96-43 96-96h128c0 53 43 96 96 96s96-43 96-96h48c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16zM160 464c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm320 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm80-208H416V144h44.1l99.9 99.9V256z"></path>
+  </svg>
+);
 
 export default AboutUsPage;

@@ -1,116 +1,154 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import styles from './CertificationSection.module.css';
-import nonGmoLogo from '../../assets/non-gmo-logo.png'; // Логотип NonGMO Project
+import nonGmoLogo from '../../assets/non-gmo-logo.png'; // Logo image
 
 const CertificationSection = () => {
-  const sectionRef = useRef(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"]
-  });
-  
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
-  
+  // Animation variants for staggered animations
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
+  };
+
   return (
-    <section ref={sectionRef} className={styles.certificationSection}>
+    <section className={styles.certificationSection}>
       <div className={styles.brushTop}></div>
       
       <div className={styles.contentContainer}>
         <motion.div 
           className={styles.certificationContent}
-          style={{ opacity }}
-          initial={{ y: 50 }}
-          whileInView={{ y: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
           <div className={styles.logoContainer}>
-            <img 
+            <motion.img 
               src={nonGmoLogo} 
               alt="NonGMO Project Verified" 
-              className={styles.nonGmoLogo} 
+              className={styles.nonGmoLogo}
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
             />
           </div>
           
           <div className={styles.textContainer}>
-            <h2 className={styles.title}>НАШИ ПРОДУКТЫ</h2>
-            <h3 className={styles.subtitle}>БЕЗ ХИМИИ И ГМО</h3>
+            <div className={styles.headerBadge}>Certification</div>
+            <h2 className={styles.title}>OUR PRODUCTS</h2>
+            <h3 className={styles.subtitle}>CHEMICAL-FREE AND NON-GMO</h3>
             
             <motion.div 
               className={styles.benefitsList}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true }}
-              transition={{ staggerChildren: 0.1, delayChildren: 0.3 }}
             >
               <motion.div 
                 className={styles.benefitItem}
-                variants={{
-                  hidden: { opacity: 0, x: -20 },
-                  visible: { opacity: 1, x: 0 }
-                }}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
+                variants={itemVariants}
               >
                 <div className={styles.checkIcon}>✓</div>
-                <p>100% натуральные ингредиенты</p>
+                <p>100% natural ingredients</p>
               </motion.div>
               
               <motion.div 
                 className={styles.benefitItem}
-                variants={{
-                  hidden: { opacity: 0, x: -20 },
-                  visible: { opacity: 1, x: 0 }
-                }}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
+                variants={itemVariants}
               >
                 <div className={styles.checkIcon}>✓</div>
-                <p>Сертифицированное качество</p>
+                <p>Certified quality</p>
               </motion.div>
               
               <motion.div 
                 className={styles.benefitItem}
-                variants={{
-                  hidden: { opacity: 0, x: -20 },
-                  visible: { opacity: 1, x: 0 }
-                }}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
+                variants={itemVariants}
               >
                 <div className={styles.checkIcon}>✓</div>
-                <p>Без искусственных добавок</p>
+                <p>No artificial additives</p>
               </motion.div>
               
               <motion.div 
                 className={styles.benefitItem}
-                variants={{
-                  hidden: { opacity: 0, x: -20 },
-                  visible: { opacity: 1, x: 0 }
-                }}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
+                variants={itemVariants}
               >
                 <div className={styles.checkIcon}>✓</div>
-                <p>Регулярное лабораторное тестирование</p>
+                <p>Regular laboratory testing</p>
               </motion.div>
             </motion.div>
             
-            <motion.button 
-              className={styles.learnMoreButton}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            <motion.div
+              className={styles.buttonWrapper}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.6, duration: 0.5 }}
             >
-              ПОДРОБНЕЕ О СЕРТИФИКАТАХ
-            </motion.button>
+              <button 
+                className={styles.learnMoreButton}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                LEARN MORE ABOUT CERTIFICATIONS
+                <svg className={styles.buttonArrow} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </motion.div>
           </div>
         </motion.div>
+        
+        <div className={styles.certificationGrid}>
+          <motion.div 
+            className={styles.certCard}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            whileHover={{ y: -5 }}
+          >
+            <div className={styles.certIcon}>🌱</div>
+            <h4>Organic Farming</h4>
+            <p>All our ingredients are grown using organic farming practices</p>
+          </motion.div>
+          
+          <motion.div 
+            className={styles.certCard}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            whileHover={{ y: -5 }}
+          >
+            <div className={styles.certIcon}>🔬</div>
+            <h4>Lab Verified</h4>
+            <p>All batches undergo rigorous laboratory testing</p>
+          </motion.div>
+          
+          <motion.div 
+            className={styles.certCard}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            whileHover={{ y: -5 }}
+          >
+            <div className={styles.certIcon}>🛡️</div>
+            <h4>Purity Guaranteed</h4>
+            <p>Free from harmful chemicals, pesticides and additives</p>
+          </motion.div>
+        </div>
       </div>
       
       <div className={styles.brushBottom}></div>

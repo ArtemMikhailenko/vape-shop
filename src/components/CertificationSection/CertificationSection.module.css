@@ -1,161 +1,367 @@
 .certificationSection {
-    position: relative;
+  position: relative;
+  padding: 100px 0;
+  background-color: #fff;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.brushTop, .brushBottom {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  z-index: 2;
+}
+
+.brushTop {
+  top: -1px;
+  /* Enable this when you add the image */
+  /* background-image: url('../../assets/brush-stroke-top.png'); */
+  /* transform: rotateX(180deg); */
+}
+
+.brushBottom {
+  bottom: -1px;
+  /* Enable this when you add the image */
+  /* background-image: url('../../assets/brush-stroke-bottom.png'); */
+}
+
+.contentContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 3;
+}
+
+.certificationContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  margin-bottom: 60px;
+}
+
+.logoContainer {
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.logoContainer::after {
+  content: '';
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  bottom: -20px;
+  left: -20px;
+  background: radial-gradient(circle, rgba(76, 175, 80, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+  border-radius: 50%;
+  z-index: -1;
+  animation: pulseLogo 3s infinite alternate;
+}
+
+@keyframes pulseLogo {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.nonGmoLogo {
+  max-width: 200px;
+  height: auto;
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.textContainer {
+  flex: 1 1 auto;
+  max-width: 600px;
+  position: relative;
+}
+
+.headerBadge {
+  display: inline-block;
+  padding: 5px 12px;
+  background-color: rgba(76, 175, 80, 0.1);
+  color: #4CAF50;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.title {
+  font-size: 2.2rem;
+  color: #3070B9;
+  margin: 0 0 5px;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 2.5rem;
+  color: #4CAF50;
+  margin: 0 0 30px;
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+}
+
+.subtitle::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #4CAF50, transparent);
+}
+
+.benefitsList {
+  margin: 30px 0;
+}
+
+.benefitItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-left: 3px solid #4CAF50;
+}
+
+.benefitItem:hover {
+  transform: translateX(5px);
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.checkIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 50%;
+  margin-right: 15px;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.benefitItem p {
+  font-size: 1.1rem;
+  color: #333;
+  margin: 0;
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.learnMoreButton {
+  margin-top: 20px;
+  padding: 12px 25px;
+  background: linear-gradient(45deg, #4CAF50, #2E7D32);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.buttonArrow {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.learnMoreButton:hover {
+  box-shadow: 0 8px 20px rgba(76, 175, 80, 0.5);
+  transform: translateY(-2px);
+}
+
+.learnMoreButton:hover .buttonArrow {
+  transform: translateX(3px);
+}
+
+.certificationGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.certCard {
+  background-color: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+  border-top: 4px solid #4CAF50;
+  transition: all 0.3s ease;
+}
+
+.certCard:hover {
+  box-shadow: 0 10px 30px rgba(76, 175, 80, 0.15);
+}
+
+.certIcon {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  display: inline-block;
+}
+
+.certCard h4 {
+  font-size: 1.3rem;
+  color: #333;
+  margin: 0 0 10px;
+  font-weight: 600;
+}
+
+.certCard p {
+  font-size: 0.95rem;
+  color: #666;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 1200px) {
+  .certificationSection {
     padding: 80px 0;
-    background-color: #fff;
-    z-index: 1;
-  }
-  
-  .brushTop, .brushBottom {
-    position: absolute;
-    width: 100%;
-    height: 50px;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    z-index: 2;
-  }
-  
-  /* .brushTop {
-    top: -1px;
-    background-image: url('./assets/brush-stroke-top.png');
-    transform: rotateX(180deg);
-  }
-  
-  .brushBottom {
-    bottom: -1px;
-    background-image: url('./assets/brush-stroke-bottom.png');
-  } */
-  
-  .contentContainer {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    position: relative;
-    z-index: 3;
   }
   
   .certificationContent {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 50px;
-  }
-  
-  .logoContainer {
-    flex: 0 0 auto;
+    gap: 40px;
   }
   
   .nonGmoLogo {
-    max-width: 200px;
-    height: auto;
-    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
-    transition: transform 0.3s ease;
-  }
-  
-  .nonGmoLogo:hover {
-    transform: scale(1.05);
-  }
-  
-  .textContainer {
-    flex: 1 1 auto;
-    max-width: 600px;
+    max-width: 180px;
   }
   
   .title {
-    font-size: 2.2rem;
-    color: #3070B9;
-    margin: 0 0 5px;
-    font-weight: 700;
+    font-size: 2rem;
   }
   
   .subtitle {
-    font-size: 2.5rem;
-    color: #4CAF50;
-    margin: 0 0 30px;
-    font-weight: 700;
-    position: relative;
-    display: inline-block;
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .certificationContent {
+    gap: 30px;
+  }
+  
+  .nonGmoLogo {
+    max-width: 160px;
+  }
+  
+  .certificationGrid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .certificationSection {
+    padding: 60px 0;
+  }
+  
+  .certificationContent {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+  
+  .logoContainer {
+    order: 1;
+  }
+  
+  .textContainer {
+    order: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
   .subtitle::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -10px;
-    width: 80px;
-    height: 3px;
-    background: linear-gradient(90deg, #4CAF50, transparent);
-  }
-  
-  .benefitsList {
-    margin: 30px 0;
+    left: 50%;
+    transform: translateX(-50%);
   }
   
   .benefitItem {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-    transition: all 0.3s ease;
+    text-align: left;
   }
   
-  .benefitItem:hover {
-    transform: translateX(5px);
-  }
-  
-  .checkIcon {
-    display: flex;
-    align-items: center;
+  .buttonWrapper {
     justify-content: center;
-    width: 24px;
-    height: 24px;
-    background-color: #4CAF50;
-    color: white;
-    border-radius: 50%;
-    margin-right: 15px;
-    font-size: 14px;
-    flex-shrink: 0;
+  }
+  
+  .certificationGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .certificationSection {
+    padding: 50px 0;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+  }
+  
+  .subtitle {
+    font-size: 2rem;
+  }
+  
+  .nonGmoLogo {
+    max-width: 140px;
+  }
+  
+  .benefitItem {
+    padding: 12px;
   }
   
   .benefitItem p {
-    font-size: 1.1rem;
-    color: #333;
-    margin: 0;
+    font-size: 1rem;
   }
   
   .learnMoreButton {
-    margin-top: 20px;
-    padding: 12px 25px;
-    background: linear-gradient(45deg, #4CAF50, #2E7D32);
-    color: white;
-    border: none;
-    border-radius: 30px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+    width: 100%;
+    justify-content: center;
+    padding: 12px 15px;
+    font-size: 0.85rem;
   }
   
-  .learnMoreButton:hover {
-    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.5);
-    transform: translateY(-2px);
+  .certCard {
+    padding: 20px;
   }
   
-  @media (max-width: 768px) {
-    .certificationContent {
-      flex-direction: column;
-      text-align: center;
-      gap: 30px;
-    }
-    
-    .subtitle::after {
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    
-    .benefitItem {
-      justify-content: center;
-      text-align: left;
-    }
+  .certCard h4 {
+    font-size: 1.2rem;
   }
-  
+}

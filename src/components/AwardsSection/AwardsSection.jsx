@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import styles from './AwardsSection.module.css';
+import { FaTrophy, FaLeaf, FaFlask, FaMedal } from 'react-icons/fa';
 
 const AwardsSection = () => {
   const sectionRef = useRef(null);
   const [activeYear, setActiveYear] = useState('2017');
-  const [isHovering, setIsHovering] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -14,16 +13,7 @@ const AwardsSection = () => {
   });
   
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.8, 1, 1, 0.8]);
-  
-  const handleMouseMove = (e) => {
-    const { clientX, clientY } = e;
-    const { left, top } = sectionRef.current.getBoundingClientRect();
-    setMousePosition({
-      x: clientX - left,
-      y: clientY - top
-    });
-  };
+  const scale = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.95, 1, 1, 0.95]);
   
   const awards = {
     '2017': [
@@ -115,7 +105,7 @@ const AwardsSection = () => {
     ]
   };
   
-  const years = Object.keys(awards).sort((a, b) => b - a); // Сортировка по убыванию
+  const years = Object.keys(awards).sort((a, b) => b - a); // Sort descending
   
   const fadeInUpVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -142,28 +132,22 @@ const AwardsSection = () => {
     }
   };
 
-  // Функция для определения цвета на основе типа сорта
+  // Function to determine color based on strain type
   const getStrainColor = (strain) => {
     switch(strain.toLowerCase()) {
       case 'sativa':
-        return '#F39C12'; // оранжевый
+        return '#F39C12'; // orange
       case 'indica':
-        return '#8E44AD'; // фиолетовый
+        return '#8E44AD'; // purple
       case 'hybrid':
-        return '#27AE60'; // зеленый
+        return '#27AE60'; // green
       default:
-        return '#3498DB'; // синий для прочих
+        return '#3498DB'; // blue for others
     }
   };
   
   return (
-    <section 
-      ref={sectionRef} 
-      className={styles.awardsSection}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovering(true)}
-      onMouseLeave={() => setIsHovering(false)}
-    >
+    <section ref={sectionRef} className={styles.awardsSection}>
       <div className={styles.backgroundElements}>
         <div className={styles.leafPattern}></div>
         <div className={styles.gradientOverlay}></div>
@@ -174,23 +158,13 @@ const AwardsSection = () => {
         style={{ opacity, scale }}
       >
         <div className={styles.headerContainer}>
-          <div className={styles.leafIcon}>
-            {/* <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M50 0C36.8 0 26.1 13.4 25.6 30.2c0 .4 0 .8-.2 1.2s-.5.6-.9.7c-.2 0-.4 0-.6-.1C15.4 29 6.5 36.2 6.5 46.2c0 6.6 3.5 12.3 8.7 15.3.4.2.6.6.6 1s-.1.8-.5 1c-7.3 5.4-7.3 18.2 1.6 23.2 6.3 3.5 14.2 1.6 19-4.1.3-.3.6-.5 1-.5s.7.1 1 .4c4.3 5.8 11.2 9.5 19 9.5 13.3 0 24-12.3 24-27.5 0-5.7-1.5-11.1-4.2-15.5-.2-.4-.2-.9 0-1.3s.5-.7.9-.8c11.3-2.8 19.4-14.3 19.4-27.6C97 8.4 75.8 0 50 0z"
-                fill="#4CAF50" />
-            </svg> */}
-          </div>
-          
           <div className={styles.titleContainer}>
             <motion.div 
               className={styles.awardIcon}
               animate="pulse"
               variants={medalAnimation}
             >
-              {/* <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M24 4L30 10L38 12L36 20L40 28L32 30L28 38L24 32L20 38L16 30L8 28L12 20L10 12L18 10L24 4Z" fill="#FFD700" stroke="#FFD700"/>
-                <circle cx="24" cy="24" r="8" fill="#FFD700" stroke="#FFD700"/>
-              </svg> */}
+              <FaTrophy size={60} color="#FFD700" />
             </motion.div>
             <h2 className={styles.awardTitle}>
               WORLD'S MOST<br/>
@@ -290,7 +264,7 @@ const AwardsSection = () => {
                       </div>
                       
                       <div className={styles.awardEvent}>
-                        <div className={styles.eventIcon}>🏆</div>
+                        <FaTrophy className={styles.eventIcon} />
                         <span>{award.event}</span>
                       </div>
                     </div>
@@ -314,21 +288,27 @@ const AwardsSection = () => {
           <div className={styles.factTitle}>What Makes Our Products Award-Winning</div>
           <div className={styles.factsContainer}>
             <div className={styles.factItem}>
-              <div className={styles.factIcon}>🧪</div>
+              <div className={styles.factIcon}>
+                <FaFlask />
+              </div>
               <div className={styles.factContent}>
                 <h3>Premium Extraction</h3>
                 <p>5-stage distillation process for highest purity</p>
               </div>
             </div>
             <div className={styles.factItem}>
-              <div className={styles.factIcon}>🌿</div>
+              <div className={styles.factIcon}>
+                <FaLeaf />
+              </div>
               <div className={styles.factContent}>
                 <h3>Strain Selection</h3>
                 <p>Only top-shelf cannabis varieties</p>
               </div>
             </div>
             <div className={styles.factItem}>
-              <div className={styles.factIcon}>🔬</div>
+              <div className={styles.factIcon}>
+                <FaMedal />
+              </div>
               <div className={styles.factContent}>
                 <h3>Lab Tested</h3>
                 <p>Verified potency and zero contaminants</p>
@@ -345,7 +325,7 @@ const AwardsSection = () => {
           transition={{ delay: 0.5, duration: 0.7 }}
         >
           <button className={styles.ctaButton}>
-            КУПИТЬ СЕЙЧАС
+            SHOP NOW
             <svg className={styles.buttonArrow} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>

@@ -1,9 +1,9 @@
 .pensSection {
   position: relative;
   min-height: 100vh;
-  padding: 100px 0;
+  padding: 120px 0;
   overflow: hidden;
-  background-color: #ffffff;
+  background-color: #f8fbf8;
 }
 
 .sectionBackground {
@@ -15,40 +15,63 @@
   z-index: 1;
 }
 
-.leafPattern {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%234CAF50' fill-opacity='0.05' d='M50 0C36.8 0 26.1 13.4 25.6 30.2c0 .4 0 .8-.2 1.2s-.5.6-.9.7c-.2 0-.4 0-.6-.1C15.4 29 6.5 36.2 6.5 46.2c0 6.6 3.5 12.3 8.7 15.3.4.2.6.6.6 1s-.1.8-.5 1c-7.3 5.4-7.3 18.2 1.6 23.2 6.3 3.5 14.2 1.6 19-4.1.3-.3.6-.5 1-.5s.7.1 1 .4c4.3 5.8 11.2 9.5 19 9.5 13.3 0 24-12.3 24-27.5 0-5.7-1.5-11.1-4.2-15.5-.2-.4-.2-.9 0-1.3s.5-.7.9-.8c11.3-2.8 19.4-14.3 19.4-27.6C97 8.4 75.8 0 50 0z'/%3E%3C/svg%3E");
-  opacity: 0.3;
-}
-
 .gradientOverlay {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(to right, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.7) 100%);
-  z-index: 2;
+  background: radial-gradient(circle at 30% 50%, rgba(76, 175, 80, 0.05) 0%, rgba(255, 255, 255, 0) 70%),
+              radial-gradient(circle at 70% 20%, rgba(76, 175, 80, 0.05) 0%, rgba(255, 255, 255, 0) 70%);
 }
 
-.contentWrapper {
+.floatingParticle {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(76, 175, 80, 0.2);
+  z-index: 1;
+  animation: floatParticle linear infinite;
+}
+
+@keyframes floatParticle {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.3;
+  }
+  90% {
+    opacity: 0.2;
+  }
+  100% {
+    transform: translate(100px, -300px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.container {
+  width: 100%;
   max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 30px;
+  box-sizing: border-box;
+}
+.contentWrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: relative;
-  z-index: 3;
+  gap: 60px;
 }
 
+/* Text Container */
 .textContainer {
-  flex: 0 0 48%;
-  padding-right: 40px;
+  flex: 0 0 46%;
+  display: flex;
+  flex-direction: column;
+}
+
+.sectionHeader {
+  margin-bottom: 30px;
 }
 
 .categoryTag {
@@ -57,128 +80,131 @@
   color: #4CAF50;
   font-size: 0.9rem;
   font-weight: 600;
-  padding: 5px 12px;
+  padding: 8px 16px;
   border-radius: 30px;
   margin-bottom: 15px;
 }
 
-.titleContainer {
-  margin-bottom: 30px;
-  position: relative;
-}
-
 .title {
-  font-size: 2.6rem;
+  font-size: 2.8rem;
   color: #333;
-  margin-bottom: 5px;
+  margin: 0 0 10px;
   font-weight: 700;
   letter-spacing: 1px;
 }
 
 .subtitle {
   font-size: 2rem;
-  color: #4CAF50;
   font-weight: 600;
-  margin-bottom: 15px;
-}
-
-.strainsIcons {
-  display: flex;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-.strainBadge {
+  color: #555;
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 5px 10px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  border: 1px solid transparent;
+  gap: 5px;
 }
 
-.strainDot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+.accentText {
+  color: #4CAF50;
+}
+
+.contentRow {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.textColumn {
+  flex: 1;
 }
 
 .description {
   font-size: 1.1rem;
   line-height: 1.7;
-  color: #555;
+  color: #444;
   margin-bottom: 20px;
 }
 
-.featuresList {
-  margin-top: 30px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+.cannabisInfo {
+  display: flex;
+  align-items: flex-start;
   gap: 15px;
-  margin-bottom: 30px;
+  background: rgba(76, 175, 80, 0.05);
+  border-radius: 12px;
+  padding: 20px;
+  border-left: 3px solid #4CAF50;
+  margin-top: 20px;
+}
+
+.cannabisIcon {
+  max-width: 60px;
+}
+.cannabisIcon img{
+  max-width: 60px;
+}
+.cannabisContent p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.featuresColumn {
+  flex: 1;
+}
+
+.featureHeading {
+  font-size: 1.3rem;
+  color: #333;
+  margin: 0 0 20px;
+  font-weight: 600;
+}
+
+.featuresList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .featureItem {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 15px;
-  background: #f8f8f8;
-  border-radius: 8px;
+  gap: 15px;
+  padding: 15px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
-  border: 1px solid rgba(76, 175, 80, 0.1);
+  border-left: 3px solid #4CAF50;
 }
 
 .featureItem:hover {
   background: rgba(76, 175, 80, 0.05);
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transform: translateX(8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 .featureIcon {
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: white;
-  color: #333;
   border-radius: 50%;
-  font-size: 16px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  font-size: 18px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(76, 175, 80, 0.2);
 }
 
-.cannabisInfo {
-  margin-top: 30px;
-  padding: 15px;
-  background: rgba(76, 175, 80, 0.05);
-  border-radius: 10px;
+.buttonGroup {
   display: flex;
-  align-items: center;
   gap: 15px;
-  border-left: 3px solid #4CAF50;
+  margin-top: auto;
 }
 
-.cannabisIcon {
-  flex-shrink: 0;
-}
-
-.cannabisContent p {
-  margin: 0;
-  font-size: 0.95rem;
-  color: #555;
-}
-
-.learnMoreButton {
-  margin-top: 30px;
-  padding: 12px 25px;
-  background: #4CAF50;
-  color: white;
+.learnMoreButton, .cartButton {
+  padding: 14px 25px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -186,7 +212,12 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  box-shadow: 0 5px 15px rgba(76, 175, 80, 0.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.learnMoreButton {
+  background: #4CAF50;
+  color: white;
 }
 
 .learnMoreButton:hover {
@@ -195,40 +226,101 @@
   transform: translateY(-2px);
 }
 
-.learnMoreButton svg {
-  width: 18px;
-  height: 18px;
+.cartButton {
+  background: white;
+  color: #333;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.cartButton:hover {
+  background: rgba(0, 0, 0, 0.02);
+  transform: translateY(-2px);
+}
+
+/* Image Container */
 .imageContainer {
-  flex: 0 0 48%;
+  flex: 0 0 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.variantSelector {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.variantTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.variantButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.variantButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 15px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.variantButton:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.activeVariant {
+  font-weight: 600;
+}
+
+.variantDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.productDisplay {
+  width: 100%;
   position: relative;
 }
 
 .imageWrapper {
   position: relative;
+  border-radius: 20px;
   overflow: hidden;
-  border-radius: 15px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
   background: white;
 }
 
-.image {
+.productImage {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 15px;
   transition: transform 0.5s ease;
 }
 
-.imageWrapper:hover .image {
-  transform: scale(1.03);
+.imageWrapper:hover .productImage {
+  transform: scale(1.05);
 }
 
-.imageBadge {
+.productBadge {
   position: absolute;
   top: 20px;
-  right: -40px;
+  right: 0;
   background: #4CAF50;
   color: white;
   padding: 8px 40px;
@@ -240,137 +332,124 @@
   z-index: 2;
 }
 
-.productsMenu {
-  position: absolute;
-  bottom: 80px;
-  right: 20px;
+.productInfo {
   background: white;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  margin-top: -50px;
+  position: relative;
   z-index: 3;
-  border-left: 3px solid #4CAF50;
-  max-width: 180px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.menuTitle {
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 10px;
-  font-size: 0.9rem;
-}
-
-.menuItems {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.menuItem {
+.productInfoHeader {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.85rem;
-  color: #555;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-.menuItemDot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+.typeTag {
+  padding: 5px 12px;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  font-weight: 600;
 }
 
-.imageOverlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 20px;
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.9), transparent);
+.productName {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 0;
+  font-weight: 700;
+}
+
+.productSpecs {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
 }
 
 .specItem {
-  color: #333;
-  text-align: center;
+  flex: 1;
+  min-width: 100px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: #f8f8f8;
+  border-radius: 10px;
+}
+
+.specIcon {
+  font-size: 1.2rem;
+}
+
+.specContent {
+  display: flex;
+  flex-direction: column;
 }
 
 .specLabel {
-  font-size: 0.9rem;
-  opacity: 0.7;
-  margin-bottom: 5px;
+  font-size: 0.8rem;
+  color: #777;
 }
 
 .specValue {
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: #333;
 }
 
-.potencyIndicator {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  background: white;
+.thcContent {
+  margin-top: 20px;
+}
+
+.thcHeader {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  padding: 8px 15px;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  z-index: 3;
+  margin-bottom: 10px;
 }
 
-.potencyLabel {
-  font-weight: 600;
-  color: #4CAF50;
-  margin-right: 10px;
-  font-size: 0.9rem;
-}
-
-.potencyScale {
-  width: 60px;
-  height: 6px;
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 3px;
-  position: relative;
-  overflow: hidden;
-  margin-right: 10px;
-}
-
-.potencyFill {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 90%;
-  background: linear-gradient(90deg, #4CAF50, #8BC34A);
-  border-radius: 3px;
-}
-
-.potencyValue {
+.thcLabel {
   font-size: 0.9rem;
   font-weight: 600;
   color: #333;
 }
 
+.thcValue {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #4CAF50;
+}
+
+.thcBar {
+  height: 8px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.thcFill {
+  height: 100%;
+  background: linear-gradient(90deg, #4CAF50, #8BC34A);
+  border-radius: 4px;
+}
+
+/* Certificate Strip */
 .certificateStrip {
   margin-top: 80px;
-  background: #f8f8f8;
-  padding: 20px 0;
-  position: relative;
-  z-index: 3;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.stripContainer {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   flex-wrap: wrap;
   gap: 20px;
 }
@@ -378,7 +457,7 @@
 .stripItem {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .stripIcon {
@@ -391,90 +470,237 @@
   color: #333;
 }
 
-.decorElements {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.decorLine1, .decorLine2 {
-  position: absolute;
-  width: 1px;
-  background: linear-gradient(to bottom, rgba(76, 175, 80, 0.3), transparent);
-}
-
-.decorLine1 {
-  height: 40%;
-  top: 10%;
-  left: 15%;
-}
-
-.decorLine2 {
-  height: 30%;
-  bottom: 10%;
-  right: 10%;
-}
-
-.decorDot1, .decorDot2 {
-  position: absolute;
-  border-radius: 50%;
-  background: #4CAF50;
-}
-
-.decorDot1 {
-  width: 8px;
-  height: 8px;
-  top: 15%;
-  left: 15%;
-  box-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
-  animation: pulseDot 4s infinite alternate;
-}
-
-.decorDot2 {
-  width: 12px;
-  height: 12px;
-  bottom: 20%;
-  right: 10%;
-  box-shadow: 0 0 30px rgba(76, 175, 80, 0.5);
-  animation: pulseDot 6s infinite alternate;
-}
-
-@keyframes pulseDot {
-  0% {
-    transform: scale(1);
-    opacity: 0.7;
-  }
-  100% {
-    transform: scale(1.5);
-    opacity: 0.3;
-  }
-}
-
-@media (max-width: 992px) {
+/* Media Queries */
+@media (max-width: 1200px) {
   .contentWrapper {
-    flex-direction: column-reverse;
-  }
-  
-  .textContainer, .imageContainer {
-    flex: 0 0 100%;
-    width: 100%;
-    padding: 0;
-    margin-bottom: 60px;
+    gap: 40px;
   }
   
   .title {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
   }
   
   .subtitle {
     font-size: 1.8rem;
   }
   
-  .featuresList {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  .featureItem {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 992px) {
+  .pensSection {
+    padding: 80px 0;
+  }
+  
+  .contentWrapper {
+    flex-direction: column;
+    gap: 60px;
+  }
+  
+  .textContainer, .imageContainer {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+  
+  .contentRow {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .productInfo {
+    width: 100%;
+    margin-top: -30px;
+  }
+  
+  .certificateStrip {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pensSection {
+    padding: 60px 0;
+    overflow-x: hidden; /* Prevent horizontal overflow */
+  }
+  
+  .container {
+    padding: 0 15px; /* Reduce padding to prevent overflow */
+  }
+  
+  .title {
+    font-size: 2rem;
+    word-wrap: break-word; /* Allow words to break when needed */
+  }
+  
+  .subtitle {
+    font-size: 1.5rem;
+  }
+  
+  .description {
+    font-size: 1rem;
+  }
+  
+  .featureItem {
+    padding: 10px;
+  }
+  
+  .featureIcon {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+  }
+  
+  .buttonGroup {
+    flex-direction: column;
+  }
+  
+  .learnMoreButton, .cartButton {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .productInfo {
+    padding: 20px;
+    width: 95%; /* Ensure it doesn't overflow */
+  }
+  
+  .productName {
+    font-size: 1.3rem;
+  }
+  
+  .productSpecs {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .specItem {
+    width: 100%;
+  }
+  
+  .variantButtons {
+    gap: 5px;
+  }
+  
+  .variantButton {
+    padding: 6px 10px;
+    font-size: 0.9rem;
+  }
+  
+  /* Fix certificate strip overflow */
+  .certificateStrip {
+    padding: 20px 15px;
+  }
+  
+  .stripItem {
+    gap: 8px;
+  }
+  
+  .stripText {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .pensSection {
+    padding: 50px 0;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+  }
+  
+  .subtitle {
+    font-size: 1.3rem;
+  }
+  
+  .categoryTag {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+  
+  .cannabisInfo {
+    padding: 15px;
+  }
+  
+  .cannabisContent p {
+    font-size: 0.85rem;
+  }
+  
+  .variantSelector {
+    padding: 15px;
+  }
+  
+  .variantTitle {
+    font-size: 0.9rem;
+  }
+  
+  .variantButton {
+    font-size: 0.8rem;
+    padding: 6px 8px; /* Smaller padding */
+  }
+  
+  .variantDot {
+    width: 8px; /* Smaller dot */
+    height: 8px;
+  }
+  
+  .productBadge {
+    font-size: 0.8rem;
+    padding: 6px 30px;
+    right: 0px;
+    top: 15px;
+  }
+  
+  .productInfo {
+    padding: 15px;
+    margin-top: -25px; /* Adjust overlap */
+  }
+  
+  .typeTag {
+    padding: 4px 10px;
+    font-size: 0.7rem;
+  }
+  
+  .productName {
+    font-size: 1.2rem;
+  }
+  
+  .stripItem {
+    width: 100%;
+  }
+  
+  .learnMoreButton, .cartButton {
+    padding: 12px 15px; /* Smaller padding */
+    font-size: 0.9rem;
+  }
+  
+  .featureItem {
+    padding: 8px 12px; /* Smaller padding */
+  }
+  
+  .productImage {
+    max-height: 300px; /* Limit height to prevent overflow */
+    object-fit: contain;
+  }
+  
+  /* Fix specifications to fit mobile screens */
+  .specItem {
+    padding: 8px;
+  }
+  
+  .specIcon {
+    font-size: 1rem;
+  }
+  
+  .specLabel {
+    font-size: 0.75rem;
+  }
+  
+  .specValue {
+    font-size: 0.85rem;
   }
 }
