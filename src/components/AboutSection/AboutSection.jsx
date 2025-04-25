@@ -68,7 +68,7 @@ const AboutSection = () => {
         <div className={styles.contentWrapper}>
           <motion.div 
             className={styles.imageContainer}
-            style={{ opacity, y: useTransform(scrollYProgress, [0, 0.5], [50, -50]) }}
+            style={{  y: useTransform(scrollYProgress, [0, 0.5], [50, -50]) }}
           >
             <div className={styles.imageFrame}>
               <img src={cartridgeImage} alt="BADVAPE картриджи" className={styles.image} />

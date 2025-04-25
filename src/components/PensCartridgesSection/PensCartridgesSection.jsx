@@ -155,7 +155,7 @@ const PensCartridgesSection = () => {
           
           <motion.div 
             className={styles.imageContainer}
-            style={{ opacity, y: yImageContainer }}
+            style={{  y: yImageContainer }}
           >
          
             

@@ -25,7 +25,7 @@ const ProductsSection = () => {
       name: 'STIIIZY PURPLE PUNCH',
       category: 'indica',
       image: stiiizyImage,
-      description: 'Premium THC pods with natural terpenes for a rich flavor profile.',
+      description: 'Премиальные THC-картриджи с натуральными терпенами для насыщенного вкусового профиля.',
       tag: 'BEST SELLER',
       rating: 4.9,
       effect: 'Relaxing',
@@ -37,7 +37,7 @@ const ProductsSection = () => {
       name: 'STIIIZY OG KUSH',
       category: 'indica',
       image: stiiizyImage,
-      description: 'Classic OG Kush flavor in our premium quality distillate pods.',
+      description: 'Классический вкус OG Kush в наших высококачественных дистиллятных картриджах.',
       tag: 'POPULAR',
       rating: 4.8,
       effect: 'Calming',
@@ -49,7 +49,7 @@ const ProductsSection = () => {
       name: 'STIIIZY PINEAPPLE EXPRESS',
       category: 'hybrid',
       image: stiiizyImage,
-      description: 'Tropical pineapple flavor with energizing and creative effects.',
+      description: 'Тропический ананасовый вкус с бодрящим и креативным эффектом.',
       tag: 'NEW',
       rating: 4.7,
       effect: 'Uplifting',
@@ -61,7 +61,7 @@ const ProductsSection = () => {
       name: 'BIG CHIEF SOUR TANGIE',
       category: 'sativa',
       image: bigChiefImage,
-      description: 'Citrus flavor with a sour twist, perfect for daytime use.',
+      description: 'Цитрусовый вкус с кисловатым оттенком, идеально подходит для дневного использования.',
       tag: 'TRENDING',
       rating: 4.8,
       effect: 'Energizing',
@@ -73,7 +73,7 @@ const ProductsSection = () => {
       name: 'CURE PEN ORIGINAL',
       category: 'hybrid',
       image: cureImage,
-      description: 'Clean, solvent-free distillate with natural terpene profile.',
+      description: 'Чистый дистиллят без растворителей с натуральным профилем терпенов.',
       tag: 'PREMIUM',
       rating: 4.9,
       effect: 'Balanced',
@@ -85,7 +85,7 @@ const ProductsSection = () => {
       name: 'BRASS KNUCKLES GOLD',
       category: 'indica',
       image: cureImage,
-      description: 'The gold standard in premium cannabis cartridges.',
+      description: 'Золотой стандарт в премиальных картриджах для каннабиса.',
       tag: 'EXCLUSIVE',
       rating: 4.9,
       effect: 'Powerful',
@@ -93,6 +93,7 @@ const ProductsSection = () => {
       price: '$50.00'
     }
   ];
+  
 
   // Categories
   const categories = [
@@ -130,7 +131,7 @@ const ProductsSection = () => {
 
   const itemVariants = {
     hidden: { 
-      opacity: 0,
+      // opacity: 0,
       y: 30
     },
     visible: { 

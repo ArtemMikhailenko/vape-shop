@@ -155,7 +155,7 @@ const AwardsSection = () => {
       
       <motion.div 
         className={styles.contentWrapper}
-        style={{ opacity, scale }}
+        style={{  scale }}
       >
         <div className={styles.headerContainer}>
           <div className={styles.titleContainer}>

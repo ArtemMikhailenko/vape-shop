@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Header.module.css';
@@ -8,6 +8,7 @@ const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
+  const prevPathRef = useRef(location.pathname);
   
   // Close mobile menu on location change
   useEffect(() => {
@@ -28,6 +29,17 @@ const Header = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [scrolled]);
+
+  // Handle navigation and scroll restoration
+  useEffect(() => {
+    // If the path changed and we're not at the top, scroll to top
+    if (prevPathRef.current !== location.pathname) {
+      window.scrollTo(0, 0);
+    }
+    
+    // Update ref for next comparison
+    prevPathRef.current = location.pathname;
+  }, [location.pathname]);
 
   // Lock body scroll when menu is open
   useEffect(() => {
@@ -51,6 +63,13 @@ const Header = () => {
     { name: 'FAQ', path: '/faq' },
     { name: 'ПОКУПКА', path: '/purchase' }
   ];
+
+  // Handle navigation click
+  const handleNavClick = () => {
+    setMenuOpen(false);
+    // Ensure we start at the top of the new page
+    window.scrollTo(0, 0);
+  };
 
   // Animation variants
   const menuVariants = {
@@ -91,16 +110,12 @@ const Header = () => {
       >
         <div className={styles.headerContainer}>
           <div className={styles.logoContainer}>
-            <Link to="/">
+            <Link to="/" onClick={handleNavClick}>
               <motion.div 
                 className={styles.logo}
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.2 }}
               >
-                {/* Option 1: Text logo */}
-                {/* <span className={styles.logoText}>Breaking-Bad</span> */}
-                
-                {/* Option 2: Image logo, uncomment to use */}
                 <img src={logoImage} alt="Breaking-Bad" />
               </motion.div>
             </Link>
@@ -119,6 +134,7 @@ const Header = () => {
                   <Link
                     to={item.path}
                     className={styles.navLink}
+                    onClick={handleNavClick}
                   >
                     {item.name}
                     {location.pathname === item.path && 
@@ -172,7 +188,7 @@ const Header = () => {
                   <Link 
                     to={item.path}
                     className={styles.mobileNavLink}
-                    onClick={() => setMenuOpen(false)}
+                    onClick={handleNavClick}
                   >
                     {item.name}
                   </Link>
@@ -183,7 +199,7 @@ const Header = () => {
                 className={styles.mobileNavFooter}
                 variants={itemVariants}
               >
-                 <img src={logoImage} alt="Breaking-Bad" />
+                <img src={logoImage} alt="Breaking-Bad" />
                 <div className={styles.footerText}>Premium Cannabis Products</div>
               </motion.div>
             </motion.div>
