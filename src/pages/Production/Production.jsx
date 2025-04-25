@@ -648,7 +648,6 @@ const ProductionPage = () => {
                           <div className={styles.imageBorder}>
                             <img src={labImage} alt="Лабораторное оборудование" className={styles.equipmentImage} />
                           </div>
-                          <div className={styles.imageBadge}>ЛАБОРАТОРИЯ</div>
                         </motion.div>
                       </div>
                     </div>
@@ -740,7 +739,7 @@ const ProductionPage = () => {
 
         <motion.div 
           className={styles.ctaSection}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 1, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}

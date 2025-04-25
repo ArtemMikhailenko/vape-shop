@@ -2,10 +2,12 @@ import React, { useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import styles from './AboutSection.module.css';
 import cartridgeImage from '../../assets/Kingpen-Oil.jpg';
+import { useNavigate } from 'react-router-dom';
 
 const AboutSection = () => {
   const sectionRef = useRef(null);
   const canvasRef = useRef(null);
+    const navigate = useNavigate();
   
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -220,6 +222,7 @@ const AboutSection = () => {
                 className={styles.learnMoreButton}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => navigate('/about')}
               >
                 <span>УЗНАТЬ БОЛЬШЕ</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -231,6 +234,7 @@ const AboutSection = () => {
                 className={styles.shopButton}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => navigate('/shop')}
               >
                 <span>КАТАЛОГ</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

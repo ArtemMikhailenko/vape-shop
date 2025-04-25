@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Header.module.css';
-import logoImage from '../../assets/logo.png'; // Make sure you have a logo
+import logoImage from '../../assets/logo2.png'; // Make sure you have a logo
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -98,10 +98,10 @@ const Header = () => {
                 transition={{ duration: 0.2 }}
               >
                 {/* Option 1: Text logo */}
-                <span className={styles.logoText}>Breaking-Bad</span>
+                {/* <span className={styles.logoText}>Breaking-Bad</span> */}
                 
                 {/* Option 2: Image logo, uncomment to use */}
-                {/* <img src={logoImage} alt="Breaking-Bad" /> */}
+                <img src={logoImage} alt="Breaking-Bad" />
               </motion.div>
             </Link>
           </div>
@@ -183,7 +183,7 @@ const Header = () => {
                 className={styles.mobileNavFooter}
                 variants={itemVariants}
               >
-                <div className={styles.footerLogo}>Breaking-Bad</div>
+                 <img src={logoImage} alt="Breaking-Bad" />
                 <div className={styles.footerText}>Premium Cannabis Products</div>
               </motion.div>
             </motion.div>

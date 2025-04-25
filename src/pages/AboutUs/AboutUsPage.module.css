@@ -147,7 +147,7 @@
   }
   
   .contactButton, .shopButton {
-    width: 100%;
+  
     justify-content: center;
   }
 }

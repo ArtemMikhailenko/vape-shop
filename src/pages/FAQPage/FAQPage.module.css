@@ -1,8 +1,8 @@
 .faqPage {
   position: relative;
   min-height: 100vh;
-  padding: 100px 0;
-  background-color: #f8fbfa;
+  padding: 120px 0 80px;
+  background-color: #f9f9f9;
   overflow: hidden;
 }
 
@@ -21,12 +21,12 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at center, rgba(240, 250, 245, 0.8) 0%, rgba(248, 251, 250, 1) 80%);
+  background: radial-gradient(circle at center, rgba(76, 175, 80, 0.05) 0%, rgba(248, 251, 250, 0) 80%);
 }
 
 .particle {
   position: absolute;
-  background-color: rgba(42, 157, 143, 0.1);
+  background-color: rgba(76, 175, 80, 0.1);
   border-radius: 3px;
   pointer-events: none;
   z-index: 1;
@@ -63,20 +63,35 @@
   margin-bottom: 50px;
 }
 
+.sectionBadge {
+  display: inline-block;
+  background-color: rgba(76, 175, 80, 0.1);
+  color: #4CAF50;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
 .pageTitle {
   font-size: 3rem;
-  color: #233d4d;
+  color: #333;
   margin-bottom: 15px;
   font-weight: 700;
-  background: linear-gradient(135deg, #2a9d8f, #233d4d);
+  background: linear-gradient(135deg, #4CAF50, #333);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 2px 10px rgba(42, 157, 143, 0.1);
+  text-fill-color: transparent;
+  text-shadow: 0 2px 10px rgba(76, 175, 80, 0.1);
 }
 
 .pageSubtitle {
   font-size: 1.1rem;
-  color: #52796f;
+  color: #555;
   max-width: 700px;
   margin: 0 auto 30px;
   line-height: 1.6;
@@ -86,15 +101,28 @@
   margin-bottom: 40px;
 }
 
+.searchInputWrapper {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #4CAF50;
+  font-size: 1rem;
+}
+
 .searchInput {
   width: 100%;
-  padding: 15px 0px;
+  padding: 15px 15px 15px 45px;
   background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(42, 157, 143, 0.2);
+  border: 1px solid rgba(76, 175, 80, 0.2);
   border-radius: 8px;
-  color: #233d4d;
+  color: #333;
   font-size: 1rem;
-  margin-bottom: 15px;
   transition: all 0.3s ease;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
@@ -102,8 +130,33 @@
 .searchInput:focus {
   outline: none;
   background: #ffffff;
-  border-color: rgba(42, 157, 143, 0.5);
-  box-shadow: 0 0 0 2px rgba(42, 157, 143, 0.1);
+  border-color: rgba(76, 175, 80, 0.5);
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+}
+
+.clearSearchButton {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.clearSearchButton:hover {
+  background-color: rgba(76, 175, 80, 0.1);
+  color: #4CAF50;
 }
 
 .tagsList {
@@ -116,9 +169,9 @@
 .tagButton {
   padding: 8px 15px;
   background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(42, 157, 143, 0.2);
+  border: 1px solid rgba(76, 175, 80, 0.2);
   border-radius: 20px;
-  color: #52796f;
+  color: #555;
   font-size: 0.85rem;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -127,15 +180,16 @@
 
 .tagButton:hover {
   background: rgba(255, 255, 255, 1);
-  color: #2a9d8f;
-  border-color: rgba(42, 157, 143, 0.4);
+  color: #4CAF50;
+  border-color: rgba(76, 175, 80, 0.4);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
 }
 
 .activeTag {
-  background: rgba(42, 157, 143, 0.1);
-  color: #2a9d8f;
-  border-color: rgba(42, 157, 143, 0.4);
+  background: rgba(76, 175, 80, 0.1);
+  color: #4CAF50;
+  border-color: rgba(76, 175, 80, 0.4);
   font-weight: 500;
 }
 
@@ -169,27 +223,32 @@
   transition: all 0.3s ease;
 }
 
+.faqQuestion:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
 .faqQuestion.active {
-  background: rgba(42, 157, 143, 0.05);
-  border-bottom: 1px solid rgba(42, 157, 143, 0.1);
+  background: rgba(76, 175, 80, 0.05);
+  border-bottom: 1px solid rgba(76, 175, 80, 0.1);
 }
 
 .questionIcon {
   flex: 0 0 40px;
   height: 40px;
-  background: rgba(42, 157, 143, 0.1);
+  background: rgba(76, 175, 80, 0.1);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #2a9d8f;
+  color: #4CAF50;
   font-size: 1.2rem;
   margin-right: 15px;
   transition: all 0.3s ease;
 }
 
 .faqQuestion.active .questionIcon {
-  background: rgba(42, 157, 143, 0.2);
+  background: rgba(76, 175, 80, 0.2);
   transform: scale(1.1);
 }
 
@@ -199,7 +258,7 @@
 
 .questionText h3 {
   font-size: 1.1rem;
-  color: #233d4d;
+  color: #333;
   margin: 0;
   font-weight: 500;
 }
@@ -207,17 +266,17 @@
 .questionTag {
   display: inline-block;
   font-size: 0.8rem;
-  color: #52796f;
+  color: #555;
   padding: 2px 8px;
-  background: rgba(42, 157, 143, 0.05);
+  background: rgba(76, 175, 80, 0.05);
   border-radius: 20px;
   margin-top: 8px;
-  border: 1px solid rgba(42, 157, 143, 0.1);
+  border: 1px solid rgba(76, 175, 80, 0.1);
 }
 
 .arrowIcon {
   flex: 0 0 24px;
-  color: #52796f;
+  color: #555;
   font-size: 1.2rem;
 }
 
@@ -229,26 +288,37 @@
 
 .answerContent {
   padding: 20px;
-  color: #52796f;
+  color: #555;
   line-height: 1.6;
+}
+
+.answerContent p {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.answerContent p:last-child {
+  margin-bottom: 0;
 }
 
 .paymentList, .deliveryList {
   margin: 15px 0;
   padding-left: 20px;
-  color: #52796f;
+  color: #555;
 }
 
 .paymentList li, .deliveryList li {
   margin-bottom: 8px;
+  position: relative;
+  padding-left: 5px;
 }
 
 .deliveryNote {
   margin-top: 15px;
   padding-top: 15px;
-  border-top: 1px solid rgba(42, 157, 143, 0.1);
+  border-top: 1px solid rgba(76, 175, 80, 0.1);
   font-style: italic;
-  color: #52796f;
+  color: #555;
 }
 
 .linkButton {
@@ -256,19 +326,28 @@
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
-  background: rgba(42, 157, 143, 0.08);
+  background: rgba(76, 175, 80, 0.08);
   border-radius: 20px;
-  color: #2a9d8f;
+  color: #4CAF50;
   text-decoration: none;
   transition: all 0.3s ease;
   font-size: 0.9rem;
   margin-top: 10px;
-  border: 1px solid rgba(42, 157, 143, 0.15);
+  border: 1px solid rgba(76, 175, 80, 0.15);
+}
+
+.linkButtonIcon {
+  font-size: 0.9rem;
+  transition: transform 0.3s ease;
 }
 
 .linkButton:hover {
-  background: rgba(42, 157, 143, 0.15);
+  background: rgba(76, 175, 80, 0.15);
   transform: translateX(5px);
+}
+
+.linkButton:hover .linkButtonIcon {
+  transform: translateX(3px);
 }
 
 .noResults {
@@ -278,6 +357,12 @@
   border-radius: 10px;
   color: #233d4d;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.noResultsIcon {
+  font-size: 2.5rem;
+  color: rgba(42, 157, 143, 0.3);
+  margin-bottom: 20px;
 }
 
 .noResults h3 {
@@ -329,7 +414,9 @@
 }
 
 .contactButton {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   padding: 12px 30px;
   background: linear-gradient(45deg, #2a9d8f, #38a3a5);
   color: white;
@@ -341,14 +428,84 @@
   box-shadow: 0 5px 15px rgba(42, 157, 143, 0.2);
 }
 
+.contactButtonIcon {
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
 .contactButton:hover {
   box-shadow: 0 8px 20px rgba(42, 157, 143, 0.3);
   transform: translateY(-2px);
 }
 
+.contactButton:hover .contactButtonIcon {
+  transform: translateX(3px);
+}
+
+/* Enhanced Media Queries for Better Responsiveness */
+@media (min-width: 1400px) {
+  .contentContainer {
+    max-width: 1000px;
+  }
+  
+  .pageTitle {
+    font-size: 3.5rem;
+  }
+  
+  .faqQuestion {
+    padding: 25px;
+  }
+  
+  .questionIcon {
+    width: 45px;
+    height: 45px;
+    font-size: 1.3rem;
+  }
+  
+  .questionText h3 {
+    font-size: 1.2rem;
+  }
+  
+  .answerContent {
+    padding: 25px;
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .faqPage {
+    padding: 100px 0 60px;
+  }
+  
+  .pageTitle {
+    font-size: 2.5rem;
+  }
+  
+  .pageSubtitle {
+    font-size: 1rem;
+    max-width: 600px;
+  }
+  
+  .contactSection {
+    padding: 35px 30px;
+  }
+  
+  .contactTitle {
+    font-size: 1.6rem;
+  }
+}
+
 @media (max-width: 768px) {
   .faqPage {
-    padding: 70px 0;
+    padding: 80px 0 50px;
+  }
+  
+  .contentContainer {
+    padding: 0 15px;
+  }
+  
+  .faqHeader {
+    margin-bottom: 40px;
   }
   
   .pageTitle {
@@ -356,11 +513,23 @@
   }
   
   .pageSubtitle {
+    font-size: 0.95rem;
+  }
+  
+  .questionIcon {
+    flex: 0 0 36px;
+    height: 36px;
     font-size: 1rem;
+    margin-right: 12px;
   }
   
   .questionText h3 {
     font-size: 1rem;
+  }
+  
+  .answerContent {
+    padding: 15px;
+    font-size: 0.95rem;
   }
   
   .contactSection {
@@ -368,29 +537,106 @@
   }
   
   .contactTitle {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+  }
+  
+  .contactButton {
+    padding: 10px 25px;
+    font-size: 0.95rem;
+  }
+  
+  .searchInput {
+    padding: 12px 12px 12px 40px;
+  }
+}
+
+@media (max-width: 576px) {
+  .faqPage {
+    padding: 60px 0 40px;
+  }
+  
+  .pageTitle {
+    font-size: 1.8rem;
+  }
+  
+  .pageSubtitle {
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+  }
+  
+  .sectionBadge {
+    font-size: 0.8rem;
+    padding: 5px 12px;
+  }
+  
+  .faqQuestion {
+    padding: 15px;
+  }
+  
+  .questionIcon {
+    flex: 0 0 32px;
+    height: 32px;
+    font-size: 0.9rem;
+    margin-right: 10px;
+  }
+  
+  .answerContent {
+    padding: 15px;
+    font-size: 0.9rem;
+  }
+  
+  .faqList {
+    gap: 10px;
+    margin-bottom: 30px;
   }
   
   .tagsList {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
     gap: 8px;
   }
   
   .tagButton {
-    text-align: center;
-    width: 100%;
-    padding: 8px 10px;
+    padding: 6px 12px;
+    font-size: 0.8rem;
   }
-}
-
-/* Анимация для фокуса на вопросы */
-.faqQuestion:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(42, 157, 143, 0.2);
-}
-
-/* Плавные переходы для аккордеона */
-.faqQuestion, .faqAnswer {
-  will-change: transform;
+  
+  .contactSection {
+    padding: 25px 15px;
+  }
+  
+  .contactTitle {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+  
+  .contactText {
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+  }
+  
+  .contactButton {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  
+  .linkButton {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .noResults {
+    padding: 30px 15px;
+  }
+  
+  .noResults h3 {
+    font-size: 1.2rem;
+  }
+  
+  .noResults p {
+    font-size: 0.9rem;
+  }
+  
+  .resetButton {
+    padding: 8px 18px;
+    font-size: 0.85rem;
+  }
 }

@@ -179,10 +179,6 @@ const ContactPages = () => {
               <span>Перейти в каталог</span>
               <BiChevronRight className={styles.buttonIcon} />
             </a>
-            <a href="#" className={styles.priceButton}>
-              <span>Смотреть прайс-лист</span>
-              <BiChevronRight className={styles.buttonIcon} />
-            </a>
           </div>
           
           <div className={styles.cannabisInfo}>
@@ -314,90 +310,90 @@ const ContactPages = () => {
       </div>
     ),
     
-    faq: (
-      <div className={styles.faqContent}>
-        <motion.h2 
-          className={styles.faqTitle}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          Часто задаваемые вопросы
-        </motion.h2>
+    // faq: (
+    //   <div className={styles.faqContent}>
+    //     <motion.h2 
+    //       className={styles.faqTitle}
+    //       initial={{ opacity: 0, y: 20 }}
+    //       animate={{ opacity: 1, y: 0 }}
+    //       transition={{ duration: 0.6 }}
+    //     >
+    //       Часто задаваемые вопросы
+    //     </motion.h2>
         
-        <motion.div 
-          className={styles.faqList}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          {[
-            {
-              question: 'Как сделать заказ?',
-              answer: 'Для оформления заказа напишите нашему менеджеру в Telegram @Vapehub_operator с указанием выбранных позиций, количества и предпочтительного способа доставки.',
-              icon: <FaMapMarkerAlt />,
-              color: '#4CAF50'
-            },
-            {
-              question: 'Какие способы доставки доступны?',
-              answer: 'Мы осуществляем доставку по всей России. Доступны варианты: СДЭК, Почта России, PickPoint, а также доставка в постаматы. Подробности уточняйте у менеджера при оформлении заказа.',
-              icon: <FaMapMarkerAlt />,
-              color: '#F39C12'
-            },
-            {
-              question: 'Как проверить подлинность продукции?',
-              answer: 'Вся наша продукция оригинальная и имеет соответствующие маркировки и защитные элементы. При получении товара вы можете проверить его подлинность по специальным кодам.',
-              icon: <FaCheckCircle />,
-              color: '#8E44AD'
-            },
-            {
-              question: 'Есть ли оптовые цены?',
-              answer: 'Да, для оптовых заказов у нас действуют специальные цены. Для уточнения деталей и получения прайс-листа обратитесь к нашему менеджеру.',
-              icon: <FaBoxes />,
-              color: '#3498DB'
-            }
-          ].map((item, index) => (
-            <motion.div 
-              key={index} 
-              className={styles.faqItem}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-              style={{ borderColor: `${item.color}30` }}
-            >
-              <div 
-                className={styles.faqIcon}
-                style={{ backgroundColor: `${item.color}20`, color: item.color }}
-              >
-                {item.icon}
-              </div>
-              <div className={styles.faqContent}>
-                <h3 
-                  className={styles.faqQuestion}
-                  style={{ color: item.color }}
-                >
-                  {item.question}
-                </h3>
-                <p className={styles.faqAnswer}>{item.answer}</p>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+    //     <motion.div 
+    //       className={styles.faqList}
+    //       initial={{ opacity: 0 }}
+    //       animate={{ opacity: 1 }}
+    //       transition={{ duration: 0.6, delay: 0.2 }}
+    //     >
+    //       {[
+    //         {
+    //           question: 'Как сделать заказ?',
+    //           answer: 'Для оформления заказа напишите нашему менеджеру в Telegram @Vapehub_operator с указанием выбранных позиций, количества и предпочтительного способа доставки.',
+    //           icon: <FaMapMarkerAlt />,
+    //           color: '#4CAF50'
+    //         },
+    //         {
+    //           question: 'Какие способы доставки доступны?',
+    //           answer: 'Мы осуществляем доставку по всей России. Доступны варианты: СДЭК, Почта России, PickPoint, а также доставка в постаматы. Подробности уточняйте у менеджера при оформлении заказа.',
+    //           icon: <FaMapMarkerAlt />,
+    //           color: '#F39C12'
+    //         },
+    //         {
+    //           question: 'Как проверить подлинность продукции?',
+    //           answer: 'Вся наша продукция оригинальная и имеет соответствующие маркировки и защитные элементы. При получении товара вы можете проверить его подлинность по специальным кодам.',
+    //           icon: <FaCheckCircle />,
+    //           color: '#8E44AD'
+    //         },
+    //         {
+    //           question: 'Есть ли оптовые цены?',
+    //           answer: 'Да, для оптовых заказов у нас действуют специальные цены. Для уточнения деталей и получения прайс-листа обратитесь к нашему менеджеру.',
+    //           icon: <FaBoxes />,
+    //           color: '#3498DB'
+    //         }
+    //       ].map((item, index) => (
+    //         <motion.div 
+    //           key={index} 
+    //           className={styles.faqItem}
+    //           initial={{ opacity: 0, y: 20 }}
+    //           animate={{ opacity: 1, y: 0 }}
+    //           transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+    //           style={{ borderColor: `${item.color}30` }}
+    //         >
+    //           <div 
+    //             className={styles.faqIcon}
+    //             style={{ backgroundColor: `${item.color}20`, color: item.color }}
+    //           >
+    //             {item.icon}
+    //           </div>
+    //           <div className={styles.faqContent}>
+    //             <h3 
+    //               className={styles.faqQuestion}
+    //               style={{ color: item.color }}
+    //             >
+    //               {item.question}
+    //             </h3>
+    //             <p className={styles.faqAnswer}>{item.answer}</p>
+    //           </div>
+    //         </motion.div>
+    //       ))}
+    //     </motion.div>
         
-        <div className={styles.contactBox}>
-          <div className={styles.contactBoxIcon}>
-            <FaQuestionCircle />
-          </div>
-          <div className={styles.contactBoxContent}>
-            <h3>Остались вопросы?</h3>
-            <p>Свяжитесь с нами для получения дополнительной информации</p>
-            <a href="https://t.me/Vapehub_operator" className={styles.contactBoxButton}>
-              Написать в Telegram
-            </a>
-          </div>
-        </div>
-      </div>
-    )
+    //     <div className={styles.contactBox}>
+    //       <div className={styles.contactBoxIcon}>
+    //         <FaQuestionCircle />
+    //       </div>
+    //       <div className={styles.contactBoxContent}>
+    //         <h3>Остались вопросы?</h3>
+    //         <p>Свяжитесь с нами для получения дополнительной информации</p>
+    //         <a href="https://t.me/Vapehub_operator" className={styles.contactBoxButton}>
+    //           Написать в Telegram
+    //         </a>
+    //       </div>
+    //     </div>
+    //   </div>
+    // )
   };
   
   return (
@@ -450,7 +446,7 @@ const ContactPages = () => {
               )}
             </button>
             
-            <button 
+            {/* <button 
               className={`${styles.tabButton} ${activeTab === 'faq' ? styles.activeTab : ''}`}
               onClick={() => setActiveTab('faq')}
             >
@@ -459,7 +455,7 @@ const ContactPages = () => {
               {activeTab === 'faq' && (
                 <motion.div className={styles.activeIndicator} layoutId="activeTabIndicator" />
               )}
-            </button>
+            </button> */}
           </div>
           
           <div className={styles.tabContent}>

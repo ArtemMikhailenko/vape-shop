@@ -218,6 +218,7 @@
   border-radius: 10px 10px 0 0;
   box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.03);
   overflow-x: auto;
+  flex-wrap: wrap;
 }
 
 .sectionTab {
@@ -234,7 +235,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  white-space: nowrap;
+  /* white-space: nowrap; */
 }
 
 .tabIcon {
@@ -1440,7 +1441,8 @@
   }
   
   .sectionTab {
-    padding: 15px 20px;
+    padding: 15px 17px;
+    font-size: 14px;
   }
 }
 

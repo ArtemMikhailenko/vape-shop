@@ -2,10 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import styles from './Hero.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const Hero = () => {
   const smokeRef = useRef(null);
   const videoRef = useRef(null);
+  const navigate = useNavigate();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   
   // Handle mouse movement for the parallax effect
@@ -119,6 +121,7 @@ const Hero = () => {
                 boxShadow: '0 10px 25px rgba(76, 175, 80, 0.6)'
               }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => navigate('/shop')}
             >
               <span className={styles.buttonText}>КАТАЛОГ ПРОДУКЦИИ</span>
               <span className={styles.buttonIcon}>→</span>
@@ -130,6 +133,7 @@ const Hero = () => {
                 scale: 1.05,
                 borderColor: 'rgba(255, 255, 255, 0.8)'
               }}
+              onClick={() => navigate('/about')}
               whileTap={{ scale: 0.95 }}
             >
               <span className={styles.buttonText}>УЗНАТЬ БОЛЬШЕ</span>

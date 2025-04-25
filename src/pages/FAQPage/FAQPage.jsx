@@ -2,8 +2,19 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import styles from './FAQPage.module.css';
 
-// Импорт иконок
-import { FaLeaf, FaGlobeAmericas, FaCheckCircle, FaTruck, FaCreditCard, FaClock, FaStar, FaListAlt, FaShippingFast, FaPhoneAlt } from 'react-icons/fa';
+// Import icons
+import { 
+  FaLeaf, 
+  FaGlobeAmericas, 
+  FaCheckCircle, 
+  FaTruck, 
+  FaCreditCard, 
+  FaClock, 
+  FaSearch, 
+  FaFilePdf,
+  FaShippingFast, 
+  FaPhoneAlt 
+} from 'react-icons/fa';
 import { FiChevronDown, FiExternalLink } from 'react-icons/fi';
 
 const FAQPage = () => {
@@ -19,7 +30,7 @@ const FAQPage = () => {
   const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
   
-  // Генерируем частицы для фонового эффекта
+  // Generate particles for background effect
   useEffect(() => {
     if (!containerRef.current) return;
     
@@ -29,7 +40,7 @@ const FAQPage = () => {
       const particle = document.createElement('div');
       particle.className = styles.particle;
       
-      // Рандомное позиционирование
+      // Random positioning
       const size = Math.random() * 8 + 3;
       const posX = Math.random() * 100;
       const posY = Math.random() * 100;
@@ -47,7 +58,7 @@ const FAQPage = () => {
       
       containerRef.current.appendChild(particle);
       
-      // Удаление частицы
+      // Remove particle after animation
       setTimeout(() => {
         if (particle && particle.parentNode) {
           particle.remove();
@@ -55,9 +66,9 @@ const FAQPage = () => {
       }, (duration + delay) * 1000);
     };
     
-    // Добавление частиц с интервалом
+    // Add particles at intervals
     const particleInterval = setInterval(createParticle, 3000);
-    // Начальное создание некоторого количества частиц
+    // Create initial particles
     for (let i = 0; i < 15; i++) {
       createParticle();
     }
@@ -65,47 +76,47 @@ const FAQPage = () => {
     return () => clearInterval(particleInterval);
   }, []);
   
-  // Данные FAQ
+  // FAQ data
   const faqData = [
     {
       id: 1,
-      question: 'Там есть химия?',
-      answer: 'Нет, там химии нету. Это чистое масло конопли.',
+      question: 'Содержит ли продукция химию?',
+      answer: 'Нет, в нашей продукции нет синтетических добавок. Используется исключительно чистое масло конопли высокого качества.',
       icon: <FaLeaf />,
       tag: 'Продукт'
     },
     {
       id: 2,
-      question: 'Производство какой страны ваш товар?',
-      answer: 'Весь наш товар произведен в Соединённых Штатах Америки.',
+      question: 'В какой стране производится ваша продукция?',
+      answer: 'Вся линейка представленных товаров производится в США на сертифицированных предприятиях с соблюдением всех норм качества и безопасности.',
       icon: <FaGlobeAmericas />,
       tag: 'Происхождение'
     },
     {
       id: 3,
-      question: 'Ваша продукция оригинальная?',
-      answer: 'Да, наша продукция вся оригинальная.',
+      question: 'Является ли продукция оригинальной?',
+      answer: 'Да, мы работаем исключительно с оригинальной продукцией. Все устройства и картриджи проходят сертификацию и поставляются напрямую от проверенных производителей.',
       icon: <FaCheckCircle />,
       tag: 'Качество'
     },
     {
       id: 4,
-      question: 'Наложкой отправляете?',
-      answer: 'Нет, мы не шлем без 100% предоплаты.',
+      question: 'Возможна ли отправка наложенным платежом?',
+      answer: 'К сожалению, отправка наложенным платежом не предусмотрена. Работаем только по 100% предоплате.',
       icon: <FaTruck />,
       tag: 'Оплата'
     },
     {
       id: 5,
-      question: 'Как можно оплатить?',
+      question: 'Какие способы оплаты вы принимаете?',
       answer: (
         <>
-          <p>Мы принимаем несколько способов оплаты:</p>
-          <ol className={styles.paymentList}>
+          <p>Для вашего удобства мы принимаем несколько вариантов оплаты:</p>
+          <ul className={styles.paymentList}>
             <li>Банковский перевод</li>
             <li>Электронные кошельки</li>
             <li>Криптовалюта</li>
-          </ol>
+          </ul>
         </>
       ),
       icon: <FaCreditCard />,
@@ -113,55 +124,25 @@ const FAQPage = () => {
     },
     {
       id: 6,
-      question: 'Как быстро отправка происходит?',
-      answer: 'В течении 48 часов после оплаты.',
+      question: 'В какие сроки осуществляется отправка?',
+      answer: 'Отправка производится в течение 48 часов с момента подтверждения оплаты.',
       icon: <FaClock />,
       tag: 'Доставка'
     },
     {
       id: 7,
-      question: 'У вас есть отзывы?',
+      question: 'Каким способом осуществляется доставка?',
       answer: (
         <>
-          <p>Независимые отзывы о нас: </p>
-          <a href="https://rep-vseti.ru/site/bad-vape.ru" target="_blank" rel="noopener noreferrer" className={styles.linkButton}>
-            <span>Посмотреть отзывы</span>
-            <FiExternalLink />
-          </a>
-        </>
-      ),
-      icon: <FaStar />,
-      tag: 'Отзывы'
-    },
-    {
-      id: 8,
-      question: 'Где можно посмотреть полный прайс?',
-      answer: (
-        <>
-          <p>По этой ссылке: </p>
-          <a href="https://telegra.ph/Assortiment-i-ceny-12-15" target="_blank" rel="noopener noreferrer" className={styles.linkButton}>
-            <span>Посмотреть прайс</span>
-            <FiExternalLink />
-          </a>
-        </>
-      ),
-      icon: <FaListAlt />,
-      tag: 'Цены'
-    },
-    {
-      id: 9,
-      question: 'Как вы осуществляете доставку',
-      answer: (
-        <>
-          <p>У нас есть несколько вариантов доставки:</p>
-          <ol className={styles.deliveryList}>
+          <p>Мы предлагаем несколько вариантов доставки на выбор:</p>
+          <ul className={styles.deliveryList}>
             <li>СДЭК, PickPoint, Почта России</li>
-            <li>Почтомат (любой удобный для вас)</li>
-            <li>Курьер может сделать клад в районе который вы укажите (Город уточнять у менеджера!)</li>
-          </ol>
+            <li>Почтоматы — любой удобный для вас</li>
+            <li>Также возможен курьерский клад в указанном вами районе (доступность города уточняйте у менеджера)</li>
+          </ul>
           <p className={styles.deliveryNote}>
-            Обычно идёт от 1 до 6 дней Смотря в каком городе вы находитесь.<br />
-            Доставка входит в стоимость товара
+            Сроки доставки зависят от региона — обычно от 1 до 6 дней.<br />
+            Стоимость доставки уже включена в цену товара.
           </p>
         </>
       ),
@@ -169,14 +150,29 @@ const FAQPage = () => {
       tag: 'Доставка'
     },
     {
-      id: 10,
+      id: 8,
+      question: 'Где можно посмотреть полный прайс?',
+      answer: (
+        <>
+          <p>Вы можете ознакомиться с полным прайс-листом: </p>
+          <a href="https://telegra.ph/Assortiment-i-ceny-12-15" target="_blank" rel="noopener noreferrer" className={styles.linkButton}>
+            <span>Посмотреть прайс</span>
+            <FaFilePdf className={styles.linkButtonIcon} />
+          </a>
+        </>
+      ),
+      icon: <FaFilePdf />,
+      tag: 'Цены'
+    },
+    {
+      id: 9,
       question: 'Как с вами связаться?',
       answer: (
         <>
-          <p>Наш менеджер: </p>
+          <p>Наш менеджер доступен для консультаций и заказов: </p>
           <a href="https://t.me/Vapehub_operator" target="_blank" rel="noopener noreferrer" className={styles.linkButton}>
             <span>@Vapehub_operator</span>
-            <FiExternalLink />
+            <FiExternalLink className={styles.linkButtonIcon} />
           </a>
         </>
       ),
@@ -185,17 +181,17 @@ const FAQPage = () => {
     }
   ];
   
-  // Фильтрация вопросов по поисковому запросу
+  // Filter questions by search query
   const filteredFaq = faqData.filter(item => 
     item.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
     (typeof item.answer === 'string' && item.answer.toLowerCase().includes(searchQuery.toLowerCase())) ||
     item.tag.toLowerCase().includes(searchQuery.toLowerCase())
   );
   
-  // Уникальные теги для фильтрации
+  // Unique tags for filtering
   const uniqueTags = [...new Set(faqData.map(item => item.tag))];
   
-  // Обработчик клика по аккордеону
+  // Handler for accordion click
   const toggleAccordion = (id) => {
     setActiveAccordion(activeAccordion === id ? null : id);
   };
@@ -216,19 +212,33 @@ const FAQPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
+          <div className={styles.sectionBadge}>FAQ</div>
           <h1 className={styles.pageTitle}>Часто задаваемые вопросы</h1>
           <p className={styles.pageSubtitle}>
-            Приветствую, Вас! У Вас могут возникнуть вопросы при первой покупке, для этого мы написали краткий FAQ по ним.
+            Ниже представлены ответы на самые распространенные вопросы о нашей продукции и услугах.
           </p>
           
           <div className={styles.searchContainer}>
-            <input 
-              type="text" 
-              className={styles.searchInput} 
-              placeholder="Поиск по вопросам..." 
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
+            <div className={styles.searchInputWrapper}>
+              <FaSearch className={styles.searchIcon} />
+              <input 
+                type="text" 
+                className={styles.searchInput} 
+                placeholder="Поиск по вопросам..." 
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              {searchQuery && (
+                <button 
+                  className={styles.clearSearchButton}
+                  onClick={() => setSearchQuery('')}
+                  aria-label="Clear search"
+                >
+                  ×
+                </button>
+              )}
+            </div>
+            
             <div className={styles.tagsList}>
               {uniqueTags.map(tag => (
                 <button 
@@ -251,6 +261,9 @@ const FAQPage = () => {
         >
           {filteredFaq.length === 0 ? (
             <div className={styles.noResults}>
+              <div className={styles.noResultsIcon}>
+                <FaSearch />
+              </div>
               <h3>По вашему запросу ничего не найдено</h3>
               <p>Попробуйте изменить поисковый запрос или сбросить фильтры</p>
               <button className={styles.resetButton} onClick={() => setSearchQuery('')}>
@@ -269,10 +282,18 @@ const FAQPage = () => {
                 <div 
                   className={`${styles.faqQuestion} ${activeAccordion === item.id ? styles.active : ''}`}
                   onClick={() => toggleAccordion(item.id)}
+                  tabIndex={0}
+                  role="button"
+                  aria-expanded={activeAccordion === item.id}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      toggleAccordion(item.id);
+                    }
+                  }}
                 >
                   <div className={styles.questionIcon}>{item.icon}</div>
                   <div className={styles.questionText}>
-                    <h3>{item.id}. {item.question}</h3>
+                    <h3>{item.question}</h3>
                     <span className={styles.questionTag}>{item.tag}</span>
                   </div>
                   <motion.div
@@ -321,6 +342,7 @@ const FAQPage = () => {
             className={styles.contactButton}
           >
             Связаться с менеджером
+            <FiExternalLink className={styles.contactButtonIcon} />
           </a>
         </motion.div>
       </motion.div>

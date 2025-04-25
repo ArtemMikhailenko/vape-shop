@@ -88,24 +88,7 @@ const CertificationSection = () => {
               </motion.div>
             </motion.div>
             
-            <motion.div
-              className={styles.buttonWrapper}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.6, duration: 0.5 }}
-            >
-              <button 
-                className={styles.learnMoreButton}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                LEARN MORE ABOUT CERTIFICATIONS
-                <svg className={styles.buttonArrow} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </button>
-            </motion.div>
+            
           </div>
         </motion.div>
         

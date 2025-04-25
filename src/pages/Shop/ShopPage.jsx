@@ -319,11 +319,11 @@ const ShopPage = () => {
       
       <motion.div 
         className={styles.contentContainer}
-        style={{ y, opacity }}
+        style={{ y }}
       >
         <motion.div 
           className={styles.shopHeader}
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 1, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
@@ -439,13 +439,13 @@ const ShopPage = () => {
                 <div className={styles.productBottom}>
                   
                   <div className={styles.productActions}>
-                    <motion.button 
+                    {/* <motion.button 
                       className={`${styles.actionButton} ${styles.detailsButton}`}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
                       Подробнее <FaAngleRight />
-                    </motion.button>
+                    </motion.button> */}
                     <motion.button 
                       className={`${styles.actionButton} ${styles.orderButton}`}
                       whileHover={{ 
@@ -486,8 +486,8 @@ const ShopPage = () => {
                   className={`${styles.tabButton} ${activeTab === tab ? styles.activeTab : ''}`}
                   onClick={() => setActiveTab(tab)}
                 >
-                  {tab === 'pods' ? 'ПОД-СИСТЕМЫ' : 
-                   tab === 'cartridges' ? 'КАРТРИДЖИ' : 'PEN-СИСТЕМЫ'}
+                  {tab === 'pods' ? 'Под-системы' : 
+                   tab === 'cartridges' ? 'Картриджи' : 'Pen-Системы'}
                   {activeTab === tab && <motion.div className={styles.activeIndicator} layoutId="activeTabIndicator" />}
                 </button>
               ))}
