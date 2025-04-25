@@ -22,6 +22,17 @@
   opacity: 0.9;
 }
 
+/* Dark overlay for better text readability */
+.overlayGradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2));
+}
+
 /* Smoke effect */
 .smokeEffect {
   position: absolute;
@@ -34,10 +45,7 @@
   z-index: 2;
   object-fit: cover;
   background-size: cover;
-  /* filter: contrast(120%); */
 }
-
-
 
 /* Content section */
 .heroContent {
@@ -50,10 +58,11 @@
 }
 
 .contentWrapper {
-  padding: 30px;
+  padding: 40px;
   border-radius: 20px;
   background: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* For Safari */
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
@@ -73,6 +82,12 @@
   border-radius: 30px;
   letter-spacing: 1px;
   text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.productBadge:hover {
+  background: rgba(76, 175, 80, 0.3);
+  transform: translateY(-2px);
 }
 
 .heroTitle {
@@ -84,7 +99,9 @@
   line-height: 1.1;
   background: linear-gradient(90deg, #ffffff, #4CAF50);
   -webkit-background-clip: text;
+  background-clip: text; /* Standard property */
   -webkit-text-fill-color: transparent;
+  text-fill-color: transparent; /* For future compatibility */
   text-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
   animation: titlePulse 3s infinite alternate;
 }
@@ -92,6 +109,7 @@
 .titleHighlight {
   color: #4CAF50;
   -webkit-text-fill-color: #4CAF50;
+  text-fill-color: #4CAF50; /* For future compatibility */
   filter: drop-shadow(0 0 10px rgba(76, 175, 80, 0.7));
 }
 
@@ -116,6 +134,7 @@
   height: 4px;
   background: linear-gradient(90deg, transparent, #4CAF50, transparent);
   margin: 15px auto 25px;
+  border-radius: 2px;
 }
 
 .heroParagraph {
@@ -136,10 +155,10 @@
 }
 
 .button {
-  padding: 10px 20px;
+  padding: 14px 28px;
   border: none;
   border-radius: 30px;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 700;
   cursor: pointer;
   letter-spacing: 1px;
@@ -257,37 +276,206 @@
   }
 }
 
-/* Media queries */
-@media (max-width: 992px) {
+/* Enhanced Media Queries */
+@media (min-width: 1600px) {
   .heroTitle {
-    font-size: 4rem;
+    font-size: 5.5rem;
   }
   
   .heroSubtitle {
     font-size: 1.8rem;
   }
   
+  .heroParagraph {
+    font-size: 1.3rem;
+  }
+  
   .contentWrapper {
-    padding: 30px;
+    padding: 50px;
+    max-width: 800px;
+  }
+  
+  .button {
+    padding: 16px 34px;
+    font-size: 1rem;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .heroTitle {
-    font-size: 3rem;
+    font-size: 4.2rem;
+  }
+  
+  .contentWrapper {
+    padding: 35px;
+  }
+}
+
+@media (max-width: 992px) {
+  .heroTitle {
+    font-size: 3.8rem;
   }
   
   .heroSubtitle {
     font-size: 1.5rem;
   }
   
-  .buttonContainer {
-    flex-direction: column;
-    gap: 15px;
+  .heroParagraph {
+    font-size: 1.1rem;
+  }
+  
+  .contentWrapper {
+    padding: 30px;
+    max-width: 600px;
+  }
+  
+  .button {
+    padding: 12px 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 3.2rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+  }
+  
+  .heroParagraph {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
   }
   
   .contentWrapper {
     padding: 25px;
+    border-radius: 15px;
+  }
+  
+  .buttonContainer {
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+  }
+  
+  .button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .heroSection {
+    padding-top: 60px;
+  }
+  
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+  
+  .titleHighlight {
+    display: inline-block;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.1rem;
+    letter-spacing: 1.5px;
+    margin: 5px 0 10px;
+  }
+  
+  .titleBar {
+    margin: 10px auto 20px;
+    height: 3px;
+  }
+  
+  .heroParagraph {
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+  }
+  
+  .productBadge {
+    font-size: 0.75rem;
+    padding: 6px 12px;
+  }
+  
+  .contentWrapper {
+    padding: 20px;
+    border-radius: 12px;
+  }
+  
+  .button {
+    padding: 12px 20px;
+    font-size: 0.8rem;
+  }
+  
+  .scrollIndicator {
+    bottom: 20px;
+  }
+  
+  .scrollText {
+    font-size: 0.7rem;
+  }
+  
+  .scrollLine {
+    height: 40px;
+  }
+}
+
+/* For very small screens */
+@media (max-width: 360px) {
+  .heroTitle {
+    font-size: 2rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+  
+  .contentWrapper {
+    padding: 15px;
+  }
+  
+  .heroParagraph {
+    margin-bottom: 20px;
+  }
+}
+
+/* For landscape orientation on mobile */
+@media (max-height: 600px) and (orientation: landscape) {
+  .heroSection {
+    padding-top: 40px;
+    height: auto;
+    min-height: 100vh;
+  }
+  
+  .contentWrapper {
+    padding: 20px;
+    margin: 60px 0;
+  }
+  
+  .scrollIndicator {
+    display: none;
+  }
+  
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.1rem;
+    margin: 5px 0;
+  }
+  
+  .titleBar {
+    margin: 10px auto 15px;
+  }
+  
+  .heroParagraph {
+    margin-bottom: 20px;
   }
 }
 
