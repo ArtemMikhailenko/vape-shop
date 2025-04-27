@@ -17,17 +17,17 @@ import {
 } from 'react-icons/fa';
 
 // Import your product images here
-// import stiiizyImage from '../../assets/products/stiizy.png';
+import stiiizyImage from '../../assets/products/stiizy.png';
 // import bigChiefImage from '../../assets/products/bigchief.png';
 // import curepenImage from '../../assets/products/cure.png';
 // import muhaImage from '../../assets/products/muha.png';
 
 // Placeholder for images (remove this when you have actual images)
 const placeholderImages = {
-  stiiizy: "/api/placeholder/220/300",
-  bigChief: "/api/placeholder/220/300",
-  curepen: "/api/placeholder/220/300",
-  muha: "/api/placeholder/220/300"
+  stiiizy: "../../assets/products/stiizy.png",
+  bigChief: "../../assets/products/bigchief.png",
+  curepen: "../../assets/products/cure.png",
+  muha: "../../assets/products/muha.png"
 };
 
 const ShopPage = () => {
