@@ -17,7 +17,7 @@ import {
 } from 'react-icons/fa';
 
 // Import your product images here
-import stiiizyImage from '../../assets/products/stiizy.png';
+import stiiizyImage from '../../assets/products/stiizy3.png';
 import bigChiefImage from '../../assets/products/bigchief.png';
 import curepenImage from '../../assets/products/cure.png';
 import muhaImage from '../../assets/products/muha.png';
