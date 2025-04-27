@@ -473,7 +473,7 @@ const ShopPage = () => {
       <div className={styles.heroSection}>
         <div className={styles.heroOverlay}></div>
         <div className={styles.heroContent}>
-          <h1 className={styles.heroTitle}>BADVAPE SHOP</h1>
+          <h1 className={styles.heroTitle}>Breaking Bad</h1>
           <p className={styles.heroSubtitle}>
             Выберите из нашего премиального ассортимента продуктов высшего качества
           </p>
