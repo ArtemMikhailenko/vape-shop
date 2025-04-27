@@ -11,9 +11,9 @@ import {
   FaAngleRight, 
   FaStar, 
   FaInfoCircle,
-  FaMapMarkerAlt 
+  FaMapMarkerAlt,
+  FaTelegramPlane
 } from 'react-icons/fa';
-import { FiExternalLink } from 'react-icons/fi';
 
 // Product images (replace with your actual imports)
 import stiiizyImage from '../../assets/products/stiizy.png';
@@ -23,8 +23,8 @@ import curepenImage from '../../assets/products/cure.png';
 
 const ShopPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [activeTab, setActiveTab] = useState('pods');
+  const [activeProduct, setActiveProduct] = useState(null);
+  const [selectedStrain, setSelectedStrain] = useState(null);
   const containerRef = useRef(null);
   
   const { scrollYProgress } = useScroll({
@@ -35,76 +35,193 @@ const ShopPage = () => {
   const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
   
-  // Product data
+  // Product data structure
   const products = [
     {
       id: 1,
       name: 'STIIIZY',
       category: 'pods',
       image: stiiizyImage,
-      description: 'Premium THC pods with natural terpenes',
-      price: '2000₽',
-      tag: 'Популярный',
-      features: ['Без PG/VG/PEG', '100% натуральные терпены', 'Многократная дистилляция'],
-      strains: [
-        { name: 'Purple Punch', type: 'indica' },
-        { name: 'OG Kush', type: 'indica' },
-        { name: 'Pineapple Express', type: 'hybrid' }
+      description: 'STIIIZY предлагает премиальные картриджи с фирменными маслами, обогащенными натуральными терпенами для максимального вкуса и эффекта.',
+      longDescription: 'STIIIZY — это инновационный бренд, который произвел революцию в индустрии вейпинга своими стильными, простыми в использовании под-системами. Каждый картридж наполнен высококачественным маслом, прошедшим тщательную очистку, с добавлением натуральных терпенов для создания уникального вкусового профиля каждого сорта.',
+      features: [
+        'Компактный дизайн для дискретного использования',
+        'Без PG/VG/PEG добавок',
+        '100% натуральные терпены',
+        'Специальная технология испарения',
+        'Премиальное масло высокой очистки'
       ],
-      contactPerson: '@Vapehub_operator',
-      rating: 4.9,
-      reviews: 128
+      strains: [
+        { 
+          name: 'Purple Punch', 
+          type: 'indica', 
+          thc: '85-90%',
+          effects: ['Расслабление', 'Снятие стресса', 'Сон'],
+          flavor: 'Ягодно-виноградный с нотками сладкой выпечки'
+        },
+        { 
+          name: 'Blue Dream', 
+          type: 'hybrid', 
+          thc: '85-90%',
+          effects: ['Творчество', 'Расслабление', 'Эйфория'],
+          flavor: 'Ягодный с нотками сладких цитрусовых и хвои'
+        },
+        { 
+          name: 'Pineapple Express', 
+          type: 'hybrid', 
+          thc: '85-90%',
+          effects: ['Энергия', 'Фокус', 'Творчество'],
+          flavor: 'Тропические фрукты с нотками сосны и кедра'
+        },
+        { 
+          name: 'OG Kush', 
+          type: 'indica', 
+          thc: '85-90%',
+          effects: ['Глубокое расслабление', 'Эйфория', 'Снятие боли'],
+          flavor: 'Землистый с нотками цитрусовых и сосны'
+        },
+        { 
+          name: 'Gelato', 
+          type: 'hybrid', 
+          thc: '85-90%',
+          effects: ['Эйфория', 'Творчество', 'Расслабление'],
+          flavor: 'Сладкий десертный с нотками ягод и мяты'
+        }
+      ],
+      price: '2000₽',
+      tag: 'Бестселлер',
+      awards: [
+        '1-е место, High Times Cannabis Cup 2018'
+      ],
+      contactPerson: '@Vapehub_operator'
     },
     {
       id: 2,
       name: 'BRASS KNUCKLES',
       category: 'cartridges',
       image: brassKnucklesImage,
-      description: 'Gold Edition premium cartridges',
-      price: '2000₽',
-      tag: 'Эксклюзив',
-      features: ['Без растворителей', 'Мощный эффект', 'Премиум качество'],
-      strains: [
-        { name: 'Girl Scout Cookies', type: 'hybrid' },
-        { name: 'Skywalker OG', type: 'indica' }
+      description: 'Brass Knuckles предлагает картриджи премиум-класса, известные своей исключительной мощностью и чистотой.',
+      longDescription: 'Brass Knuckles — один из самых узнаваемых брендов на рынке, известный своими экстра-мощными картриджами. Продукция проходит тщательное тестирование на чистоту и не содержит растворителей, тяжелых металлов и других вредных примесей.',
+      features: [
+        'Gold Edition — картриджи премиум-класса',
+        'Экстра-высокая концентрация каннабиноидов',
+        'Без растворителей и вредных примесей',
+        'Керамический нагревательный элемент',
+        'Исключительная прозрачность и чистота масла'
       ],
-      contactPerson: '@Vapehub_operator',
-      rating: 4.8,
-      reviews: 94
+      strains: [
+        { 
+          name: 'Girl Scout Cookies', 
+          type: 'hybrid', 
+          thc: '80-85%',
+          effects: ['Эйфория', 'Расслабление', 'Творчество'],
+          flavor: 'Сладкий десертный с нотками мяты и шоколада'
+        },
+        { 
+          name: 'Skywalker OG', 
+          type: 'indica', 
+          thc: '80-85%',
+          effects: ['Глубокое расслабление', 'Снятие боли', 'Сон'],
+          flavor: 'Землистый с нотками кедра и цитрусовых'
+        },
+        { 
+          name: 'Sour Diesel', 
+          type: 'sativa', 
+          thc: '80-85%',
+          effects: ['Энергия', 'Фокус', 'Эйфория'],
+          flavor: 'Цитрусовый с дизельными нотками'
+        }
+      ],
+      price: '2200₽',
+      tag: 'Эксклюзив',
+      awards: [
+        '1-е место, Best Vaporizer High Times 2017'
+      ],
+      contactPerson: '@Vapehub_operator'
     },
     {
       id: 3,
       name: 'BIG CHIEF',
       category: 'cartridges',
       image: bigChiefImage,
-      description: 'Premium distillate cartridges',
-      price: '1800₽',
-      tag: 'Хорошо идет',
-      features: ['Высокая концентрация', 'Проверенное качество', 'Долгий срок службы'],
-      strains: [
-        { name: 'Sour Tangie', type: 'sativa' },
-        { name: 'Sour Diesel', type: 'sativa' }
+      description: 'Big Chief предлагает премиальные дистиллятные картриджи, созданные для обеспечения чистого и мощного эффекта.',
+      longDescription: 'Big Chief — бренд, который быстро завоевал репутацию благодаря качеству своих картриджей. Каждый продукт содержит чистый дистиллят с высоким содержанием каннабиноидов и обогащен натуральными терпенами для неповторимого вкуса и аромата.',
+      features: [
+        'Высококачественный дистиллят',
+        'Обогащен натуральными терпенами',
+        'Проверенное качество и безопасность',
+        'Превосходная герметичность',
+        'Устойчивость к протеканию'
       ],
-      contactPerson: '@Vapehub_operator',
-      rating: 4.7,
-      reviews: 76
+      strains: [
+        { 
+          name: 'Sour Tangie', 
+          type: 'sativa', 
+          thc: '85-90%',
+          effects: ['Энергия', 'Творчество', 'Приподнятое настроение'],
+          flavor: 'Цитрусовый с нотками мандарина и кислых фруктов'
+        },
+        { 
+          name: 'Wedding Cake', 
+          type: 'hybrid', 
+          thc: '85-90%',
+          effects: ['Расслабление', 'Эйфория', 'Счастье'],
+          flavor: 'Сладкий десертный с ванильными нотками'
+        },
+        { 
+          name: 'Granddaddy Purple', 
+          type: 'indica', 
+          thc: '85-90%',
+          effects: ['Глубокое расслабление', 'Сон', 'Снятие боли'],
+          flavor: 'Ягодный с виноградными и землистыми нотками'
+        }
+      ],
+      price: '1800₽',
+      tag: 'Популярный',
+      awards: [],
+      contactPerson: '@Vapehub_operator'
     },
     {
       id: 4,
       name: 'CUREpen',
       category: 'pens',
       image: curepenImage,
-      description: 'Solvent-free premium cartridges',
+      description: 'CUREpen предлагает элегантную pen-систему с картриджами без растворителей для чистого и насыщенного опыта.',
+      longDescription: 'CUREpen — премиальный бренд, предлагающий стильные pen-системы с передовой технологией испарения. Картриджи CUREpen наполнены чистым маслом без растворителей, обеспечивая мягкий и чистый вкус с каждой затяжкой.',
+      features: [
+        'Элегантный и стильный дизайн',
+        'Технология без растворителей',
+        'Чистый экстракт высшего качества',
+        'Улучшенная система дозирования',
+        'Долгий срок службы аккумулятора'
+      ],
+      strains: [
+        { 
+          name: 'Wedding Cake', 
+          type: 'hybrid', 
+          thc: '85-90%',
+          effects: ['Расслабление', 'Эйфория', 'Счастье'],
+          flavor: 'Сладкий десертный с ванильными нотками'
+        },
+        { 
+          name: 'GG4 (Gorilla Glue)', 
+          type: 'hybrid', 
+          thc: '85-90%',
+          effects: ['Расслабление', 'Эйфория', 'Счастье'],
+          flavor: 'Землистый с хвойными и шоколадными нотками'
+        },
+        { 
+          name: 'Blue Dream', 
+          type: 'hybrid', 
+          thc: '85-90%',
+          effects: ['Творчество', 'Расслабление', 'Эйфория'],
+          flavor: 'Ягодный с нотками сладких цитрусовых и хвои'
+        }
+      ],
       price: '2200₽',
       tag: 'Премиум',
-      features: ['Без растворителей', 'Чистый экстракт', 'Элегантный дизайн'],
-      strains: [
-        { name: 'Wedding Cake', type: 'hybrid' },
-        { name: 'GG4', type: 'hybrid' }
-      ],
-      contactPerson: '@Vapehub_operator',
-      rating: 4.9,
-      reviews: 112
+      awards: [],
+      contactPerson: '@Vapehub_operator'
     }
   ];
 
@@ -116,15 +233,40 @@ const ShopPage = () => {
     { id: 'pens', name: 'Pen-системы', icon: <FaStar /> }
   ];
 
-  // Filter products by category and search query
+  // Filter products by category
   const filteredProducts = products.filter(product => {
-    const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
-    const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          product.description.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
+    return selectedCategory === 'all' || product.category === selectedCategory;
   });
 
-  // Effect to create particles
+  // Functions to get strain type color
+  const getStrainColor = (type) => {
+    switch(type) {
+      case 'indica':
+        return '#6B46C1'; // Purple for indica
+      case 'sativa':
+        return '#E53E3E'; // Red for sativa
+      case 'hybrid':
+        return '#2B9348'; // Green for hybrid
+      default:
+        return '#718096';
+    }
+  };
+
+  // Get strain type name in Russian
+  const getStrainTypeName = (type) => {
+    switch(type) {
+      case 'indica':
+        return 'Индика';
+      case 'sativa':
+        return 'Сатива';
+      case 'hybrid':
+        return 'Гибрид';
+      default:
+        return type;
+    }
+  };
+
+  // Effect to create floating particles
   useEffect(() => {
     if (!containerRef.current) return;
     
@@ -163,28 +305,53 @@ const ShopPage = () => {
     // Add particles with interval
     const particleInterval = setInterval(createParticle, 3000);
     // Initial creation of particles
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 10; i++) {
       createParticle();
     }
     
     return () => clearInterval(particleInterval);
   }, []);
 
-  // Functions to get strain type color
-  const getStrainColor = (type) => {
-    switch(type) {
-      case 'indica':
-        return '#5E60CE'; // Purple for indica
-      case 'sativa':
-        return '#F05454'; // Red for sativa
-      case 'hybrid':
-        return '#2A9D8F'; // Teal for hybrid
-      default:
-        return '#aaa';
+  // Handle clicking on a product card
+  const handleProductClick = (productId) => {
+    if (activeProduct === productId) {
+      setActiveProduct(null);
+      setSelectedStrain(null);
+    } else {
+      setActiveProduct(productId);
+      setSelectedStrain(null);
     }
   };
 
-  // Animated variants for the products grid
+  // Get the active product data
+  const activeProductData = products.find(p => p.id === activeProduct);
+
+  // Variants for animations
+  const productCardVariants = {
+    inactive: { 
+      scale: 1,
+      y: 0
+    },
+    active: { 
+      scale: 1,
+      y: 0,
+      transition: { 
+        type: "spring", 
+        stiffness: 300, 
+        damping: 20 
+      }
+    },
+    hover: { 
+      y: -10,
+      boxShadow: "0 15px 30px rgba(0, 0, 0, 0.1)",
+      transition: { 
+        type: "spring", 
+        stiffness: 300, 
+        damping: 20 
+      }
+    }
+  };
+
   const containerVariants = {
     hidden: {},
     visible: {
@@ -203,265 +370,115 @@ const ShopPage = () => {
     }
   };
 
-  // Tab content for product types tabs
-  const tabContent = {
-    pods: (
-      <div className={styles.tabContent}>
-        <div className={styles.tabDescription}>
-          <h3>ПОД-СИСТЕМЫ</h3>
-          <p>
-            Под-системы предлагают компактный и удобный способ использования. Эти устройства 
-            используют предварительно заполненные картриджи (поды), которые легко заменяются.
-            Идеальны для тех, кто ценит простоту и портативность.
-          </p>
-          
-          <div className={styles.tabFeatures}>
-            <div className={styles.tabFeature}>
-              <div className={styles.featureIcon}><FaLeaf /></div>
-              <div className={styles.featureText}>
-                <h4>Удобство</h4>
-                <p>Простая система без лишних настроек</p>
-              </div>
-            </div>
-            
-            <div className={styles.tabFeature}>
-              <div className={styles.featureIcon}><FaCheckCircle /></div>
-              <div className={styles.featureText}>
-                <h4>Портативность</h4>
-                <p>Компактный размер для удобного ношения</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div className={styles.tabImage}>
-          <img src={stiiizyImage} alt="Под-система" />
-        </div>
-      </div>
-    ),
-    
-    cartridges: (
-      <div className={styles.tabContent}>
-        <div className={styles.tabDescription}>
-          <h3>КАРТРИДЖИ</h3>
-          <p>
-            Картриджи представляют собой сменные резервуары, которые подключаются к аккумулятору. 
-            Они содержат масло с высоким содержанием активных компонентов и предлагают более широкий 
-            выбор вкусов и эффектов.
-          </p>
-          
-          <div className={styles.tabFeatures}>
-            <div className={styles.tabFeature}>
-              <div className={styles.featureIcon}><FaFlask /></div>
-              <div className={styles.featureText}>
-                <h4>Разнообразие</h4>
-                <p>Широкий выбор сортов и концентраций</p>
-              </div>
-            </div>
-            
-            <div className={styles.tabFeature}>
-              <div className={styles.featureIcon}><FaCheckCircle /></div>
-              <div className={styles.featureText}>
-                <h4>Экономичность</h4>
-                <p>Выгодное соотношение цены и количества</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div className={styles.tabImage}>
-          <img src={bigChiefImage} alt="Картридж" />
-        </div>
-      </div>
-    ),
-    
-    pens: (
-      <div className={styles.tabContent}>
-        <div className={styles.tabDescription}>
-          <h3>PEN-СИСТЕМЫ</h3>
-          <p>
-            Pen-системы представляют собой компактные устройства в форме ручки, которые сочетают в себе 
-            аккумулятор и резервуар для масла. Они предлагают возможность настройки мощности и температуры 
-            для персонализации опыта.
-          </p>
-          
-          <div className={styles.tabFeatures}>
-            <div className={styles.tabFeature}>
-              <div className={styles.featureIcon}><FaStar /></div>
-              <div className={styles.featureText}>
-                <h4>Настраиваемость</h4>
-                <p>Регулировка мощности и температуры</p>
-              </div>
-            </div>
-            
-            <div className={styles.tabFeature}>
-              <div className={styles.featureIcon}><FaCheckCircle /></div>
-              <div className={styles.featureText}>
-                <h4>Дизайн</h4>
-                <p>Элегантный вид и удобство использования</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div className={styles.tabImage}>
-          <img src={curepenImage} alt="Pen-система" />
-        </div>
-      </div>
-    )
-  };
-
   return (
     <div className={styles.shopPage} ref={containerRef}>
+      {/* Background elements */}
       <div className={styles.backgroundElements}>
         <div className={styles.gradientOverlay}></div>
+        <div className={styles.leafPattern}></div>
       </div>
       
       <motion.div 
         className={styles.contentContainer}
-        style={{ y }}
+        style={{ y, opacity }}
       >
+        {/* Page Header */}
         <motion.div 
           className={styles.shopHeader}
-          initial={{ opacity: 1, y: -20 }}
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className={styles.pageTitle}>Магазин</h1>
+          <div className={styles.pageBadge}>Наш ассортимент</div>
+          <h1 className={styles.pageTitle}>МАГАЗИН</h1>
           <p className={styles.pageSubtitle}>
-            Выберите из нашего ассортимента премиальных продуктов для истинных ценителей
+            Выберите из нашего премиального ассортимента продуктов высшего качества
           </p>
         </motion.div>
         
-        <div className={styles.searchContainer}>
-          <input 
-            type="text" 
-            className={styles.searchInput} 
-            placeholder="Поиск по названию или описанию..." 
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-          
-          <div className={styles.categories}>
-            {categories.map(category => (
-              <motion.button
-                key={category.id}
-                className={`${styles.categoryBtn} ${selectedCategory === category.id ? styles.active : ''}`}
-                onClick={() => setSelectedCategory(category.id)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span className={styles.categoryIcon}>{category.icon}</span>
-                <span>{category.name}</span>
-              </motion.button>
-            ))}
-          </div>
+        {/* Categories filter */}
+        <div className={styles.categories}>
+          {categories.map(category => (
+            <motion.button
+              key={category.id}
+              className={`${styles.categoryBtn} ${selectedCategory === category.id ? styles.active : ''}`}
+              onClick={() => setSelectedCategory(category.id)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className={styles.categoryIcon}>{category.icon}</span>
+              <span>{category.name}</span>
+            </motion.button>
+          ))}
         </div>
         
+        {/* Main Products Grid */}
         <motion.div 
-          className={styles.productsGrid}
+          className={styles.productsWrapper}
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {filteredProducts.map(product => (
+          {filteredProducts.map((product) => (
             <motion.div 
               key={product.id}
-              className={styles.productCard}
+              className={`${styles.productCard} ${activeProduct === product.id ? styles.activeCard : ''}`}
               variants={itemVariants}
-              whileHover={{ 
-                y: -8,
-                boxShadow: "0 15px 30px rgba(0, 0, 0, 0.08)",
-                transition: { duration: 0.3 }
-              }}
+              initial="inactive"
+              animate={activeProduct === product.id ? "active" : "inactive"}
+              whileHover={activeProduct === product.id ? {} : "hover"}
+              onClick={() => handleProductClick(product.id)}
+              layoutId={`product-${product.id}`}
             >
-              <div className={styles.productImageContainer}>
-                <img 
-                  src={product.image} 
-                  alt={product.name} 
-                  className={styles.productImage} 
-                />
-                {product.tag && (
-                  <div className={styles.productTag}>{product.tag}</div>
-                )}
-              </div>
-              
-              <div className={styles.productInfo}>
-                <div className={styles.productCategory}>
-                  {product.category === 'pods' ? 'Под-система' : 
-                   product.category === 'cartridges' ? 'Картридж' : 'Pen-система'}
-                </div>
-                <h2 className={styles.productName}>{product.name}</h2>
-                <p className={styles.productDescription}>{product.description}</p>
-                
-                <div className={styles.productFeatures}>
-                  {product.features.slice(0, 2).map((feature, index) => (
-                    <div key={index} className={styles.featureItem}>
-                      <FaCheckCircle className={styles.featureIcon} />
-                      <span>{feature}</span>
+              <div className={styles.productCardInner}>
+                <div className={styles.productImageContainer}>
+                  <img 
+                    src={product.image} 
+                    alt={product.name} 
+                    className={styles.productImage} 
+                  />
+                  {product.tag && (
+                    <div className={styles.productTag}>
+                      {product.tag}
                     </div>
-                  ))}
+                  )}
                 </div>
                 
-                <div className={styles.productRating}>
-                  <div className={styles.stars}>
-                    {[...Array(5)].map((_, i) => (
-                      <FaStar 
-                        key={i} 
-                        className={i < Math.floor(product.rating) ? styles.starFilled : styles.starEmpty} 
-                      />
-                    ))}
+                <div className={styles.productInfo}>
+                  <div className={styles.productMeta}>
+                    <div className={styles.productCategory}>
+                      {product.category === 'pods' ? 'Под-система' : 
+                       product.category === 'cartridges' ? 'Картридж' : 'Pen-система'}
+                    </div>
+                    <div className={styles.productPrice}>{product.price}</div>
                   </div>
-                  <div className={styles.ratingText}>
-                    {product.rating} ({product.reviews} отзывов)
-                  </div>
-                </div>
-                
-                <div className={styles.strainsContainer}>
-                  <div className={styles.strainsTitle}>Доступные сорта:</div>
-                  <div className={styles.strainsList}>
-                    {product.strains.map((strain, index) => (
-                      <div key={index} className={styles.strainItem}>
-                        <div 
-                          className={styles.strainColor} 
-                          style={{ backgroundColor: getStrainColor(strain.type) }}
-                        ></div>
-                        <span>{strain.name}</span>
-                        <span className={styles.strainType}>
-                          {strain.type === 'indica' ? 'Indica' : 
-                           strain.type === 'sativa' ? 'Sativa' : 'Hybrid'}
-                        </span>
+                  
+                  <h2 className={styles.productName}>{product.name}</h2>
+                  
+                  <p className={styles.productDescription}>
+                    {product.description}
+                  </p>
+                  
+                  <div className={styles.productFeatures}>
+                    {product.features.slice(0, 3).map((feature, index) => (
+                      <div key={index} className={styles.featureItem}>
+                        <FaCheckCircle className={styles.featureIcon} />
+                        <span>{feature}</span>
                       </div>
                     ))}
                   </div>
-                </div>
-                
-                <div className={styles.productBottom}>
                   
                   <div className={styles.productActions}>
-                    {/* <motion.button 
-                      className={`${styles.actionButton} ${styles.detailsButton}`}
+                    <motion.button 
+                      className={styles.actionButton}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      Подробнее <FaAngleRight />
-                    </motion.button> */}
-                    <motion.button 
-                      className={`${styles.actionButton} ${styles.orderButton}`}
-                      whileHover={{ 
-                        scale: 1.05,
-                        boxShadow: "0 8px 20px rgba(42, 157, 143, 0.3)"
-                      }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <a 
-                        href={`https://t.me/${product.contactPerson}`} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className={styles.telegramLink}
-                      >
-                        <FaShoppingCart /> Заказать
-                      </a>
+                      {activeProduct === product.id ? (
+                        <>Скрыть подробности</>
+                      ) : (
+                        <>Подробнее <FaAngleRight /></>
+                      )}
                     </motion.button>
                   </div>
                 </div>
@@ -470,129 +487,208 @@ const ShopPage = () => {
           ))}
         </motion.div>
         
-        <div className={styles.infoSection}>
-          <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>Выбери свой стиль</h2>
-            <p className={styles.sectionSubtitle}>
-              Ознакомьтесь с различными типами наших продуктов и выберите идеальный вариант для себя
-            </p>
-          </div>
-          
-          <div className={styles.processTabs}>
-            <div className={styles.tabsNavigation}>
-              {['pods', 'cartridges', 'pens'].map(tab => (
-                <button
-                  key={tab}
-                  className={`${styles.tabButton} ${activeTab === tab ? styles.activeTab : ''}`}
-                  onClick={() => setActiveTab(tab)}
-                >
-                  {tab === 'pods' ? 'Под-системы' : 
-                   tab === 'cartridges' ? 'Картриджи' : 'Pen-Системы'}
-                  {activeTab === tab && <motion.div className={styles.activeIndicator} layoutId="activeTabIndicator" />}
-                </button>
-              ))}
-            </div>
-            
-            <div className={styles.tabContentPanel}>
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeTab}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{  y: -20 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  {tabContent[activeTab]}
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </div>
-        </div>
+        {/* Product Details Section */}
+        <AnimatePresence>
+          {activeProductData && (
+            <motion.div
+              className={styles.productDetails}
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className={styles.detailsHeader}>
+                <div className={styles.detailsHeaderLeft}>
+                  <div className={styles.detailsCategory}>
+                    {activeProductData.category === 'pods' ? 'Под-система' : 
+                     activeProductData.category === 'cartridges' ? 'Картридж' : 'Pen-система'}
+                  </div>
+                  <h2 className={styles.detailsTitle}>{activeProductData.name}</h2>
+                </div>
+                <div className={styles.detailsHeaderRight}>
+                  <div className={styles.detailsPrice}>{activeProductData.price}</div>
+                  <a
+                    href={`https://t.me/${activeProductData.contactPerson}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.orderNowButton}
+                  >
+                    <FaTelegramPlane className={styles.telegramIcon} />
+                    Заказать сейчас
+                  </a>
+                </div>
+              </div>
+              
+              <div className={styles.detailsContent}>
+                <div className={styles.detailsDescription}>
+                  <h3 className={styles.sectionTitle}>О продукте</h3>
+                  <p>{activeProductData.longDescription}</p>
+                  
+                  <div className={styles.featuresGrid}>
+                    {activeProductData.features.map((feature, index) => (
+                      <div key={index} className={styles.featureGridItem}>
+                        <div className={styles.featureGridIcon}>
+                          <FaCheckCircle />
+                        </div>
+                        <div className={styles.featureGridText}>{feature}</div>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  {activeProductData.awards && activeProductData.awards.length > 0 && (
+                    <div className={styles.awardsSection}>
+                      <h3 className={styles.sectionTitle}>Награды</h3>
+                      <div className={styles.awardsList}>
+                        {activeProductData.awards.map((award, index) => (
+                          <div key={index} className={styles.awardItem}>
+                            <FaStar className={styles.awardIcon} />
+                            <span>{award}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+                
+                <div className={styles.strainsSection}>
+                  <h3 className={styles.sectionTitle}>Доступные сорта</h3>
+                  <div className={styles.strainsGrid}>
+                    {activeProductData.strains.map((strain, index) => (
+                      <motion.div 
+                        key={index}
+                        className={`${styles.strainCard} ${selectedStrain === index ? styles.selectedStrain : ''}`}
+                        onClick={() => setSelectedStrain(selectedStrain === index ? null : index)}
+                        whileHover={{ 
+                          y: -5,
+                          boxShadow: "0 10px 25px rgba(0, 0, 0, 0.1)"
+                        }}
+                      >
+                        <div 
+                          className={styles.strainColorBar}
+                          style={{ backgroundColor: getStrainColor(strain.type) }}
+                        ></div>
+                        <div className={styles.strainInfo}>
+                          <div className={styles.strainHeader}>
+                            <h4 className={styles.strainName}>{strain.name}</h4>
+                            <div 
+                              className={styles.strainType}
+                              style={{ 
+                                backgroundColor: `${getStrainColor(strain.type)}20`,
+                                color: getStrainColor(strain.type)
+                              }}
+                            >
+                              {getStrainTypeName(strain.type)}
+                            </div>
+                          </div>
+                          
+                          <div className={styles.strainContent}>
+                            <div className={styles.strainThc}>
+                              <span className={styles.strainLabel}>THC:</span>
+                              <span className={styles.strainValue}>{strain.thc}</span>
+                            </div>
+                            
+                            <div className={styles.strainEffects}>
+                              <span className={styles.strainLabel}>Эффекты:</span>
+                              <div className={styles.effectsTags}>
+                                {strain.effects.map((effect, i) => (
+                                  <span key={i} className={styles.effectTag}>{effect}</span>
+                                ))}
+                              </div>
+                            </div>
+                            
+                            <div className={styles.strainFlavor}>
+                              <span className={styles.strainLabel}>Вкус:</span>
+                              <span className={styles.strainValue}>{strain.flavor}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              
+              <div className={styles.detailsFooter}>
+                <div className={styles.contactInfo}>
+                  <FaInfoCircle className={styles.contactIcon} />
+                  <p>Для заказа и уточнения деталей свяжитесь с нашим менеджером в Telegram: {activeProductData.contactPerson}</p>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
         
-        <div className={styles.orderProcess}>
-          <h2 className={styles.processTitle}>Как сделать заказ</h2>
+        {/* How to Order Section */}
+        <div className={styles.howToOrder}>
+          <h2 className={styles.sectionTitle}>Как сделать заказ</h2>
           
-          <div className={styles.processSteps}>
-            <div className={styles.processStep}>
+          <div className={styles.orderSteps}>
+            <div className={styles.orderStep}>
               <div className={styles.stepNumber}>1</div>
               <div className={styles.stepContent}>
-                <h3 className={styles.stepTitle}>Выбор товара</h3>
-                <p className={styles.stepDescription}>
-                  Выберите товар из нашего каталога, который вас интересует
-                </p>
+                <h3>Выберите продукт</h3>
+                <p>Ознакомьтесь с нашим ассортиментом и выберите интересующий вас товар</p>
               </div>
             </div>
             
-            <div className={styles.processStep}>
+            <div className={styles.orderStep}>
               <div className={styles.stepNumber}>2</div>
               <div className={styles.stepContent}>
-                <h3 className={styles.stepTitle}>Связь с менеджером</h3>
-                <p className={styles.stepDescription}>
-                  Напишите нашему менеджеру в Telegram, указав выбранный товар
-                </p>
+                <h3>Свяжитесь с менеджером</h3>
+                <p>Напишите нашему менеджеру в Telegram для оформления заказа</p>
               </div>
             </div>
             
-            <div className={styles.processStep}>
+            <div className={styles.orderStep}>
               <div className={styles.stepNumber}>3</div>
               <div className={styles.stepContent}>
-                <h3 className={styles.stepTitle}>Оплата</h3>
-                <p className={styles.stepDescription}>
-                  Выберите удобный способ оплаты: банковский перевод, электронные кошельки или криптовалюта
-                </p>
+                <h3>Выберите способ оплаты</h3>
+                <p>Мы принимаем банковские переводы, электронные кошельки и криптовалюту</p>
               </div>
             </div>
             
-            <div className={styles.processStep}>
+            <div className={styles.orderStep}>
               <div className={styles.stepNumber}>4</div>
               <div className={styles.stepContent}>
-                <h3 className={styles.stepTitle}>Доставка</h3>
-                <p className={styles.stepDescription}>
-                  Получите ваш заказ через СДЭК, почтомат или другим удобным способом
-                </p>
+                <h3>Получите ваш заказ</h3>
+                <p>Мы доставляем по всей России через СДЭК, Почту России или в постаматы</p>
               </div>
             </div>
           </div>
         </div>
         
-        <div className={styles.noticeSection}>
-          <div className={styles.noticeTitle}>
-            <FaInfoCircle />
-            <span>Обратите внимание</span>
+        {/* Contact CTA Section */}
+        <div className={styles.contactCta}>
+          <div className={styles.ctaContent}>
+            <h2 className={styles.ctaTitle}>Остались вопросы?</h2>
+            <p className={styles.ctaText}>
+              Свяжитесь с нашим менеджером для получения дополнительной информации о продуктах,
+              наличии конкретных сортов или условиях доставки
+            </p>
+            <a 
+              href="https://t.me/Vapehub_operator"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.ctaButton}
+            >
+              <FaTelegramPlane className={styles.telegramIcon} />
+              Написать в Telegram
+            </a>
           </div>
-          <p className={styles.noticeText}>
-            Все наши продукты проходят тщательный контроль качества и имеют сертификаты соответствия.
-            Мы гарантируем подлинность и высокое качество каждого товара. Для уточнения наличия и актуальных
-            цен обращайтесь к нашему менеджеру.
-          </p>
           
-          <a 
-            href="https://t.me/Vapehub_operator" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className={styles.contactButton}
-          >
-            <FaMapMarkerAlt className={styles.buttonIcon} />
-            <span>Связаться с менеджером</span>
-          </a>
-        </div>
-        
-        <div className={styles.priceSection}>
-          <h2 className={styles.priceTitle}>Полный прайс-лист</h2>
-          <p className={styles.priceDescription}>
-            Для просмотра полного прайс-листа с актуальными ценами на всю нашу продукцию перейдите по ссылке:
-          </p>
-          <a 
-            href="https://telegra.ph/Assortiment-i-ceny-12-15" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className={styles.priceButton}
-          >
-            Посмотреть прайс <FiExternalLink />
-          </a>
+          <div className={styles.productDisclaimer}>
+            <div className={styles.disclaimerContent}>
+              <FaInfoCircle className={styles.disclaimerIcon} />
+              <p>
+                Вся наша продукция проходит строгий контроль качества и соответствует международным стандартам.
+                Мы гарантируем подлинность и высокое качество каждого товара.
+              </p>
+            </div>
+          </div>
         </div>
       </motion.div>
       
+      {/* Certificates Strip */}
       <div className={styles.certificateStrip}>
         <div className={styles.stripContainer}>
           <div className={styles.stripItem}>
