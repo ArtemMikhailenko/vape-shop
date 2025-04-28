@@ -30,7 +30,7 @@ const DevicesSection = () => {
     },
     {
       id: 'backwoods',
-      name: 'BACKWOODS',
+      name: 'Brass Knuckles',
       description: 'Популярный бренд с фирменным стилем, сочетающий традиции с современными технологиями',
       image: backwoodsImage,
       badge: 'Классика',

@@ -719,10 +719,28 @@ const ShopPage = () => {
 
   // Toggle brand expansion
   const toggleBrand = (brandId) => {
+    // First update the state
     setExpandedBrand(expandedBrand === brandId ? null : brandId);
     setSelectedStrain(null);
     setCompareMode(false);
     setComparedStrains([]);
+    
+    // If opening a brand, wait for state update and DOM rendering, then scroll
+    if (expandedBrand !== brandId) {
+      // Use requestAnimationFrame to wait for the next paint cycle
+      requestAnimationFrame(() => {
+        // Then use setTimeout to give time for the animation to start
+        setTimeout(() => {
+          const element = document.getElementById(`expanded-brand-${brandId}`);
+          if (element) {
+            element.scrollIntoView({ 
+              behavior: 'smooth', 
+              block: 'start' 
+            });
+          }
+        }, 300);
+      });
+    }
   };
 
   // Toggle strain selection
@@ -817,7 +835,22 @@ const ShopPage = () => {
       transition: { duration: 0.5 }
     }
   };
-
+  useEffect(() => {
+    if (expandedBrand) {
+      // Give more time for the animation to start
+      const scrollTimer = setTimeout(() => {
+        const element = document.getElementById(`expanded-brand-${expandedBrand}`);
+        if (element) {
+          element.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start'
+          });
+        }
+      }, 300); // Increased timeout to allow animation to begin
+      
+      return () => clearTimeout(scrollTimer);
+    }
+  }, [expandedBrand]);
   return (
     <div className={styles.shopPage} ref={containerRef}>
       {/* Header Section */}
@@ -972,15 +1005,15 @@ const ShopPage = () => {
         {/* Expanded Brand Section */}
         <AnimatePresence>
           {expandedBrand && (
-            <motion.div
-              key={`expanded-${expandedBrand}`}
-              id={`brand-${expandedBrand}`}
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.5 }}
-              className={styles.expandedSection}
-            >
+             <motion.div
+             key={`expanded-${expandedBrand}`}
+             id={`expanded-brand-${expandedBrand}`} // Make sure this ID is consistent
+             initial={{ opacity: 0, height: 0 }}
+             animate={{ opacity: 1, height: 'auto' }}
+             exit={{ opacity: 0, height: 0 }}
+             transition={{ duration: 0.5 }}
+             className={styles.expandedSection}
+           >
               <div className={styles.expandedContainer}>
                 {/* Brand header */}
                 <div className={styles.expandedHeader}>
