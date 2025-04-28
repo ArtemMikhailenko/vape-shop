@@ -162,7 +162,7 @@ const DevicesSection = () => {
     <div className="devices-section">
       <div className="section-header">
         <div className="header-badge">Высокое качество</div>
-        <h2 className="section-title">Наши устройства</h2>
+        <h2 className="section-title">Устройства</h2>
         <p className="section-subtitle">Выберите подходящее устройство для вашего опыта</p>
       </div>
       
