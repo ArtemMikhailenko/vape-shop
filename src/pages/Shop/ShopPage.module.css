@@ -267,6 +267,10 @@
   border: 1px solid #eee;
   cursor: pointer;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
 }
 
 .strainColorBar {
@@ -281,17 +285,23 @@
 
 .strainImage {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: 150px;
+  object-fit: contain;
   transition: transform 0.5s ease;
 }
-
+.strainImage img {
+  max-height: 150px;
+}
 .strainCard:hover .strainImage {
   transform: scale(1.1);
 }
 
 .strainContent {
+  min-height: 330px;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .strainHeader {
@@ -516,6 +526,8 @@
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
+  align-self: end;
+
 }
 
 .detailsButton:hover {
@@ -1627,7 +1639,7 @@
 .featuredImage {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   transition: transform 0.5s ease;
 }
 
