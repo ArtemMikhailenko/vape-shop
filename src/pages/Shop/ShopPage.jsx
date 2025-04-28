@@ -62,6 +62,7 @@ import supersilverhaze from  '../../assets/products/muha/super-silver-haze.png'
 import supersourdiesel from  '../../assets/products/muha/supersourdiesel.png'
 import watermelon from  '../../assets/products/muha/watermelon-og.png'
 import weddingcake from  '../../assets/products/muha/wedding-cake.png'
+import DevicesSection from './DevicesSection';
 
 
 // Strain images - these would be your actual strain images
@@ -906,7 +907,7 @@ const ShopPage = () => {
             </motion.div>
           </div>
         )}
-
+        <DevicesSection/>
         {/* Brands Overview Section */}
         <div className={styles.sectionHeader}>
           <h2 className={styles.sectionTitle}>Наши бренды</h2>
