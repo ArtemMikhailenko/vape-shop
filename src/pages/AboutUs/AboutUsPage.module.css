@@ -248,7 +248,7 @@
   transform: translate(-50%, -50%);
   z-index: -1;
   border-radius: 50%;
-  animation: pulseSlow 8s infinite alternate;
+  /* animation: pulseSlow 8s infinite alternate; */
 }
 
 @keyframes pulseSlow {
@@ -332,6 +332,7 @@
 .logoContainer {
   width: 100%;
   display: flex;
+  /* background-color: #333; */
   flex-direction: column;
   align-items: center;
   perspective: 1000px;
@@ -345,6 +346,7 @@
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
   transform-style: preserve-3d;
   transition: transform 0.3s ease;
+  background-color:#3d9140;
   margin-bottom: 30px;
 }
 

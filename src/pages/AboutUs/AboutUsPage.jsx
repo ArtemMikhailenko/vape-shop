@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import styles from './AboutUsPage.module.css';
-import logoImage from '../../assets/logo-snoop.jpg'; // Logo image
+import logoImage from '../../assets/logo2.png'; // Logo image
 
 // Optional: Use react-icons for better, more consistent icons
 import { FaLeaf, FaFlask, FaUsers, FaCog, FaHandshake, FaTrophy, FaCheckCircle, FaSearch } from 'react-icons/fa';
@@ -24,35 +24,35 @@ const AboutUsPage = () => {
   const logoScale = useSpring(1, springConfig);
   const logoRotate = useSpring(0, springConfig);
   
-  // Parallax effect for text card
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
+  // // Parallax effect for text card
+  // useEffect(() => {
+  //   const handleMouseMove = (e) => {
+  //     if (!containerRef.current) return;
+  //     const rect = containerRef.current.getBoundingClientRect();
+  //     const centerX = rect.left + rect.width / 2;
+  //     const centerY = rect.top + rect.height / 2;
       
-      // Normalize values from -1 to 1
-      const normalizedX = (e.clientX - centerX) / (rect.width / 2);
-      const normalizedY = (e.clientY - centerY) / (rect.height / 2);
+  //     // Normalize values from -1 to 1
+  //     const normalizedX = (e.clientX - centerX) / (rect.width / 2);
+  //     const normalizedY = (e.clientY - centerY) / (rect.height / 2);
       
-      mouseX.set(normalizedX * 10); // Control effect strength
-      mouseY.set(normalizedY * 10);
+  //     mouseX.set(normalizedX * 10); // Control effect strength
+  //     mouseY.set(normalizedY * 10);
       
-      // Logo animation on hover
-      logoScale.set(1.05);
-      logoRotate.set(normalizedX * 5); // Tilt up to 5 degrees
+  //     // Logo animation on hover
+  //     logoScale.set(1.05);
+  //     logoRotate.set(normalizedX * 5); // Tilt up to 5 degrees
       
-      // Return logo to initial state when cursor is removed
-      setTimeout(() => {
-        logoScale.set(1);
-        logoRotate.set(0);
-      }, 500);
-    };
+  //     // Return logo to initial state when cursor is removed
+  //     setTimeout(() => {
+  //       logoScale.set(1);
+  //       logoRotate.set(0);
+  //     }, 500);
+  //   };
     
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [mouseX, mouseY, logoScale, logoRotate]);
+  //   window.addEventListener('mousemove', handleMouseMove);
+  //   return () => window.removeEventListener('mousemove', handleMouseMove);
+  // }, [mouseX, mouseY, logoScale, logoRotate]);
   
   // Animation of cannabis leaves for background
   useEffect(() => {

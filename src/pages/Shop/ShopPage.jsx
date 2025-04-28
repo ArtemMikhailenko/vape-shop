@@ -52,6 +52,17 @@ import kinglouis from  '../../assets/products/curepen/kinglouis.png'
 import superlemon from  '../../assets/products/curepen/superlemon.png'
 import threeekings from  '../../assets/products/curepen/threeekings.jpg'
 
+import blueberry from  '../../assets/products/muha/blueberryhaze.png'
+import callgass from  '../../assets/products/muha/callgass.png'
+import cherrygrayp from  '../../assets/products/muha/cherry-grayp.png'
+import lemoncherry from  '../../assets/products/muha/lemon-cherry.png'
+import mangomadness from  '../../assets/products/muha/mango-madness.png'
+import purplepunchMuh from  '../../assets/products/muha/purplepunch.png'
+import supersilverhaze from  '../../assets/products/muha/super-silver-haze.png'
+import supersourdiesel from  '../../assets/products/muha/supersourdiesel.png'
+import watermelon from  '../../assets/products/muha/watermelon-og.png'
+import weddingcake from  '../../assets/products/muha/wedding-cake.png'
+
 
 // Strain images - these would be your actual strain images
 const strainImages = {
@@ -82,15 +93,15 @@ const strainImages = {
   'three-kings':threeekings,
   
   // MUHA MEDS strains
-  'super-silver-haze': 'https://images.unsplash.com/photo-1586729168741-c6e84a423c3c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
-  'strawberry-cough': 'https://images.unsplash.com/photo-1603026207572-06bb7bc6435f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
-  'super-sour-diesel': 'https://images.unsplash.com/photo-1517578701290-16fa3deb8bd3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
-  'skywalker-og-muha': 'https://images.unsplash.com/photo-1520004434532-668416a08753?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
-  'watermelon-og': 'https://images.unsplash.com/photo-1563122289-5a59ccc62739?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
-  'garlic-jelly': 'https://images.unsplash.com/photo-1599719500956-d499f869d2d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
-  'berry-gelato': 'https://images.unsplash.com/photo-1600019542480-4d4fc530281e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
-  'donny-burger': 'https://images.unsplash.com/photo-1538681081798-d00972448fcc?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
-  'mango-madness': 'https://images.unsplash.com/photo-1594232352231-11dbe41cd46b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
+  'super-silver-haze':supersilverhaze,
+  'strawberry-cough': cherrygrayp,
+  'super-sour-diesel': supersourdiesel,
+  'skywalker-og-muha': purplepunchMuh,
+  'watermelon-og': watermelon,
+  'garlic-jelly': callgass,
+  'berry-gelato':lemoncherry,
+  'donny-burger': weddingcake,
+  'mango-madness': mangomadness,
 };
 
 // Placeholder for brand images
@@ -488,7 +499,7 @@ const ShopPage = () => {
         },
         {
           id: 'strawberry-cough',
-          name: 'Strawberry Cough',
+          name: 'Cherry a Grapefruit',
           type: 'sativa',
           thc: '87%',
           cbd: '0.5%',
@@ -515,7 +526,7 @@ const ShopPage = () => {
         },
         {
           id: 'skywalker-og-muha',
-          name: 'Skywalker OG',
+          name: 'Purple Punch',
           type: 'indica',
           thc: '93%',
           cbd: '1.2%',
@@ -541,7 +552,7 @@ const ShopPage = () => {
         },
         {
           id: 'garlic-jelly',
-          name: 'Garlic Jelly',
+          name: 'Call GaS OG',
           type: 'indica',
           thc: '90%',
           cbd: '0.9%',
@@ -554,7 +565,7 @@ const ShopPage = () => {
         },
         {
           id: 'berry-gelato',
-          name: 'Berry Gelato',
+          name: 'Lemmon-Cherry Gelato',
           type: 'hybrid',
           thc: '89%',
           cbd: '0.6%',
@@ -567,7 +578,7 @@ const ShopPage = () => {
         },
         {
           id: 'donny-burger',
-          name: 'Donny Burger',
+          name: 'Wedding Cake',
           type: 'hybrid',
           thc: '92%',
           cbd: '0.7%',
