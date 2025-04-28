@@ -910,7 +910,7 @@ const ShopPage = () => {
         <DevicesSection/>
         {/* Brands Overview Section */}
         <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>Наши бренды</h2>
+          <h2 className={styles.sectionTitle}>Ассортимент картриджей</h2>
           <p className={styles.sectionSubtitle}>Откройте для себя разнообразие наших премиальных картриджей</p>
         </div>
 
