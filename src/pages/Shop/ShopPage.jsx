@@ -106,10 +106,10 @@ const strainImages = {
 
 // Placeholder for brand images
 const placeholderImages = {
-  stiiizy: stiiizyImage,
-  bigChief: bigChiefImage,
-  curepen: curepenImage,
-  muha: muhaImage
+  stiiizy: sourdiesel,
+  bigChief: ak47,
+  curepen: calio,
+  muha: callgass
 };
 
 const ShopPage = () => {
